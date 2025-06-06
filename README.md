@@ -1,2 +1,2 @@
-# bouwbeveiligingnl
-Niche-website voor Praesidion Security
+# Snuushco.github.io
+Github Pages website van Snuushco
