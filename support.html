@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Get help and support for Snuushco's products and services. Find answers to common questions and contact our support team.">
+    <title>Support - Snuushco</title>
+    <link rel="icon" type="image/png" href="./static/img/Snuushco Logo.png">
+    
+    <style>
+        :root {
+            --color-primary: #101B3F;
+            --color-accent: #A4FFE3;
+            --color-background: #F8F9FB;
+            --color-text: #2D3748;
+            --color-text-light: #718096;
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 8rem;
+            --container-width: 1200px;
+            --container-padding: 1rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-background);
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+
+        header {
+            background-color: white;
+            padding: var(--spacing-sm) 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: var(--color-accent);
+            color: var(--color-primary);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        main {
+            margin-top: 80px;
+            padding: var(--spacing-lg) 0;
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--spacing-lg);
+        }
+
+        .faq-section {
+            background: white;
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .faq-item {
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid #E2E8F0;
+        }
+
+        .faq-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .faq-question {
+            color: var(--color-primary);
+            font-weight: 500;
+            margin-bottom: var(--spacing-xs);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            display: none;
+            padding-top: var(--spacing-sm);
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .support-sidebar {
+            position: sticky;
+            top: 100px;
+        }
+
+        .support-card {
+            background: white;
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-lg);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .support-card h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .support-links {
+            list-style: none;
+        }
+
+        .support-links li {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .support-links a {
+            color: var(--color-text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .support-links a:hover {
+            color: var(--color-primary);
+        }
+
+        .contact-form {
+            margin-top: var(--spacing-md);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+
+        label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            color: var(--color-text);
+            font-weight: 500;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #E2E8F0;
+            border-radius: 4px;
+            font-family: var(--font-primary);
+            font-size: 1rem;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+
+            .nav-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .support-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .support-sidebar {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="./static/img/Snuushco Logo.png" alt="Snuushco Logo">
+            </div>
+            <div class="nav-buttons">
+                <a href="index.html" class="btn btn-primary">Home</a>
+                <a href="documentation.html" class="btn btn-secondary">Documentation</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Support Center</h1>
+            <p>Find answers to common questions and get help with Snuushco's products</p>
+
+            <div class="support-grid">
+                <div class="faq-section">
+                    <h2>Frequently Asked Questions</h2>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            How do I get started with Snuushco?
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Getting started is easy! Follow these steps:</p>
+                            <ol>
+                                <li>Create an account at snuushco.com</li>
+                                <li>Choose your plan</li>
+                                <li>Install our SDK</li>
+                                <li>Follow our quickstart guide</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            What payment methods do you accept?
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We accept all major credit cards, PayPal, and bank transfers for annual plans. Enterprise customers can also request custom payment terms.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            How can I integrate Snuushco with my existing systems?
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We provide comprehensive APIs and SDKs for various platforms. Check our documentation for detailed integration guides and examples.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            What kind of support do you offer?
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We offer multiple support channels:</p>
+                            <ul>
+                                <li>24/7 Email support</li>
+                                <li>Priority phone support for Pro and Enterprise plans</li>
+                                <li>Community forums</li>
+                                <li>Comprehensive documentation</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            Can I upgrade or downgrade my plan?
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes, you can change your plan at any time. Changes will be reflected in your next billing cycle. Contact our support team for assistance with plan changes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="support-sidebar">
+                    <div class="support-card">
+                        <h3>Quick Links</h3>
+                        <ul class="support-links">
+                            <li><a href="documentation.html">Documentation</a></li>
+                            <li><a href="documentation.html#api-reference">API Reference</a></li>
+                            <li><a href="documentation.html#tutorials">Tutorials</a></li>
+                            <li><a href="blog.html">Community Forums</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="support-card">
+                        <h3>Contact Support</h3>
+                        <p>Can't find what you're looking for? Our support team is here to help.</p>
+                        
+                        <form class="contact-form" id="supportForm">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <select id="subject" name="subject" required>
+                                    <option value="">Select a subject</option>
+                                    <option value="technical">Technical Support</option>
+                                    <option value="billing">Billing Question</option>
+                                    <option value="feature">Feature Request</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Submit Ticket</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isActive = answer.classList.contains('active');
+                
+                // Close all answers
+                document.querySelectorAll('.faq-answer').forEach(a => {
+                    a.classList.remove('active');
+                });
+                
+                // Toggle current answer
+                if (!isActive) {
+                    answer.classList.add('active');
+                }
+            });
+        });
+
+        // Support Form
+        document.getElementById('supportForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Here you would typically handle the form submission
+            alert('Thank you for your message! Our support team will get back to you soon.');
+        });
+    </script>
+</body>
+</html> 

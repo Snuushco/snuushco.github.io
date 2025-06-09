@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about Snuushco's mission, values, and the team behind our innovative solutions.">
+    <title>About - Snuushco</title>
+    <link rel="icon" type="image/png" href="./static/img/Snuushco Logo.png">
+    
+    <style>
+        :root {
+            --color-primary: #101B3F;
+            --color-accent: #A4FFE3;
+            --color-background: #F8F9FB;
+            --color-text: #2D3748;
+            --color-text-light: #718096;
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 8rem;
+            --container-width: 1200px;
+            --container-padding: 1rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-background);
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+
+        header {
+            background-color: white;
+            padding: var(--spacing-sm) 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: var(--color-accent);
+            color: var(--color-primary);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        main {
+            margin-top: 80px;
+            padding: var(--spacing-lg) 0;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--color-primary) 0%, #1a2a6c 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .mission-section {
+            background: white;
+            padding: var(--spacing-xl) 0;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .mission-card {
+            text-align: center;
+            padding: var(--spacing-md);
+        }
+
+        .mission-icon {
+            font-size: 2.5rem;
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .team-section {
+            padding: var(--spacing-xl) 0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .team-member {
+            background: white;
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: var(--spacing-sm);
+            object-fit: cover;
+        }
+
+        .values-section {
+            background: var(--color-background);
+            padding: var(--spacing-xl) 0;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .value-card {
+            background: white;
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .value-card h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+
+            .nav-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .mission-grid,
+            .team-grid,
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="./static/img/Snuushco Logo.png" alt="Snuushco Logo">
+            </div>
+            <div class="nav-buttons">
+                <a href="index.html" class="btn btn-primary">Home</a>
+                <a href="contact.html" class="btn btn-secondary">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <div class="container hero-content">
+                <h1>Building the Future of Software Development</h1>
+                <p>We're on a mission to make software development more efficient, accessible, and enjoyable for everyone.</p>
+            </div>
+        </section>
+
+        <section class="mission-section">
+            <div class="container">
+                <h2>Our Mission</h2>
+                <p>At Snuushco, we believe that great software should be accessible to everyone. We're building tools that empower developers and businesses to create better software, faster.</p>
+
+                <div class="mission-grid">
+                    <div class="mission-card">
+                        <div class="mission-icon">🚀</div>
+                        <h3>Innovation</h3>
+                        <p>Pushing the boundaries of what's possible in software development</p>
+                    </div>
+                    <div class="mission-card">
+                        <div class="mission-icon">🤝</div>
+                        <h3>Collaboration</h3>
+                        <p>Building tools that bring teams together and enhance productivity</p>
+                    </div>
+                    <div class="mission-card">
+                        <div class="mission-icon">💡</div>
+                        <h3>Simplicity</h3>
+                        <p>Making complex tasks simple and accessible to everyone</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="values-section">
+            <div class="container">
+                <h2>Our Values</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <h3>User-First Design</h3>
+                        <p>We believe that great software starts with understanding the user. Every feature we build is designed with the end-user in mind.</p>
+                    </div>
+                    <div class="value-card">
+                        <h3>Continuous Improvement</h3>
+                        <p>We're constantly learning, iterating, and improving our products based on user feedback and industry best practices.</p>
+                    </div>
+                    <div class="value-card">
+                        <h3>Technical Excellence</h3>
+                        <p>We maintain high standards in our code quality, security, and performance to deliver reliable solutions.</p>
+                    </div>
+                    <div class="value-card">
+                        <h3>Community Focus</h3>
+                        <p>We're building more than just software - we're building a community of developers who share our vision.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="team-section">
+            <div class="container">
+                <h2>Our Team</h2>
+                <p>Meet the passionate people behind Snuushco</p>
+
+                <div class="team-grid">
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop" alt="Team Member">
+                        <h3>John Doe</h3>
+                        <p>CEO & Founder</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop" alt="Team Member">
+                        <h3>Jane Smith</h3>
+                        <p>CTO</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop" alt="Team Member">
+                        <h3>Mike Johnson</h3>
+                        <p>Head of Product</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&h=300&fit=crop" alt="Team Member">
+                        <h3>Sarah Williams</h3>
+                        <p>Lead Developer</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html> 

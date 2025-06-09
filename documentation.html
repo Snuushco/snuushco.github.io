@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comprehensive documentation for Snuushco's products and services. Find guides, API references, and more.">
+    <title>Documentation - Snuushco</title>
+    <link rel="icon" type="image/png" href="./static/img/Snuushco Logo.png">
+    
+    <style>
+        :root {
+            --color-primary: #101B3F;
+            --color-accent: #A4FFE3;
+            --color-background: #F8F9FB;
+            --color-text: #2D3748;
+            --color-text-light: #718096;
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 8rem;
+            --container-width: 1200px;
+            --container-padding: 1rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-background);
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+
+        header {
+            background-color: white;
+            padding: var(--spacing-sm) 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: var(--color-accent);
+            color: var(--color-primary);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        main {
+            margin-top: 80px;
+            padding: var(--spacing-lg) 0;
+        }
+
+        .docs-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: var(--spacing-lg);
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 100px;
+            height: calc(100vh - 100px);
+            overflow-y: auto;
+            padding-right: var(--spacing-md);
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .sidebar-nav a {
+            color: var(--color-text);
+            text-decoration: none;
+            display: block;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-nav a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-primary);
+        }
+
+        .sidebar-nav a.active {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .content {
+            background: white;
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .content h2 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-xs);
+            border-bottom: 2px solid var(--color-accent);
+        }
+
+        .content h3 {
+            color: var(--color-primary);
+            margin: var(--spacing-md) 0 var(--spacing-sm);
+        }
+
+        .code-block {
+            background: var(--color-primary);
+            color: var(--color-accent);
+            padding: var(--spacing-sm);
+            border-radius: 4px;
+            font-family: monospace;
+            margin: var(--spacing-sm) 0;
+            overflow-x: auto;
+        }
+
+        .api-endpoint {
+            background: var(--color-background);
+            padding: var(--spacing-sm);
+            border-radius: 4px;
+            margin: var(--spacing-sm) 0;
+        }
+
+        .method {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+            margin-right: var(--spacing-xs);
+        }
+
+        .method.get { background: #61affe; color: white; }
+        .method.post { background: #49cc90; color: white; }
+        .method.put { background: #fca130; color: white; }
+        .method.delete { background: #f93e3e; color: white; }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+
+            .nav-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .docs-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+                height: auto;
+                margin-bottom: var(--spacing-md);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="./static/img/Snuushco Logo.png" alt="Snuushco Logo">
+            </div>
+            <div class="nav-buttons">
+                <a href="index.html" class="btn btn-primary">Home</a>
+                <a href="get-started.html" class="btn btn-secondary">Get Started</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="docs-layout">
+                <nav class="sidebar">
+                    <ul class="sidebar-nav">
+                        <li><a href="#getting-started" class="active">Getting Started</a></li>
+                        <li><a href="#installation">Installation</a></li>
+                        <li><a href="#authentication">Authentication</a></li>
+                        <li><a href="#api-reference">API Reference</a></li>
+                        <li><a href="#sdks">SDKs</a></li>
+                        <li><a href="#webhooks">Webhooks</a></li>
+                        <li><a href="#examples">Examples</a></li>
+                        <li><a href="#troubleshooting">Troubleshooting</a></li>
+                    </ul>
+                </nav>
+
+                <div class="content">
+                    <section id="getting-started">
+                        <h2>Getting Started</h2>
+                        <p>Welcome to the Snuushco documentation. This guide will help you get started with our platform and APIs.</p>
+                        
+                        <h3>Prerequisites</h3>
+                        <ul>
+                            <li>Node.js 14+ or Python 3.8+</li>
+                            <li>A Snuushco account</li>
+                            <li>API credentials (available in your dashboard)</li>
+                        </ul>
+                    </section>
+
+                    <section id="installation">
+                        <h2>Installation</h2>
+                        <p>Install the Snuushco SDK using your preferred package manager:</p>
+                        
+                        <div class="code-block">
+                            # Using npm
+                            npm install @snuushco/sdk
+
+                            # Using pip
+                            pip install snuushco-sdk
+                        </div>
+                    </section>
+
+                    <section id="authentication">
+                        <h2>Authentication</h2>
+                        <p>All API requests require authentication using your API key:</p>
+                        
+                        <div class="code-block">
+                            const snuushco = new Snuushco({
+                                apiKey: 'your-api-key',
+                                environment: 'development'
+                            });
+                        </div>
+                    </section>
+
+                    <section id="api-reference">
+                        <h2>API Reference</h2>
+                        
+                        <div class="api-endpoint">
+                            <span class="method get">GET</span>
+                            <code>/api/v1/workflows</code>
+                            <p>List all workflows in your account.</p>
+                        </div>
+
+                        <div class="api-endpoint">
+                            <span class="method post">POST</span>
+                            <code>/api/v1/workflows</code>
+                            <p>Create a new workflow.</p>
+                        </div>
+
+                        <div class="api-endpoint">
+                            <span class="method put">PUT</span>
+                            <code>/api/v1/workflows/{id}</code>
+                            <p>Update an existing workflow.</p>
+                        </div>
+
+                        <div class="api-endpoint">
+                            <span class="method delete">DELETE</span>
+                            <code>/api/v1/workflows/{id}</code>
+                            <p>Delete a workflow.</p>
+                        </div>
+                    </section>
+
+                    <section id="sdks">
+                        <h2>SDKs</h2>
+                        <p>We provide official SDKs for popular programming languages:</p>
+                        
+                        <ul>
+                            <li>JavaScript/TypeScript</li>
+                            <li>Python</li>
+                            <li>Java</li>
+                            <li>Go</li>
+                        </ul>
+                    </section>
+
+                    <section id="webhooks">
+                        <h2>Webhooks</h2>
+                        <p>Configure webhooks to receive real-time updates about your workflows and automations.</p>
+                        
+                        <div class="code-block">
+                            // Example webhook payload
+                            {
+                                "event": "workflow.completed",
+                                "data": {
+                                    "workflow_id": "wf_123",
+                                    "status": "success",
+                                    "timestamp": "2024-03-20T10:00:00Z"
+                                }
+                            }
+                        </div>
+                    </section>
+
+                    <section id="examples">
+                        <h2>Examples</h2>
+                        <p>Here are some common use cases and examples:</p>
+                        
+                        <div class="code-block">
+                            // Create a new workflow
+                            const workflow = await snuushco.workflows.create({
+                                name: "My First Workflow",
+                                triggers: ["webhook"],
+                                actions: ["transform", "notify"]
+                            });
+
+                            // Add a step to the workflow
+                            await snuushco.workflows.addStep(workflow.id, {
+                                type: "transform",
+                                config: {
+                                    input: "{{trigger.data}}",
+                                    template: "Hello, {{name}}!"
+                                }
+                            });
+                        </div>
+                    </section>
+
+                    <section id="troubleshooting">
+                        <h2>Troubleshooting</h2>
+                        <p>Common issues and their solutions:</p>
+                        
+                        <h3>API Rate Limits</h3>
+                        <p>If you're hitting rate limits, consider implementing exponential backoff in your requests.</p>
+
+                        <h3>Authentication Errors</h3>
+                        <p>Ensure your API key is valid and has the necessary permissions.</p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Update active nav item on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('.sidebar-nav a');
+            
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 100 && rect.bottom >= 100) {
+                    navItems.forEach(item => {
+                        item.classList.remove('active');
+                        if (item.getAttribute('href') === '#' + section.id) {
+                            item.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

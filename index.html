@@ -1,7 +1,427 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Snuushco - Modular software solutions, automation tools, and AI integration services for developers and businesses. Transform your workflow with our developer-friendly APIs and low-code solutions.">
+    <meta name="keywords" content="software development, automation tools, AI integration, developer APIs, low-code solutions, modular software">
+    <title>Snuushco - Modern Software Solutions & AI Integration</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="static/img/Snuushco Logo.png">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Snuushco",
+        "url": "https://snuushco.com",
+        "description": "Modular software and automation solutions for developers and businesses",
+        "logo": "https://snuushco.com/logo.svg",
+        "sameAs": [
+            "https://github.com/snuushco",
+            "https://linkedin.com/company/snuushco",
+            "https://twitter.com/snuushco"
+        ]
+    }
+    </script>
+
+    <style>
+        /* 
+        * Customization Guide:
+        * - Colors: Update the CSS variables in :root
+        * - Font: Change the font-family in :root
+        * - Spacing: Adjust --spacing-* variables
+        */
+        :root {
+            /* Brand Colors */
+            --color-primary: #101B3F;
+            --color-accent: #A4FFE3;
+            --color-background: #F8F9FB;
+            --color-text: #2D3748;
+            --color-text-light: #718096;
+            
+            /* Typography */
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 8rem;
+            
+            /* Container */
+            --container-width: 1200px;
+            --container-padding: 1rem;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-background);
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--color-primary);
+            line-height: 1.2;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 1.75rem; }
+
+        p {
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-text-light);
+        }
+
+        /* Layout */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            padding: var(--spacing-sm) 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: var(--color-accent);
+            color: var(--color-primary);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: calc(var(--spacing-xl) * 1.5) 0 var(--spacing-xl);
+            background: linear-gradient(135deg, var(--color-primary) 0%, #1a2a6c 100%);
+            color: white;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: var(--spacing-xl) 0;
+            background-color: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .feature-card {
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            background-color: var(--color-background);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Use Cases Section */
+        .use-cases {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--color-background);
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+
+        .use-case-card {
+            padding: var(--spacing-md);
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--color-primary);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-banner h2 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+        }
+
+        /* Footer */
+        footer {
+            padding: var(--spacing-lg) 0;
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-lg);
+        }
+
+        .footer-section h3 {
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .footer-section a:hover {
+            color: var(--color-accent);
+        }
+
+        .copyright {
+            margin-top: var(--spacing-lg);
+            text-align: center;
+            padding-top: var(--spacing-md);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            :root {
+                --container-width: 100%;
+            }
+
+            .hero-content,
+            .features-grid,
+            .use-cases-grid,
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            h3 { font-size: 1.5rem; }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+
+            .nav-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
 <body>
-<h1>Snuushco's Github Pages</h1>
-<p>Snuushco''s Github pages</p>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="static/img/Snuushco Logo.png" alt="Snuushco Logo">
+            </div>
+            <div class="nav-buttons">
+                <a href="get-started.html" class="btn btn-primary">Get Started</a>
+                <a href="demo.html" class="btn btn-secondary">Request Demo</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1>Transform Your Workflow with AI-Powered Software Solutions</h1>
+                    <p>Empower your development team with modular software, automation tools, and seamless AI integration. Built for developers, designed for scale.</p>
+                    <a href="/get-started" class="btn btn-accent">Start Building Today</a>
+                </div>
+                <div class="hero-image"></div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2>Why Choose Snuushco?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>Automation First</h3>
+                        <p>Streamline your workflow with our powerful automation tools. Reduce manual tasks and focus on what matters.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Seamless Integration</h3>
+                        <p>Connect with your favorite tools and services through our comprehensive API ecosystem.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Lightning Fast</h3>
+                        <p>Experience unmatched performance with our optimized solutions and cloud infrastructure.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="use-cases">
+            <div class="container">
+                <h2>Perfect For</h2>
+                <div class="use-cases-grid">
+                    <div class="use-case-card">
+                        <h3>Developers</h3>
+                        <p>Access powerful APIs, SDKs, and development tools to build better software faster.</p>
+                    </div>
+                    <div class="use-case-card">
+                        <h3>Businesses</h3>
+                        <p>Scale your operations with our enterprise-grade automation and integration solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-banner">
+            <div class="container">
+                <h2>Ready to Transform Your Development Process?</h2>
+                <p>Join thousands of developers and businesses already using Snuushco.</p>
+                <a href="/get-started" class="btn btn-accent">Get Started Now</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Product</h3>
+                    <a href="features.html" class="btn btn-primary">View Features</a>
+                    <a href="pricing.html" class="btn btn-secondary">See Pricing</a>
+                    <a href="documentation.html" class="btn btn-primary">View Documentation</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <a href="about.html">About</a>
+                    <a href="careers.html">Careers</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <a href="blog.html">Blog</a>
+                    <a href="support.html">Support</a>
+                    <a href="community.html">Community</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <a href="https://github.com/snuushco">GitHub</a>
+                    <a href="https://linkedin.com/company/snuushco">LinkedIn</a>
+                    <a href="https://twitter.com/snuushco">Twitter</a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Snuushco. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
