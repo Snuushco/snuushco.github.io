@@ -19,9 +19,9 @@
     --text-2:   #7A7268;
     --text-3:   #333028;
 
-    --gold:         #C4A35A;
-    --gold-light:   rgba(196, 163, 90, 0.14);
-    --gold-border:  rgba(196, 163, 90, 0.28);
+    --gold:         #00F0DE;
+    --gold-light:   rgba(0, 240, 222, 0.1);
+    --gold-border:  rgba(0, 240, 222, 0.22);
 
     --green:     #4ADE80;
     --green-dim: rgba(74, 222, 128, 0.1);
@@ -69,7 +69,7 @@ body::before {
     position: fixed;
     top: 0; left: 0; right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent 0%, var(--gold) 40%, rgba(196, 163, 90, 0.4) 100%);
+    background: linear-gradient(90deg, transparent 0%, var(--gold) 40%, rgba(0, 240, 222, 0.35) 100%);
     z-index: 1000;
     pointer-events: none;
 }
@@ -436,7 +436,7 @@ ul, ol { list-style: none; }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(196, 163, 90, 0.22);
+    box-shadow: 0 12px 40px rgba(0, 240, 222, 0.28);
 }
 
 .btn-outline {
