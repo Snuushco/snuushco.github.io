@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="static/img/Snuushco Logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="static/css/style.css">
     <style>
         /* =====================
@@ -53,20 +53,22 @@
         .intro-stat:first-child { border-top: 1px solid var(--border); }
 
         .stat-number {
-            font-family: var(--ff-display);
-            font-size: clamp(44px, 5.5vw, 80px);
-            font-weight: 300;
+            font-family: var(--ff-mono);
+            font-size: clamp(36px, 5vw, 72px);
+            font-weight: 400;
             color: var(--gold);
             line-height: 1;
             letter-spacing: -0.02em;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .stat-label {
-            font-size: 13px;
-            font-weight: 300;
+            font-family: var(--ff-mono);
+            font-size: 11px;
+            font-weight: 400;
             color: var(--text-2);
-            letter-spacing: 0.04em;
+            letter-spacing: 0.08em;
+            line-height: 1.5;
         }
 
         /* =====================
@@ -87,9 +89,10 @@
         }
 
         .value-num {
+            font-family: var(--ff-mono);
             font-size: 10px;
-            font-weight: 500;
-            letter-spacing: 0.2em;
+            font-weight: 400;
+            letter-spacing: 0.1em;
             color: var(--gold);
             margin-bottom: 24px;
         }
@@ -177,9 +180,10 @@
         }
 
         .expertise-tag {
-            font-size: 10px;
-            font-weight: 500;
-            letter-spacing: 0.1em;
+            font-family: var(--ff-mono);
+            font-size: 9px;
+            font-weight: 400;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
             color: var(--text-2);
             border: 1px solid var(--border-2);
