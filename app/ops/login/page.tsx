@@ -16,7 +16,7 @@ export default function OpsLoginPage() {
         <form className="ops-login-form" action="/api/ops/login" method="post">
           <label>
             Gebruiker
-            <input name="username" autoComplete="username" required />
+            <input name="username" autoComplete="username" autoFocus required />
           </label>
           <label>
             Wachtwoord
