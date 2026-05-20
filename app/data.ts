@@ -20,7 +20,7 @@ export const segments: Segment[] = [
 ];
 
 export const packages = [
-  { name: "Website Quickstart", price: "vanaf EUR 950 excl. btw", for: "Voor een duidelijke dienst, campagne of compacte bedrijfsintroductie.", includes: ["One page of compacte landingpage", "Gericht aanvraagformulier", "Mobiel goed", "Basis SEO", "1 reviewronde"] },
+  { name: "Website Quickstart", price: "vanaf EUR 1.750 excl. btw", for: "Voor een duidelijke dienst, campagne of compacte bedrijfsintroductie.", includes: ["One page of compacte landingpage", "Gericht aanvraagformulier", "Mobiel goed", "Basis SEO", "1 reviewronde"] },
   { name: "Business Website", price: "vanaf EUR 2.750 excl. btw", for: "Voor dienstverleners met meerdere diensten, regio's en professionele leadflow.", includes: ["5 tot 7 pagina's", "Diensten en regio's", "Branchecopy", "Leadtracking basis", "2 reviewrondes"] },
   { name: "Growth Website", price: "vanaf EUR 6.500 excl. btw", for: "Voor bedrijven waar leads hoge waarde hebben en opvolging sneller moet.", includes: ["Niche SEO structuur", "Kennisbankbasis", "Lead magnet", "Gerichte aanvraagroute", "Voorbereid op latere koppelingen"] },
   { name: "Premium Maatwerk", price: "vanaf EUR 9.500 excl. btw", for: "Voor complexe projecten met integraties, portals, meertaligheid of maatwerklogica.", includes: ["Betaalde discovery", "Technische review", "Maatwerkplanning", "Change control", "Premium QA"] },

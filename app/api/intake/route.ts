@@ -74,7 +74,7 @@ function classify(data: z.infer<typeof intakeSchema>) {
   }
 
   let packageName = "Website Quickstart";
-  let priceRange = "vanaf EUR 950 excl. btw";
+  let priceRange = "vanaf EUR 1.750 excl. btw";
   let route = "Standaardroute";
 
   if (complexityScore > 70 || reviewReasons.length > 0) {

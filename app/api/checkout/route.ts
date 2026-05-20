@@ -13,7 +13,7 @@ const checkoutSchema = z.object({
 const checkoutPackages: Record<string, { label: string; amount: number; description: string }> = {
   "Website Quickstart": {
     label: "Snuushco Website Quickstart",
-    amount: 95000,
+    amount: 175000,
     description: "Compacte website of landingpage met aanvraagroute.",
   },
   "Business Website": {
