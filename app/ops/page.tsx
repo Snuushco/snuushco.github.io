@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CheckCircle2, ClipboardList, LockKeyhole, RefreshCw, UsersRound } from "lucide-react";
+import { CheckCircle2, ClipboardList, Download, Filter, LockKeyhole, RefreshCw, UsersRound } from "lucide-react";
 import { getOperationsDashboard } from "../lib/db";
 import { requireOpsAuth } from "../lib/ops-auth";
 
@@ -43,7 +43,17 @@ function StatusForm({ id, current, kind }: { id: string; current: string; kind: 
   );
 }
 
-export default async function OpsPage() {
+function textParam(input: string | string[] | undefined) {
+  return Array.isArray(input) ? input[0] ?? "" : input ?? "";
+}
+
+export default async function OpsPage({ searchParams }: { searchParams?: Promise<Record<string, string | string[] | undefined>> }) {
+  const params = searchParams ? await searchParams : {};
+  const filters = {
+    q: textParam(params.q).trim(),
+    status: textParam(params.status).trim(),
+    owner: textParam(params.owner).trim(),
+  };
   const auth = await requireOpsAuth();
   if (!auth.ok) {
     if (auth.reason === "not_configured") {
@@ -68,7 +78,7 @@ export default async function OpsPage() {
     );
   }
 
-  const data = await getOperationsDashboard();
+  const data = await getOperationsDashboard(filters);
   if (data.database !== "ok") {
     return (
       <main className="ops-page">
@@ -96,8 +106,18 @@ export default async function OpsPage() {
           <h1>Leads en fulfillment</h1>
           <p>Interne cockpit voor intake, betaling, review en productie.</p>
         </div>
-        <a className="ops-refresh" href="/ops"><RefreshCw size={16} /> Verversen</a>
+        <div className="ops-actions">
+          <a className="ops-refresh" href="/api/ops/export"><Download size={16} /> Export</a>
+          <a className="ops-refresh" href="/ops"><RefreshCw size={16} /> Verversen</a>
+        </div>
       </header>
+
+      <form className="ops-filters" action="/ops">
+        <label><Filter size={15} /> Zoek <input name="q" defaultValue={filters.q} placeholder="Bedrijf, mail, pakket, inhoud" /></label>
+        <label>Status <select name="status" defaultValue={filters.status}><option value="">Alle statussen</option>{statusOptions("lead").map((status) => <option key={status} value={status}>{status}</option>)}</select></label>
+        <label>Eigenaar <input name="owner" defaultValue={filters.owner} placeholder="Emily, Mara, Guus" /></label>
+        <button type="submit">Filteren</button>
+      </form>
 
       <section className="ops-metrics">
         <article><UsersRound /><span>{leads.length}</span><p>Leads zichtbaar</p></article>
@@ -145,6 +165,7 @@ export default async function OpsPage() {
                         <span>{value(intake.goal)}</span>
                         <span>{value(intake.features)}</span>
                         <span>{value(advice.followUpAdvice)}</span>
+                        <a className="ops-detail-link" href={`/ops/leads/${String(lead.id)}`}>Dossier openen</a>
                       </td>
                     </tr>
                   );
@@ -167,6 +188,7 @@ export default async function OpsPage() {
                   <div>
                     <strong>{String(task.company ?? brief.company ?? "Onbekend bedrijf")}</strong>
                     <span>{String(task.package_name)} - {String(task.priority)}</span>
+                    <span>{value(task.ops_owner)} - {value(task.next_action)}</span>
                     <span>{String(task.task_type)} - lead #{String(task.lead_id)}</span>
                   </div>
                   <StatusForm id={String(task.id)} current={String(task.status)} kind="task" />

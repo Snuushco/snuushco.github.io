@@ -233,6 +233,48 @@ textarea { min-height: 110px; resize: vertical; }
   background: var(--white);
   font-weight: 700;
 }
+.ops-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.ops-filters {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) 210px 210px auto;
+  gap: 10px;
+  margin: 0 auto 16px;
+  width: min(1440px, 100%);
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+.ops-filters label,
+.ops-edit-field {
+  display: grid;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+.ops-filters label:first-child {
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+}
+.ops-filters label:first-child input {
+  grid-column: 1 / -1;
+}
+.ops-filters button,
+.ops-edit-form button {
+  min-height: 44px;
+  align-self: end;
+  border: 1px solid var(--ink);
+  border-radius: 6px;
+  padding: 0 14px;
+  background: var(--ink);
+  color: var(--white);
+  font-weight: 800;
+}
 .ops-metrics {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -322,6 +364,11 @@ textarea { min-height: 110px; resize: vertical; }
   color: var(--muted);
   line-height: 1.35;
 }
+.ops-detail-link {
+  display: inline-flex;
+  margin-top: 10px;
+  font-weight: 800;
+}
 .ops-inline-form {
   display: flex;
   gap: 8px;
@@ -359,6 +406,48 @@ textarea { min-height: 110px; resize: vertical; }
   color: var(--muted);
   line-height: 1.5;
 }
+.ops-detail-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.55fr) minmax(0, 0.45fr);
+  gap: 16px;
+  margin: 0 auto 16px;
+  width: min(1440px, 100%);
+}
+.ops-edit-form {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+}
+.ops-edit-form.compact {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding: 0;
+  margin: 12px 0;
+}
+.ops-edit-form.compact .ops-edit-field:nth-of-type(4),
+.ops-edit-form.compact button {
+  grid-column: 1 / -1;
+}
+.ops-edit-field span {
+  color: var(--muted);
+}
+.ops-facts dl {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: 12px 18px;
+  padding: 18px;
+}
+.ops-facts dt {
+  color: var(--muted);
+  font-weight: 800;
+}
+.ops-facts dd {
+  margin: 0;
+  line-height: 1.5;
+}
+.ops-detail-tasks {
+  margin: 0 auto;
+  width: min(1440px, 100%);
+}
 .ops-auth-card {
   margin: 10vh auto 0;
   width: min(680px, 100%);
@@ -379,5 +468,10 @@ textarea { min-height: 110px; resize: vertical; }
   }
   .ops-metrics {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .ops-filters,
+  .ops-detail-grid,
+  .ops-edit-form.compact {
+    grid-template-columns: 1fr;
   }
 }

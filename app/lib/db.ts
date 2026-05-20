@@ -64,6 +64,23 @@ export async function ensureSnuushcoTables() {
     create index if not exists snuushco_fulfillment_tasks_status_idx on snuushco_fulfillment_tasks (status);
   `);
 
+  await db.query(`
+    alter table snuushco_intakes
+      add column if not exists ops_priority text not null default 'normal',
+      add column if not exists ops_owner text,
+      add column if not exists next_action text,
+      add column if not exists ops_notes text,
+      add column if not exists next_action_at timestamptz;
+
+    alter table snuushco_fulfillment_tasks
+      add column if not exists ops_owner text,
+      add column if not exists next_action text,
+      add column if not exists ops_notes text;
+
+    create index if not exists snuushco_intakes_ops_priority_idx on snuushco_intakes (ops_priority);
+    create index if not exists snuushco_intakes_ops_owner_idx on snuushco_intakes (ops_owner);
+  `);
+
   return true;
 }
 
@@ -194,13 +211,37 @@ export async function getOperationsHealth() {
   };
 }
 
-export async function getOperationsDashboard() {
+export async function getOperationsDashboard(filters: { q?: string; status?: string; owner?: string } = {}) {
   const db = getPool();
   if (!db) {
     return { database: "not_configured", leads: [], tasks: [], summary: [] };
   }
 
   await ensureSnuushcoTables();
+
+  const where: string[] = [];
+  const params: string[] = [];
+  if (filters.q) {
+    params.push(`%${filters.q}%`);
+    where.push(`(
+      company ilike $${params.length}
+      or email ilike $${params.length}
+      or segment ilike $${params.length}
+      or market ilike $${params.length}
+      or package_name ilike $${params.length}
+      or intake::text ilike $${params.length}
+      or advice::text ilike $${params.length}
+    )`);
+  }
+  if (filters.status) {
+    params.push(filters.status);
+    where.push(`status = $${params.length}`);
+  }
+  if (filters.owner) {
+    params.push(filters.owner);
+    where.push(`coalesce(ops_owner, '') = $${params.length}`);
+  }
+  const whereSql = where.length ? `where ${where.join(" and ")}` : "";
 
   const [leads, tasks, summary] = await Promise.all([
     db.query(
@@ -218,12 +259,19 @@ export async function getOperationsDashboard() {
           authorization_status,
           status,
           stripe_payment_status,
+          ops_priority,
+          ops_owner,
+          next_action,
+          ops_notes,
+          next_action_at,
           intake,
           advice
         from snuushco_intakes
+        ${whereSql}
         order by created_at desc
         limit 75
       `,
+      params,
     ),
     db.query(
       `
@@ -235,6 +283,9 @@ export async function getOperationsDashboard() {
           t.task_type,
           t.status,
           t.priority,
+          t.ops_owner,
+          t.next_action,
+          t.ops_notes,
           t.package_name,
           t.brief,
           t.checklist,
@@ -264,6 +315,108 @@ export async function getOperationsDashboard() {
     tasks: tasks.rows,
     summary: summary.rows,
   };
+}
+
+export async function getLeadDetail(id: string) {
+  const db = getPool();
+  if (!db) return { database: "not_configured", lead: null, tasks: [] };
+
+  await ensureSnuushcoTables();
+
+  const [lead, tasks] = await Promise.all([
+    db.query(
+      `
+        select
+          id,
+          created_at,
+          company,
+          email,
+          segment,
+          market,
+          package_name,
+          price_range,
+          route,
+          authorization_status,
+          status,
+          stripe_payment_status,
+          stripe_checkout_session_id,
+          ops_priority,
+          ops_owner,
+          next_action,
+          ops_notes,
+          next_action_at,
+          intake,
+          advice
+        from snuushco_intakes
+        where id = $1
+      `,
+      [id],
+    ),
+    db.query(
+      `
+        select *
+        from snuushco_fulfillment_tasks
+        where lead_id = $1
+        order by updated_at desc
+      `,
+      [id],
+    ),
+  ]);
+
+  return { database: "ok", lead: lead.rows[0] ?? null, tasks: tasks.rows };
+}
+
+export async function updateLeadOps(input: {
+  id: string;
+  status: string;
+  priority: string;
+  owner?: string;
+  nextAction?: string;
+  notes?: string;
+}) {
+  const db = getPool();
+  if (!db) return false;
+
+  await db.query(
+    `
+      update snuushco_intakes
+      set status = $2,
+          ops_priority = $3,
+          ops_owner = nullif($4, ''),
+          next_action = nullif($5, ''),
+          ops_notes = nullif($6, '')
+      where id = $1
+    `,
+    [input.id, input.status, input.priority, input.owner ?? "", input.nextAction ?? "", input.notes ?? ""],
+  );
+
+  return true;
+}
+
+export async function updateFulfillmentTaskOps(input: {
+  id: string;
+  status: string;
+  owner?: string;
+  nextAction?: string;
+  notes?: string;
+}) {
+  const db = getPool();
+  if (!db) return false;
+
+  await db.query(
+    `
+      update snuushco_fulfillment_tasks
+      set status = $2,
+          ops_owner = nullif($3, ''),
+          next_action = nullif($4, ''),
+          ops_notes = nullif($5, ''),
+          updated_at = now()
+      where id = $1
+    `,
+    [input.id, input.status, input.owner ?? "", input.nextAction ?? "", input.notes ?? ""],
+  );
+
+  return true;
 }
 
 export async function updateLeadStatus(id: string, status: string) {

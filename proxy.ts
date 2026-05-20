@@ -22,5 +22,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/ops/:path*", "/api/ops/update"],
+  matcher: ["/ops/:path*", "/api/ops/:path*"],
 };
