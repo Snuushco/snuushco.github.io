@@ -16,6 +16,8 @@ const intakeSchema = z.object({
   assets: z.string(),
   deadline: z.string(),
   consent: z.literal("on"),
+  source: z.string().optional(),
+  campaign: z.string().optional(),
 });
 
 const followUpAdvice: Record<string, string> = {

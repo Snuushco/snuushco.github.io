@@ -1,6 +1,6 @@
 import { ArrowRight, CheckCircle2, ClipboardCheck, ShieldCheck, SlidersHorizontal } from "lucide-react";
 import Link from "next/link";
-import { packages, segments } from "./data";
+import { packages, recurringPlans, segments } from "./data";
 
 export default function Home() {
   return (
@@ -35,6 +35,30 @@ export default function Home() {
             </div>
             <div className="grid two">
               {packages.map((item) => (
+                <article className="tile" key={item.name}>
+                  <h3>{item.name}</h3>
+                  <p>{item.for}</p>
+                  <div className="price">{item.price}</div>
+                  <ul>{item.includes.map((include) => <li key={include}>{include}</li>)}</ul>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+        <section id="beheer" className="band">
+          <div className="inner">
+            <div className="section-head">
+              <div>
+                <p className="eyebrow">Na livegang</p>
+                <h2>Beheer en groei voor terugkerende verbetering.</h2>
+              </div>
+              <p>
+                Een website is pas waardevol als aanvragen blijven binnenkomen en opvolging beter wordt.
+                Daarom kun je na de build kiezen voor doorlopend beheer, intakeverbetering of managed growth.
+              </p>
+            </div>
+            <div className="grid three">
+              {recurringPlans.map((item) => (
                 <article className="tile" key={item.name}>
                   <h3>{item.name}</h3>
                   <p>{item.for}</p>
@@ -108,6 +132,7 @@ export function Header() {
       <Link href="/" className="brand" aria-label="Snuushco home"><span className="brand-mark">S</span><span>Snuushco</span></Link>
       <nav className="nav" aria-label="Hoofdnavigatie">
         <Link href="/#diensten">Diensten</Link>
+        <Link href="/#beheer">Beheer</Link>
         <Link href="/#doelgroepen">Doelgroepen</Link>
         <Link href="/#werkwijze">Werkwijze</Link>
         <Link href="/intake">Intake</Link>

@@ -20,6 +20,8 @@ type Advice = {
 export default function IntakeForm() {
   const searchParams = useSearchParams();
   const initialSegment = searchParams.get("segment") ?? "lokale-dienstverleners";
+  const source = searchParams.get("utm_source") ?? searchParams.get("source") ?? "";
+  const campaign = searchParams.get("utm_campaign") ?? searchParams.get("campaign") ?? "";
   const [advice, setAdvice] = useState<Advice | null>(null);
   const [leadId, setLeadId] = useState<string | null>(null);
   const [checkoutStatus, setCheckoutStatus] = useState<"idle" | "loading" | "error">("idle");
@@ -82,6 +84,8 @@ export default function IntakeForm() {
   return (
     <div className="form-shell">
       <form className="form-panel" onSubmit={onSubmit}>
+        <input type="hidden" name="source" value={source} />
+        <input type="hidden" name="campaign" value={campaign} />
         <div className="field-grid">
           <div className="field">
             <label htmlFor="company">Bedrijfsnaam</label>

@@ -25,3 +25,9 @@ export const packages = [
   { name: "Growth Website", price: "vanaf EUR 6.500 excl. btw", for: "Voor bedrijven waar leads hoge waarde hebben en opvolging sneller moet.", includes: ["Niche SEO structuur", "Kennisbankbasis", "Lead magnet", "Gerichte aanvraagroute", "Voorbereid op latere koppelingen"] },
   { name: "Premium Maatwerk", price: "vanaf EUR 9.500 excl. btw", for: "Voor complexe projecten met integraties, portals, meertaligheid of maatwerklogica.", includes: ["Betaalde discovery", "Technische review", "Maatwerkplanning", "Change control", "Premium QA"] },
 ];
+
+export const recurringPlans = [
+  { name: "Website Care", price: "EUR 195 per maand excl. btw", for: "Voor bedrijven die hun website technisch netjes en actueel willen houden.", includes: ["Updates en kleine tekstwijzigingen", "Formulier- en uptimecheck", "Maandelijkse health note"] },
+  { name: "Intake & Lead Support", price: "EUR 495 per maand excl. btw", for: "Voor bedrijven die aanvragen beter willen opvolgen en maandelijks willen verbeteren.", includes: ["Alles uit Website Care", "Leadflow review", "Verbeterlijst voor intake en opvolging"] },
+  { name: "Managed Growth", price: "EUR 950 per maand excl. btw", for: "Voor bedrijven waar betere aanvragen directe commerciële waarde hebben.", includes: ["Alles uit Intake & Lead Support", "Nieuwe landings- of contentblokken", "Maandelijkse conversiereview"] },
+];
