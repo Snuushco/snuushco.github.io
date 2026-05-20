@@ -21,6 +21,8 @@ export default function IntakeForm() {
   const searchParams = useSearchParams();
   const initialSegment = searchParams.get("segment") ?? "lokale-dienstverleners";
   const [advice, setAdvice] = useState<Advice | null>(null);
+  const [leadId, setLeadId] = useState<string | null>(null);
+  const [checkoutStatus, setCheckoutStatus] = useState<"idle" | "loading" | "error">("idle");
   const [status, setStatus] = useState<"idle" | "submitting" | "done" | "error">("idle");
 
   const segmentOptions = useMemo(() => segments, []);
@@ -44,7 +46,37 @@ export default function IntakeForm() {
 
     const data = await response.json();
     setAdvice(data.advice);
+    setLeadId(data.leadId ?? null);
     setStatus("done");
+  }
+
+  async function startCheckout() {
+    if (!advice) return;
+    setCheckoutStatus("loading");
+
+    const response = await fetch("/api/checkout", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        packageName: advice.package,
+        leadId,
+        email: document.querySelector<HTMLInputElement>("#email")?.value,
+        company: document.querySelector<HTMLInputElement>("#company")?.value,
+      }),
+    });
+
+    if (!response.ok) {
+      setCheckoutStatus("error");
+      return;
+    }
+
+    const data = await response.json();
+    if (data.url) {
+      window.location.href = data.url;
+      return;
+    }
+
+    setCheckoutStatus("error");
   }
 
   return (
@@ -155,6 +187,10 @@ export default function IntakeForm() {
             )}
             <h3>Volgende stappen</h3>
             <ul>{advice.nextSteps.map((step) => <li key={step}>{step}</li>)}</ul>
+            <button className="button checkout-button" type="button" onClick={startCheckout} disabled={checkoutStatus === "loading"}>
+              {checkoutStatus === "loading" ? "Betaalpagina openen" : advice.package === "Premium Custom" ? "Start betaalde discovery" : "Reserveer dit pakket"}
+            </button>
+            {checkoutStatus === "error" && <p className="form-error">Betaalpagina kon niet worden geopend. We hebben je aanvraag wel ontvangen.</p>}
           </>
         )}
       </aside>

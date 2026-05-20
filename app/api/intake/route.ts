@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { saveIntake } from "../../lib/db";
 
 const intakeSchema = z.object({
   company: z.string().min(2).max(120),
@@ -118,6 +119,7 @@ export async function POST(request: Request) {
     advice,
     authorizationStatus: advice.reviewReasons.length ? "review_required" : "standard_build_ready",
   };
+  let notification = "not_configured";
 
   const telegramToken = process.env.TELEGRAM_BOT_TOKEN;
   const telegramChatId = process.env.SNUUSHCO_TELEGRAM_CHAT_ID;
@@ -142,6 +144,7 @@ export async function POST(request: Request) {
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ chat_id: telegramChatId, text: message }),
       });
+      notification = "telegram_sent";
     } catch {
       return NextResponse.json({ advice, notification: "telegram_failed" }, { status: 202 });
     }
@@ -155,13 +158,28 @@ export async function POST(request: Request) {
         headers: { "content-type": "application/json" },
         body: JSON.stringify(payload),
       });
+      notification = "webhook_sent";
     } catch {
       return NextResponse.json({ advice, notification: "webhook_failed" }, { status: 202 });
     }
   }
 
+  let leadId: string | null = null;
+  try {
+    leadId = await saveIntake({
+      intake: parsed.data,
+      advice,
+      authorizationStatus: payload.authorizationStatus,
+      notification,
+    });
+  } catch {
+    return NextResponse.json({ advice, notification, leadStorage: "failed" }, { status: 202 });
+  }
+
   return NextResponse.json({
     advice,
-    notification: telegramToken && telegramChatId ? "telegram_sent" : webhookUrl ? "webhook_sent" : "not_configured",
+    leadId,
+    notification,
+    leadStorage: leadId ? "saved" : "not_configured",
   });
 }
