@@ -21,7 +21,7 @@ export default function PrivacyPage() {
             <h2>Welke gegevens</h2>
             <p>Bedrijfsnaam, e-mailadres, doelgroep, regio, projectdoel, gewenste omvang, assets, deadline en toelichting op het knelpunt.</p>
             <h2>Waarvoor</h2>
-            <p>Voor pakketadvies, scopecontrole, opvolging, betaling, fulfillment, kwaliteitscontrole en noodzakelijke administratie.</p>
+            <p>Voor pakketadvies, aanvraagbeoordeling, opvolging, betaling, projectvoorbereiding, kwaliteitscontrole en noodzakelijke administratie.</p>
             <h2>Delen met derden</h2>
             <p>Gegevens kunnen technisch worden verwerkt via hosting, database, Stripe voor betalingen en Telegram voor interne notificaties. We verkopen geen leadgegevens door.</p>
             <h2>Bewaartermijn</h2>
@@ -37,4 +37,3 @@ export default function PrivacyPage() {
     </>
   );
 }
-

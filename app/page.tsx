@@ -12,7 +12,7 @@ export default function Home() {
             <p className="eyebrow">Websites voor dienstverleners</p>
             <h1>Meer goede aanvragen. Minder handmatig opvolgwerk.</h1>
             <p className="lead">
-              Snuushco bouwt websites en slimme intakeflows die passen bij je branche,
+              Snuushco bouwt websites en aanvraagroutes die passen bij je branche,
               je klanten en je werkdag. Standaard waar het kan, premium maatwerk waar het moet.
             </p>
             <div className="hero-actions">
@@ -29,7 +29,7 @@ export default function Home() {
                 <h2>Een compleet aanbod voor betere aanvragen.</h2>
               </div>
               <p>
-                Elke aanvraag start met intake. Daarna geeft de intake een eerste pakketadvies,
+                Elke aanvraag start met intake. Daarna krijg je een eerste pakketadvies,
                 welke onderdelen standaard zijn en welke onderdelen premium maatwerk vragen.
               </p>
             </div>
@@ -80,7 +80,7 @@ export default function Home() {
               </p>
             </div>
             <div className="grid three process">
-              <article className="tile"><h3>Slimme intake</h3><p>De klant vult branche, doel, gewenste omvang, urgentie en belangrijkste knelpunt in.</p></article>
+              <article className="tile"><h3>Gerichte intake</h3><p>De klant vult branche, doel, gewenste omvang, urgentie en belangrijkste knelpunt in.</p></article>
               <article className="tile"><h3>Pakket en omvang</h3><p>De intake adviseert Quickstart, Business, Growth of Premium Maatwerk en markeert wat extra aandacht vraagt.</p></article>
               <article className="tile"><h3>Build en QA</h3><p>Standaardprojecten gaan naar build. Integraties, gevoelige claims en maatwerk krijgen review.</p></article>
             </div>
@@ -91,7 +91,7 @@ export default function Home() {
             <div className="grid three">
               <article className="tile"><ShieldCheck color="#0f513f" /><h3>Menselijke controle</h3><p>Gevoelige teksten, complexe koppelingen en uitzonderingen krijgen altijd review voordat ze live gaan.</p></article>
               <article className="tile"><SlidersHorizontal color="#24455f" /><h3>Premium maatwerk</h3><p>Portals, betalingen, API's, meertaligheid en complexe booking gaan naar aparte review.</p></article>
-              <article className="tile"><ClipboardCheck color="#a84f35" /><h3>Slimme opvolging</h3><p>Wanneer aanvragen veel tijd kosten, richten we extra hulp in voor triage, offertevoorbereiding, documenten of planning.</p></article>
+              <article className="tile"><ClipboardCheck color="#a84f35" /><h3>Betere opvolging</h3><p>Wanneer aanvragen veel tijd kosten, richten we extra hulp in voor triage, offertevoorbereiding, documenten of planning.</p></article>
             </div>
             <div className="actions"><Link className="button" href="/intake">Start de intake <CheckCircle2 size={18} /></Link></div>
           </div>
@@ -121,7 +121,7 @@ export function Footer() {
   return (
     <footer className="footer">
       <div className="inner">
-        <div><strong>Snuushco</strong><p>Websites en slimme aanvraagroutes met menselijke controle.</p></div>
+        <div><strong>Snuushco</strong><p>Websites en aanvraagroutes met menselijke controle.</p></div>
         <p><Link href="/privacy">Privacy</Link> · <Link href="/voorwaarden">Voorwaarden</Link></p>
       </div>
     </footer>

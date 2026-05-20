@@ -133,7 +133,7 @@ export default function IntakeForm() {
             </select>
           </div>
           <div className="field full">
-            <label htmlFor="pain">Welke aanvraag of taak kost nu het meeste tijd?</label>
+            <label htmlFor="pain">Welke aanvraag kost nu het meeste tijd om goed op te volgen?</label>
             <textarea id="pain" name="pain" required placeholder="Bijvoorbeeld: projectinformatie nabellen, kandidaatprofielen compleet krijgen, documenten opvragen..." />
           </div>
           <div className="field">
@@ -168,7 +168,7 @@ export default function IntakeForm() {
           <>
             <h3>Wat deze intake doet</h3>
             <p className="muted">
-              Je krijgt direct advies voor pakket, omvang, verwachte route en logische vervolgstap.
+              Je krijgt direct advies voor pakket, omvang, verwachte aanpak en logische vervolgstap.
               Onderdelen die extra review nodig hebben worden duidelijk gemarkeerd.
             </p>
           </>
@@ -186,7 +186,7 @@ export default function IntakeForm() {
             </div>
             {advice.reviewReasons.length > 0 && (
               <>
-                <h3>Premium review nodig</h3>
+                <h3>Extra review nodig</h3>
                 <ul>{advice.reviewReasons.map((reason) => <li key={reason}>{reason}</li>)}</ul>
               </>
             )}

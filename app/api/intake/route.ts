@@ -10,7 +10,6 @@ const intakeSchema = z.object({
   market: z.string().min(2).max(120),
   goal: z.string(),
   pages: z.string(),
-  budget: z.string().optional(),
   monthly: z.string().optional(),
   features: z.string(),
   pain: z.string().min(5).max(2000),
@@ -81,7 +80,7 @@ function classify(data: z.infer<typeof intakeSchema>) {
   if (complexityScore > 70 || reviewReasons.length > 0) {
     packageName = "Premium Maatwerk";
     priceRange = "vanaf EUR 9.500 excl. btw";
-    route = "Premium review";
+    route = "Review door specialist";
   } else if (complexityScore >= 46) {
     packageName = "Growth Website";
     priceRange = "vanaf EUR 6.500 excl. btw";
@@ -91,7 +90,7 @@ function classify(data: z.infer<typeof intakeSchema>) {
   }
 
   const nextSteps = reviewReasons.length
-    ? ["Standaard en maatwerkonderdelen scheiden", "Technische review uitvoeren", "Prijs en planning bevestigen voor build"]
+    ? ["Standaard en maatwerkonderdelen scheiden", "Technische review uitvoeren", "Prijs en planning bevestigen"]
     : ["Projectbrief voorbereiden", "Content en paginastructuur klaarzetten", "Preview bouwen en via reviewronde opleveren"];
 
   return {

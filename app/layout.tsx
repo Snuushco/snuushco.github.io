@@ -4,10 +4,10 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Snuushco | Websites die betere aanvragen opleveren",
   description:
-    "Snuushco bouwt websites en slimme aanvraagroutes voor dienstverleners die betere aanvragen willen en minder handmatig opvolgwerk.",
+    "Snuushco bouwt websites en aanvraagroutes voor dienstverleners die betere aanvragen willen en minder handmatig opvolgwerk.",
   openGraph: {
     title: "Snuushco",
-    description: "Websites en slimme aanvraagroutes voor dienstverleners.",
+    description: "Websites en aanvraagroutes voor dienstverleners.",
     type: "website",
   },
 };

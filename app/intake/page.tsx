@@ -17,7 +17,7 @@ export default function IntakePage() {
           <div className="inner">
             <div className="section-head">
               <div>
-                <p className="eyebrow">Slimme intake</p>
+                <p className="eyebrow">Gerichte intake</p>
                 <h1>Ontvang direct pakketadvies en duidelijkheid over de vervolgstap.</h1>
               </div>
               <p>

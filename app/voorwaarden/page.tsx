@@ -29,7 +29,7 @@ export default function TermsPage() {
             <h2>Oplevering</h2>
             <p>Oplevering vindt plaats via preview, reviewronde en livegang of overdracht volgens de afgesproken route.</p>
             <h2>Geen garanties</h2>
-            <p>Snuushco levert website, intake en workflow-inrichting, maar garandeert geen specifieke ranking, omzet, leadvolume of conversie.</p>
+            <p>Snuushco levert website, intake en bijbehorende aanvraagroute, maar garandeert geen specifieke ranking, omzet, leadvolume of conversie.</p>
             <h2>Menselijke review</h2>
             <p>Gevoelige, juridische, medische, financiele, HR-gerelateerde of technisch complexe onderdelen krijgen review voordat ze live gaan.</p>
           </div>
@@ -39,4 +39,3 @@ export default function TermsPage() {
     </>
   );
 }
-
