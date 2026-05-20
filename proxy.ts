@@ -1,11 +1,35 @@
 import type { NextRequest } from "next/server";
 
-export function proxy(request: NextRequest) {
+const sessionCookie = "snuushco_ops_session";
+
+async function sign(username: string, secret: string) {
+  const encoder = new TextEncoder();
+  const key = await crypto.subtle.importKey("raw", encoder.encode(secret), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  const signature = await crypto.subtle.sign("HMAC", key, encoder.encode(username));
+  return btoa(String.fromCharCode(...new Uint8Array(signature))).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
+}
+
+async function hasValidSession(request: NextRequest, username: string, secret: string) {
+  const value = request.cookies.get(sessionCookie)?.value;
+  if (!value) return false;
+  const separator = value.indexOf(".");
+  const cookieUser = separator >= 0 ? value.slice(0, separator) : "";
+  const signature = separator >= 0 ? value.slice(separator + 1) : "";
+  if (cookieUser !== username) return false;
+  return signature === await sign(cookieUser, secret);
+}
+
+export async function proxy(request: NextRequest) {
   const password = process.env.SNUUSHCO_OPS_PASSWORD;
   if (!password) return;
 
+  const { pathname } = request.nextUrl;
+  if (pathname === "/ops/login" || pathname === "/api/ops/login") return;
+
   const authorization = request.headers.get("authorization") ?? "";
   const expectedUser = process.env.SNUUSHCO_OPS_USER ?? "snuushco";
+
+  if (await hasValidSession(request, expectedUser, password)) return;
 
   if (authorization.startsWith("Basic ")) {
     const decoded = atob(authorization.slice(6));
@@ -13,6 +37,10 @@ export function proxy(request: NextRequest) {
     const username = separator >= 0 ? decoded.slice(0, separator) : "";
     const candidate = separator >= 0 ? decoded.slice(separator + 1) : "";
     if (username === expectedUser && candidate === password) return;
+  }
+
+  if (pathname.startsWith("/ops")) {
+    return Response.redirect(new URL("/ops/login", request.url), 303);
   }
 
   return new Response("Unauthorized", {

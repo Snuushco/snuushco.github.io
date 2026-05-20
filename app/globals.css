@@ -457,6 +457,23 @@ textarea { min-height: 110px; resize: vertical; }
   color: var(--ink);
   font-size: clamp(32px, 5vw, 54px);
 }
+.ops-login-form {
+  display: grid;
+  gap: 14px;
+  margin-top: 22px;
+}
+.ops-login-form label {
+  display: grid;
+  gap: 7px;
+}
+.ops-login-form button {
+  min-height: 44px;
+  border: 1px solid var(--ink);
+  border-radius: 6px;
+  background: var(--ink);
+  color: var(--white);
+  font-weight: 800;
+}
 @media (max-width: 960px) {
   .ops-header,
   .ops-grid {
