@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { saveIntake } from "../../lib/db";
+import { createFulfillmentTask, saveIntake } from "../../lib/db";
+import { buildFulfillment } from "../../lib/fulfillment";
 
 const intakeSchema = z.object({
   company: z.string().min(2).max(120),
@@ -15,6 +16,7 @@ const intakeSchema = z.object({
   pain: z.string().min(5).max(2000),
   assets: z.string(),
   deadline: z.string(),
+  consent: z.literal("on"),
 });
 
 const followUpAdvice: Record<string, string> = {
@@ -73,24 +75,24 @@ function classify(data: z.infer<typeof intakeSchema>) {
   }
 
   let packageName = "Website Quickstart";
-  let priceRange = "vanaf EUR 950";
+  let priceRange = "vanaf EUR 950 excl. btw";
   let route = "Standaardroute";
 
   if (complexityScore > 70 || reviewReasons.length > 0) {
-    packageName = "Premium Custom";
-    priceRange = "vanaf EUR 9.500";
+    packageName = "Premium Maatwerk";
+    priceRange = "vanaf EUR 9.500 excl. btw";
     route = "Premium review";
   } else if (complexityScore >= 46) {
     packageName = "Growth Website";
-    priceRange = "vanaf EUR 6.500";
+    priceRange = "vanaf EUR 6.500 excl. btw";
   } else if (complexityScore >= 21) {
     packageName = "Business Website";
-    priceRange = "vanaf EUR 2.750";
+    priceRange = "vanaf EUR 2.750 excl. btw";
   }
 
   const nextSteps = reviewReasons.length
     ? ["Standaard en maatwerkonderdelen scheiden", "Technische review uitvoeren", "Prijs en planning bevestigen voor build"]
-    : ["Projectbrief automatisch aanmaken", "Content en paginastructuur voorbereiden", "Preview bouwen en via reviewronde opleveren"];
+    : ["Projectbrief voorbereiden", "Content en paginastructuur klaarzetten", "Preview bouwen en via reviewronde opleveren"];
 
   return {
     package: packageName,
@@ -165,6 +167,7 @@ export async function POST(request: Request) {
   }
 
   let leadId: string | null = null;
+  let fulfillmentTaskId: string | null = null;
   try {
     leadId = await saveIntake({
       intake: parsed.data,
@@ -172,6 +175,23 @@ export async function POST(request: Request) {
       authorizationStatus: payload.authorizationStatus,
       notification,
     });
+    if (leadId) {
+      const fulfillment = buildFulfillment({
+        leadId,
+        intake: parsed.data,
+        advice,
+        authorizationStatus: payload.authorizationStatus,
+      });
+      fulfillmentTaskId = await createFulfillmentTask({
+        leadId,
+        taskType: fulfillment.taskType,
+        status: fulfillment.status,
+        priority: fulfillment.priority,
+        packageName: advice.package,
+        brief: fulfillment.brief,
+        checklist: fulfillment.checklist,
+      });
+    }
   } catch {
     return NextResponse.json({ advice, notification, leadStorage: "failed" }, { status: 202 });
   }
@@ -179,6 +199,7 @@ export async function POST(request: Request) {
   return NextResponse.json({
     advice,
     leadId,
+    fulfillmentTaskId,
     notification,
     leadStorage: leadId ? "saved" : "not_configured",
   });

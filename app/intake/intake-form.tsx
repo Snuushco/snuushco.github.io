@@ -153,6 +153,10 @@ export default function IntakeForm() {
               <option value="urgent">Binnen 72 uur</option>
             </select>
           </div>
+          <label className="consent field full">
+            <input name="consent" type="checkbox" required />
+            <span>Ik ga ermee akkoord dat Snuushco mijn ingevulde gegevens gebruikt om deze aanvraag te beoordelen en op te volgen.</span>
+          </label>
         </div>
         <button className="button" type="submit" disabled={status === "submitting"}>
           {status === "submitting" ? "Bezig met beoordelen" : "Ontvang pakketadvies"} <Send size={17} />
@@ -173,6 +177,7 @@ export default function IntakeForm() {
             <p className="eyebrow">{advice.route}</p>
             <h3>{advice.package}</h3>
             <div className="price">{advice.priceRange}</div>
+            <p className="muted">Dit is een eerste advies op basis van je antwoorden, geen bindende offerte.</p>
             <p className="muted">Logische vervolgstap: {advice.followUpAdvice}</p>
             <div className="pill-row">
               <span className="pill">Fit {advice.fitScore}</span>
@@ -188,7 +193,7 @@ export default function IntakeForm() {
             <h3>Volgende stappen</h3>
             <ul>{advice.nextSteps.map((step) => <li key={step}>{step}</li>)}</ul>
             <button className="button checkout-button" type="button" onClick={startCheckout} disabled={checkoutStatus === "loading"}>
-              {checkoutStatus === "loading" ? "Betaalpagina openen" : advice.package === "Premium Custom" ? "Start betaalde discovery" : "Reserveer dit pakket"}
+              {checkoutStatus === "loading" ? "Betaalpagina openen" : advice.package === "Premium Maatwerk" ? "Start betaalde discovery" : "Reserveer dit pakket"}
             </button>
             {checkoutStatus === "error" && <p className="form-error">Betaalpagina kon niet worden geopend. We hebben je aanvraag wel ontvangen.</p>}
           </>

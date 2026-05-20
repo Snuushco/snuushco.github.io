@@ -63,7 +63,7 @@ export default async function SegmentPage({ params }: Props) {
                 <p className="eyebrow">Pakketten</p>
                 <h2>Standaard waar het kan, premium waar het moet.</h2>
               </div>
-              <p>Complexe integraties, portals, betalingen of gevoelige claims gaan niet automatisch live. Die route krijgt review en aparte prijsafspraak.</p>
+              <p>Complexe integraties, portals, betalingen of gevoelige claims krijgen altijd review voor livegang. Die route krijgt een aparte prijsafspraak.</p>
             </div>
             <div className="grid two">
               {packages.slice(1).map((item) => (
@@ -74,7 +74,7 @@ export default async function SegmentPage({ params }: Props) {
                 </article>
               ))}
             </div>
-            <div className="actions"><Link className="button" href={`/intake?segment=${segment.slug}`}>Start pakketadvies <CheckCircle2 size={18} /></Link></div>
+            <div className="actions"><Link className="button" href={`/intake?segment=${segment.slug}`}>Doe de intake <CheckCircle2 size={18} /></Link></div>
           </div>
         </section>
       </main>

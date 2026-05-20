@@ -16,7 +16,7 @@ export default function Home() {
               je klanten en je werkdag. Standaard waar het kan, premium maatwerk waar het moet.
             </p>
             <div className="hero-actions">
-              <Link className="button" href="/intake">Start pakketadvies <ArrowRight size={18} /></Link>
+              <Link className="button" href="/intake">Doe de intake <ArrowRight size={18} /></Link>
               <a className="button secondary" href="#doelgroepen">Bekijk doelgroepen</a>
             </div>
           </div>
@@ -29,7 +29,7 @@ export default function Home() {
                 <h2>Een compleet aanbod voor betere aanvragen.</h2>
               </div>
               <p>
-                Elke aanvraag start met intake. Daarna bepalen we automatisch welk pakket past,
+                Elke aanvraag start met intake. Daarna geeft de intake een eerste pakketadvies,
                 welke onderdelen standaard zijn en welke onderdelen premium maatwerk vragen.
               </p>
             </div>
@@ -81,7 +81,7 @@ export default function Home() {
             </div>
             <div className="grid three process">
               <article className="tile"><h3>Slimme intake</h3><p>De klant vult branche, doel, gewenste omvang, urgentie en belangrijkste knelpunt in.</p></article>
-              <article className="tile"><h3>Pakket en omvang</h3><p>De intake kiest Quickstart, Business, Growth of Premium Custom en markeert wat extra aandacht vraagt.</p></article>
+              <article className="tile"><h3>Pakket en omvang</h3><p>De intake adviseert Quickstart, Business, Growth of Premium Maatwerk en markeert wat extra aandacht vraagt.</p></article>
               <article className="tile"><h3>Build en QA</h3><p>Standaardprojecten gaan naar build. Integraties, gevoelige claims en maatwerk krijgen review.</p></article>
             </div>
           </div>

@@ -26,7 +26,7 @@ const checkoutPackages: Record<string, { label: string; amount: number; descript
     amount: 650000,
     description: "Uitgebreide website voor waardevolle aanvragen en snellere opvolging.",
   },
-  "Premium Custom": {
+  "Premium Maatwerk": {
     label: "Snuushco Premium Discovery",
     amount: 95000,
     description: "Betaalde discovery voor maatwerk, integraties of projecten buiten standaard scope.",
