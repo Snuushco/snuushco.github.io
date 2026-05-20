@@ -115,3 +115,20 @@ export async function markCheckoutStarted(leadId: string, sessionId: string) {
 
   return true;
 }
+
+export async function markCheckoutCompleted(sessionId: string, paymentStatus: string) {
+  const db = getPool();
+  if (!db) return false;
+
+  await db.query(
+    `
+      update snuushco_intakes
+      set stripe_payment_status = $2,
+          status = case when $2 = 'paid' then 'paid' else status end
+      where stripe_checkout_session_id = $1
+    `,
+    [sessionId, paymentStatus],
+  );
+
+  return true;
+}
