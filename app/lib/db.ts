@@ -194,6 +194,111 @@ export async function getOperationsHealth() {
   };
 }
 
+export async function getOperationsDashboard() {
+  const db = getPool();
+  if (!db) {
+    return { database: "not_configured", leads: [], tasks: [], summary: [] };
+  }
+
+  await ensureSnuushcoTables();
+
+  const [leads, tasks, summary] = await Promise.all([
+    db.query(
+      `
+        select
+          id,
+          created_at,
+          company,
+          email,
+          segment,
+          market,
+          package_name,
+          price_range,
+          route,
+          authorization_status,
+          status,
+          stripe_payment_status,
+          intake,
+          advice
+        from snuushco_intakes
+        order by created_at desc
+        limit 75
+      `,
+    ),
+    db.query(
+      `
+        select
+          t.id,
+          t.lead_id,
+          t.created_at,
+          t.updated_at,
+          t.task_type,
+          t.status,
+          t.priority,
+          t.package_name,
+          t.brief,
+          t.checklist,
+          i.company,
+          i.email
+        from snuushco_fulfillment_tasks t
+        left join snuushco_intakes i on i.id = t.lead_id
+        order by
+          case t.priority when 'urgent' then 1 when 'high' then 2 else 3 end,
+          t.updated_at desc
+        limit 100
+      `,
+    ),
+    db.query(
+      `
+        select status, count(*)::int as count
+        from snuushco_intakes
+        group by status
+        order by status
+      `,
+    ),
+  ]);
+
+  return {
+    database: "ok",
+    leads: leads.rows,
+    tasks: tasks.rows,
+    summary: summary.rows,
+  };
+}
+
+export async function updateLeadStatus(id: string, status: string) {
+  const db = getPool();
+  if (!db) return false;
+
+  await db.query(
+    `
+      update snuushco_intakes
+      set status = $2
+      where id = $1
+    `,
+    [id, status],
+  );
+
+  return true;
+}
+
+export async function updateFulfillmentTaskStatus(id: string, status: string) {
+  const db = getPool();
+  if (!db) return false;
+
+  await db.query(
+    `
+      update snuushco_fulfillment_tasks
+      set status = $2,
+          updated_at = now()
+      where id = $1
+    `,
+    [id, status],
+  );
+
+  return true;
+}
+
 export async function markCheckoutCompleted(sessionId: string, paymentStatus: string) {
   const db = getPool();
   if (!db) return false;
