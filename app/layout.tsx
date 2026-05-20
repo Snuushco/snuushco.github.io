@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Snuushco | Websites en AI workflows voor betere aanvragen",
+  title: "Snuushco | Websites die betere aanvragen opleveren",
   description:
-    "Snuushco bouwt websites, slimme intakeflows en AI workflows voor dienstverleners die betere aanvragen willen en minder handmatig werk.",
+    "Snuushco bouwt websites en slimme aanvraagroutes voor dienstverleners die betere aanvragen willen en minder handmatig opvolgwerk.",
   openGraph: {
     title: "Snuushco",
-    description: "Websites, slimme intake en AI workflows voor dienstverleners.",
+    description: "Websites en slimme aanvraagroutes voor dienstverleners.",
     type: "website",
   },
 };

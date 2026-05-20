@@ -8,22 +8,22 @@ const intakeSchema = z.object({
   market: z.string().min(2).max(120),
   goal: z.string(),
   pages: z.string(),
-  budget: z.string(),
-  monthly: z.string(),
+  budget: z.string().optional(),
+  monthly: z.string().optional(),
   features: z.string(),
   pain: z.string().min(5).max(2000),
   assets: z.string(),
   deadline: z.string(),
 });
 
-const upsells: Record<string, string> = {
+const followUpAdvice: Record<string, string> = {
   "lokale-dienstverleners": "Aanvraagfilter of offertevoorbereider",
-  "security-facilitair": "Intake agent, planningvoorbereider of offertevoorbereider",
-  "recruitment-staffing": "Kandidaat intake agent of lead triage agent",
-  "administratie-finance": "Document intake agent of inbox triage agent",
+  "security-facilitair": "Intake, planningvoorbereiding of offertevoorbereiding",
+  "recruitment-staffing": "Kandidaatintake of leadtriage",
+  "administratie-finance": "Documentintake of inboxtriage",
   zorgondersteuning: "Intakevoorbereider met menselijke controle",
-  "bouw-techniek": "Offertevoorbereider of projectintake agent",
-  "software-saas-ai": "Workflow agent, ops agent of reporting agent",
+  "bouw-techniek": "Offertevoorbereiding of projectintake",
+  "software-saas": "Demo-aanvragen kwalificeren of implementatievragen voorbereiden",
 };
 
 function scoreComplexity(data: z.infer<typeof intakeSchema>) {
@@ -45,7 +45,6 @@ function scoreReadiness(data: z.infer<typeof intakeSchema>) {
   if (data.assets === "complete") score += 35;
   if (data.assets === "partial") score += 18;
   if (data.assets === "none") score -= 10;
-  if (data.budget === "3500_8500" || data.budget === "8500_plus") score += 20;
   if (data.deadline === "urgent" && data.assets !== "complete") score -= 20;
   return Math.max(0, Math.min(100, score));
 }
@@ -53,8 +52,6 @@ function scoreReadiness(data: z.infer<typeof intakeSchema>) {
 function scoreFit(data: z.infer<typeof intakeSchema>) {
   let score = 30;
   if (data.goal === "better_leads" || data.goal === "automation") score += 25;
-  if (data.monthly !== "none") score += 20;
-  if (data.budget !== "under_1000") score += 20;
   if (data.pain.length > 40) score += 5;
   return Math.max(0, Math.min(100, score));
 }
@@ -63,36 +60,36 @@ function classify(data: z.infer<typeof intakeSchema>) {
   const complexityScore = scoreComplexity(data);
   const readinessScore = scoreReadiness(data);
   const fitScore = scoreFit(data);
-  const triggers: string[] = [];
+  const reviewReasons: string[] = [];
 
-  if (data.features === "booking") triggers.push("Booking, betaling of portal vraagt premium review");
-  if (data.features === "integrations") triggers.push("CRM, API of maatwerkkoppeling vraagt technische review");
-  if (data.features === "regulated") triggers.push("Gevoelige juridische, medische, financiele of HR workflow vraagt menselijke review");
-  if (data.pages === "ten_plus") triggers.push("Meer dan 7 pagina's valt buiten standaard Business scope");
-  if (data.deadline === "urgent") triggers.push("Deadline binnen 72 uur vraagt spoedreview");
+  if (data.features === "booking") reviewReasons.push("Booking, betaling of portal vraagt premium review");
+  if (data.features === "integrations") reviewReasons.push("CRM, API of maatwerkkoppeling vraagt technische review");
+  if (data.features === "regulated") reviewReasons.push("Gevoelige juridische, medische, financiele of HR informatie vraagt menselijke review");
+  if (data.pages === "ten_plus") reviewReasons.push("Meer dan 7 pagina's vraagt een uitgebreidere planning");
+  if (data.deadline === "urgent") reviewReasons.push("Deadline binnen 72 uur vraagt spoedreview");
   if (data.assets === "none" && (data.deadline === "week" || data.deadline === "urgent")) {
-    triggers.push("Onvolledige assets met korte deadline vraagt aangepaste planning");
+    reviewReasons.push("Onvolledige assets met korte deadline vraagt aangepaste planning");
   }
 
   let packageName = "Website Quickstart";
   let priceRange = "vanaf EUR 950";
   let route = "Standaardroute";
 
-  if (complexityScore > 70 || triggers.length > 0 || data.budget === "8500_plus") {
+  if (complexityScore > 70 || reviewReasons.length > 0) {
     packageName = "Premium Custom";
     priceRange = "vanaf EUR 9.500";
     route = "Premium review";
-  } else if (complexityScore >= 46 || data.budget === "3500_8500") {
+  } else if (complexityScore >= 46) {
     packageName = "Growth Website";
     priceRange = "vanaf EUR 6.500";
-  } else if (complexityScore >= 21 || data.budget === "1000_3500") {
+  } else if (complexityScore >= 21) {
     packageName = "Business Website";
     priceRange = "vanaf EUR 2.750";
   }
 
-  const nextSteps = triggers.length
-    ? ["Scope splitsen in standaard en premium onderdelen", "Technische review uitvoeren", "Prijs en planning bevestigen voor build"]
-    : ["Build brief automatisch aanmaken", "Content en paginastructuur voorbereiden", "Preview bouwen en via reviewronde opleveren"];
+  const nextSteps = reviewReasons.length
+    ? ["Standaard en maatwerkonderdelen scheiden", "Technische review uitvoeren", "Prijs en planning bevestigen voor build"]
+    : ["Projectbrief automatisch aanmaken", "Content en paginastructuur voorbereiden", "Preview bouwen en via reviewronde opleveren"];
 
   return {
     package: packageName,
@@ -101,8 +98,8 @@ function classify(data: z.infer<typeof intakeSchema>) {
     fitScore,
     complexityScore,
     readinessScore,
-    premiumTriggers: triggers,
-    upsell: upsells[data.segment] ?? "AI Agent Intake",
+    reviewReasons,
+    followUpAdvice: followUpAdvice[data.segment] ?? "Aanvragen beter voorbereiden voor opvolging",
     nextSteps,
   };
 }
@@ -119,7 +116,7 @@ export async function POST(request: Request) {
     receivedAt: new Date().toISOString(),
     intake: parsed.data,
     advice,
-    workflow: advice.premiumTriggers.length ? "human_review_required" : "standard_build_authorized",
+    authorizationStatus: advice.reviewReasons.length ? "review_required" : "standard_build_ready",
   };
 
   const telegramToken = process.env.TELEGRAM_BOT_TOKEN;
@@ -133,8 +130,8 @@ export async function POST(request: Request) {
       `Segment: ${parsed.data.segment}`,
       `Pakket: ${advice.package}`,
       `Route: ${advice.route}`,
-      `Upsell: ${advice.upsell}`,
-      `Premium triggers: ${advice.premiumTriggers.length ? advice.premiumTriggers.join("; ") : "geen"}`,
+      `Vervolgadvies: ${advice.followUpAdvice}`,
+      `Reviewredenen: ${advice.reviewReasons.length ? advice.reviewReasons.join("; ") : "geen"}`,
       "",
       `Pijnpunt: ${parsed.data.pain}`,
     ].join("\n");

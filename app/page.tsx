@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle2, ShieldCheck, SlidersHorizontal, Workflow } from "lucide-react";
+import { ArrowRight, CheckCircle2, ClipboardCheck, ShieldCheck, SlidersHorizontal } from "lucide-react";
 import Link from "next/link";
 import { packages, segments } from "./data";
 
@@ -9,7 +9,7 @@ export default function Home() {
       <main>
         <section className="hero">
           <div className="hero-content">
-            <p className="eyebrow">Websites en AI workflows voor dienstverleners</p>
+            <p className="eyebrow">Websites voor dienstverleners</p>
             <h1>Meer goede aanvragen. Minder handmatig opvolgwerk.</h1>
             <p className="lead">
               Snuushco bouwt websites en slimme intakeflows die passen bij je branche,
@@ -26,7 +26,7 @@ export default function Home() {
             <div className="section-head">
               <div>
                 <p className="eyebrow">Dienstenaanbod</p>
-                <h2>Een compleet aanbod zonder vage AI-taal.</h2>
+                <h2>Een compleet aanbod voor betere aanvragen.</h2>
               </div>
               <p>
                 Elke aanvraag start met intake. Daarna bepalen we automatisch welk pakket past,
@@ -49,8 +49,8 @@ export default function Home() {
           <div className="inner">
             <div className="section-head">
               <div>
-                <p className="eyebrow">Doelgroep eerst</p>
-                <h2>Je moet meteen voelen: dit is voor mij bedoeld.</h2>
+                <p className="eyebrow">Herkenbaar per branche</p>
+                <h2>Herkenbare pagina's voor herkenbare klanten.</h2>
               </div>
               <p>
                 We publiceren vanuit herkenbare problemen: vage aanvragen, incomplete profielen,
@@ -71,17 +71,17 @@ export default function Home() {
           <div className="inner">
             <div className="section-head">
               <div>
-                <p className="eyebrow">Geautoriseerde workflow</p>
+                <p className="eyebrow">Werkwijze</p>
                 <h2>Automatisch waar veilig. Review waar nodig.</h2>
               </div>
               <p>
-                De workflow classificeert aanvragen, maakt scope zichtbaar en routeert gevoelige
+                De intake beoordeelt aanvragen, maakt de omvang zichtbaar en routeert gevoelige
                 of complexe onderdelen naar menselijke review voordat er iets live gaat.
               </p>
             </div>
             <div className="grid three process">
-              <article className="tile"><h3>Slimme intake</h3><p>De klant vult branche, doel, scope, budget, urgentie en automatiseringskansen in.</p></article>
-              <article className="tile"><h3>Pakket en scope</h3><p>De flow kiest Quickstart, Business, Growth of Premium Custom en markeert out-of-scope.</p></article>
+              <article className="tile"><h3>Slimme intake</h3><p>De klant vult branche, doel, gewenste omvang, urgentie en belangrijkste knelpunt in.</p></article>
+              <article className="tile"><h3>Pakket en omvang</h3><p>De intake kiest Quickstart, Business, Growth of Premium Custom en markeert wat extra aandacht vraagt.</p></article>
               <article className="tile"><h3>Build en QA</h3><p>Standaardprojecten gaan naar build. Integraties, gevoelige claims en maatwerk krijgen review.</p></article>
             </div>
           </div>
@@ -89,9 +89,9 @@ export default function Home() {
         <section className="band white">
           <div className="inner">
             <div className="grid three">
-              <article className="tile"><ShieldCheck color="#0f513f" /><h3>Menselijke controle</h3><p>Geen autonome externe AI-acties zonder goedgekeurde workflow en duidelijke grenzen.</p></article>
+              <article className="tile"><ShieldCheck color="#0f513f" /><h3>Menselijke controle</h3><p>Gevoelige teksten, complexe koppelingen en uitzonderingen krijgen altijd review voordat ze live gaan.</p></article>
               <article className="tile"><SlidersHorizontal color="#24455f" /><h3>Premium maatwerk</h3><p>Portals, betalingen, API's, meertaligheid en complexe booking gaan naar aparte review.</p></article>
-              <article className="tile"><Workflow color="#a84f35" /><h3>AI agent upsell</h3><p>Wanneer intake tijd kost, koppelen we de juiste agent: triage, offerte, document of planning.</p></article>
+              <article className="tile"><ClipboardCheck color="#a84f35" /><h3>Slimme opvolging</h3><p>Wanneer aanvragen veel tijd kosten, richten we extra hulp in voor triage, offertevoorbereiding, documenten of planning.</p></article>
             </div>
             <div className="actions"><Link className="button" href="/intake">Start de intake <CheckCircle2 size={18} /></Link></div>
           </div>
@@ -121,8 +121,8 @@ export function Footer() {
   return (
     <footer className="footer">
       <div className="inner">
-        <div><strong>Snuushco</strong><p>Websites, slimme intake en AI workflows met menselijke controle.</p></div>
-        <p>Snuushco is in opbouw. Complexe of gevoelige workflows krijgen altijd review voor livegang.</p>
+        <div><strong>Snuushco</strong><p>Websites en slimme aanvraagroutes met menselijke controle.</p></div>
+        <p>Complexe of gevoelige onderdelen krijgen altijd review voor livegang.</p>
       </div>
     </footer>
   );

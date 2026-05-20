@@ -12,8 +12,8 @@ type Advice = {
   fitScore: number;
   complexityScore: number;
   readinessScore: number;
-  premiumTriggers: string[];
-  upsell: string;
+  reviewReasons: string[];
+  followUpAdvice: string;
   nextSteps: string[];
 };
 
@@ -90,24 +90,6 @@ export default function IntakeForm() {
               <option value="unknown">Nog onbekend</option>
             </select>
           </div>
-          <div className="field">
-            <label htmlFor="budget">Websitebudget</label>
-            <select id="budget" name="budget">
-              <option value="under_1000">Onder EUR 1.000</option>
-              <option value="1000_3500">EUR 1.000 tot 3.500</option>
-              <option value="3500_8500">EUR 3.500 tot 8.500</option>
-              <option value="8500_plus">EUR 8.500 plus</option>
-            </select>
-          </div>
-          <div className="field">
-            <label htmlFor="monthly">Maandbudget</label>
-            <select id="monthly" name="monthly">
-              <option value="none">Geen</option>
-              <option value="100_300">EUR 100 tot 300</option>
-              <option value="300_750">EUR 300 tot 750</option>
-              <option value="750_plus">EUR 750 plus</option>
-            </select>
-          </div>
           <div className="field full">
             <label htmlFor="features">Wat is nodig?</label>
             <select id="features" name="features">
@@ -115,7 +97,7 @@ export default function IntakeForm() {
               <option value="content">Kennisbank, lead magnet of veel content</option>
               <option value="booking">Booking, betaling of portal</option>
               <option value="integrations">CRM, API of maatwerkkoppelingen</option>
-              <option value="regulated">Juridisch, medisch, financieel of HR gevoelige workflow</option>
+              <option value="regulated">Juridisch, medisch, financieel of HR gevoelig onderwerp</option>
             </select>
           </div>
           <div className="field full">
@@ -145,13 +127,13 @@ export default function IntakeForm() {
         </button>
       </form>
 
-      <aside className={`form-panel ${advice?.premiumTriggers.length ? "warning" : "result"}`}>
+      <aside className={`form-panel ${advice?.reviewReasons.length ? "warning" : "result"}`}>
         {!advice ? (
           <>
             <h3>Wat deze intake doet</h3>
             <p className="muted">
-              Je krijgt direct advies voor pakket, scope, verwachte route en logische AI upsell.
-              Premium onderdelen worden expliciet gemarkeerd zodat er geen verrassingen ontstaan.
+              Je krijgt direct advies voor pakket, omvang, verwachte route en logische vervolgstap.
+              Onderdelen die extra review nodig hebben worden duidelijk gemarkeerd.
             </p>
           </>
         ) : (
@@ -159,16 +141,16 @@ export default function IntakeForm() {
             <p className="eyebrow">{advice.route}</p>
             <h3>{advice.package}</h3>
             <div className="price">{advice.priceRange}</div>
-            <p className="muted">AI workflow advies: {advice.upsell}</p>
+            <p className="muted">Logische vervolgstap: {advice.followUpAdvice}</p>
             <div className="pill-row">
               <span className="pill">Fit {advice.fitScore}</span>
               <span className="pill">Complexiteit {advice.complexityScore}</span>
               <span className="pill">Readiness {advice.readinessScore}</span>
             </div>
-            {advice.premiumTriggers.length > 0 && (
+            {advice.reviewReasons.length > 0 && (
               <>
                 <h3>Premium review nodig</h3>
-                <ul>{advice.premiumTriggers.map((trigger) => <li key={trigger}>{trigger}</li>)}</ul>
+                <ul>{advice.reviewReasons.map((reason) => <li key={reason}>{reason}</li>)}</ul>
               </>
             )}
             <h3>Volgende stappen</h3>

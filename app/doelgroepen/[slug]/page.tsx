@@ -41,18 +41,18 @@ export default async function SegmentPage({ params }: Props) {
           <div className="inner">
             <div className="section-head">
               <div>
-                <p className="eyebrow">Herkenbare workflow</p>
+                <p className="eyebrow">Herkenbare aanvraagroute</p>
                 <h2>Van losse aanvraag naar duidelijke opvolging.</h2>
               </div>
               <p>
-                We vertalen je site niet naar technische AI-termen. We richten hem in op de vragen,
+                We richten je site in op de vragen,
                 gegevens en beslismomenten die voor {segment.label.toLowerCase()} dagelijks tellen.
               </p>
             </div>
             <div className="grid three">
               <article className="tile"><h3>Voorbeelden</h3><p>{segment.examples.join(", ")}.</p></article>
               <article className="tile"><h3>Slimme intake</h3><p>Bezoekers leveren vooraf de gegevens aan die je normaal achteraf moet opvragen.</p></article>
-              <article className="tile"><h3>AI upsell</h3><p>{segment.upsell} als logische vervolgstap na de website.</p></article>
+              <article className="tile"><h3>Slimme opvolging</h3><p>{segment.followUp} als logische vervolgstap na de website.</p></article>
             </div>
           </div>
         </section>
