@@ -191,6 +191,10 @@ textarea { min-height: 110px; resize: vertical; }
 .form-error { margin-top: 12px; color: var(--rust); font-weight: 700; }
 .footer { padding: 34px clamp(18px, 4vw, 56px); background: var(--ink); color: rgba(255, 255, 255, 0.78); }
 .footer .inner { display: flex; justify-content: space-between; gap: 24px; }
+.legal { max-width: 860px; }
+.legal h1 { color: var(--ink); font-size: clamp(42px, 6vw, 72px); }
+.legal h2 { margin-top: 34px; font-size: 28px; }
+.legal p { color: var(--muted); line-height: 1.7; }
 @media (max-width: 860px) {
   .nav { display: none; }
   .hero { min-height: 82vh; background-position: center; }

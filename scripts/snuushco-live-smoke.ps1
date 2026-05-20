@@ -9,6 +9,8 @@ $routes = @(
   "/intake",
   "/doelgroepen/security-facilitair",
   "/doelgroepen/bouw-techniek",
+  "/privacy",
+  "/voorwaarden",
   "/api/ops/health"
 )
 

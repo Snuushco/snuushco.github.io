@@ -72,7 +72,7 @@ export default function Home() {
             <div className="section-head">
               <div>
                 <p className="eyebrow">Werkwijze</p>
-                <h2>Automatisch waar veilig. Review waar nodig.</h2>
+                <h2>Standaard waar veilig. Review waar nodig.</h2>
               </div>
               <p>
                 De intake beoordeelt aanvragen, maakt de omvang zichtbaar en routeert gevoelige
@@ -122,7 +122,7 @@ export function Footer() {
     <footer className="footer">
       <div className="inner">
         <div><strong>Snuushco</strong><p>Websites en slimme aanvraagroutes met menselijke controle.</p></div>
-        <p>Complexe of gevoelige onderdelen krijgen altijd review voor livegang.</p>
+        <p><Link href="/privacy">Privacy</Link> · <Link href="/voorwaarden">Voorwaarden</Link></p>
       </div>
     </footer>
   );
