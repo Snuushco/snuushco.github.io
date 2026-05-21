@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { FormEvent, useMemo, useState } from "react";
 import { Send } from "lucide-react";
 import { segments } from "../data";
+import { sendGoogleEvent, type SnuushcoEventName } from "../lib/client-analytics";
 
 type Advice = {
   package: string;
@@ -30,7 +31,8 @@ export default function IntakeForm() {
 
   const segmentOptions = useMemo(() => segments, []);
 
-  function track(eventName: "intake_started" | "intake_submitted" | "checkout_started", metadata: Record<string, unknown> = {}, trackedLeadId = leadId) {
+  function track(eventName: SnuushcoEventName, metadata: Record<string, unknown> = {}, trackedLeadId = leadId) {
+    sendGoogleEvent(eventName, metadata);
     const payload = JSON.stringify({
       eventName,
       leadId: trackedLeadId,

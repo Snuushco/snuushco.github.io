@@ -303,7 +303,7 @@ export async function getOperationsDashboard(filters: { q?: string; status?: str
   }
   const whereSql = where.length ? `where ${where.join(" and ")}` : "";
 
-  const [leads, tasks, summary, events] = await Promise.all([
+  const [leads, tasks, summary, events, funnel] = await Promise.all([
     db.query(
       `
         select
@@ -376,6 +376,23 @@ export async function getOperationsDashboard(filters: { q?: string; status?: str
         order by event_name
       `,
     ),
+    db.query(
+      `
+        select
+          coalesce(nullif(source, ''), 'direct') as source,
+          coalesce(nullif(campaign, ''), 'none') as campaign,
+          count(*) filter (where event_name = 'landing_view')::int as landing_view,
+          count(*) filter (where event_name = 'intake_started')::int as intake_started,
+          count(*) filter (where event_name = 'intake_submitted')::int as intake_submitted,
+          count(*) filter (where event_name = 'checkout_started')::int as checkout_started,
+          count(*) filter (where event_name = 'paid_lead')::int as paid_lead
+        from snuushco_conversion_events
+        where created_at > now() - interval '30 days'
+        group by 1, 2
+        order by landing_view desc, intake_submitted desc, checkout_started desc
+        limit 25
+      `,
+    ),
   ]);
 
   return {
@@ -384,6 +401,7 @@ export async function getOperationsDashboard(filters: { q?: string; status?: str
     tasks: tasks.rows,
     summary: summary.rows,
     events: events.rows,
+    funnel: funnel.rows,
   };
 }
 

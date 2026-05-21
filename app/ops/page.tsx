@@ -95,6 +95,15 @@ export default async function OpsPage({ searchParams }: { searchParams?: Promise
   const tasks = data.tasks as Array<JsonMap>;
   const summary = data.summary as Array<{ status: string; count: number }>;
   const events = data.events as Array<{ event_name: string; count: number }>;
+  const funnel = data.funnel as Array<{
+    source: string;
+    campaign: string;
+    landing_view: number;
+    intake_started: number;
+    intake_submitted: number;
+    checkout_started: number;
+    paid_lead: number;
+  }>;
   const paid = leads.filter((lead) => lead.status === "paid").length;
   const review = tasks.filter((task) => task.status === "review_required").length;
   const ready = tasks.filter((task) => task.status === "ready_for_production").length;
@@ -127,6 +136,43 @@ export default async function OpsPage({ searchParams }: { searchParams?: Promise
         <article><ClipboardList /><span>{ready}</span><p>Klaar voor productie</p></article>
         <article><LockKeyhole /><span>{review}</span><p>Review nodig</p></article>
         <article><ClipboardList /><span>{intakeSubmits}</span><p>Intake events</p></article>
+      </section>
+
+      <section className="ops-panel ops-funnel-panel">
+        <div className="ops-panel-head">
+          <h2>Conversiefunnel per bron en campagne</h2>
+          <div className="ops-summary">{events.map((event) => <span key={event.event_name}>{event.event_name}: {event.count}</span>)}</div>
+        </div>
+        <div className="ops-table-wrap">
+          <table className="ops-table">
+            <thead>
+              <tr>
+                <th>Bron</th>
+                <th>Campagne</th>
+                <th>Landing</th>
+                <th>Intake start</th>
+                <th>Intake klaar</th>
+                <th>Checkout</th>
+                <th>Paid</th>
+              </tr>
+            </thead>
+            <tbody>
+              {funnel.length ? funnel.map((row) => (
+                <tr key={`${row.source}-${row.campaign}`}>
+                  <td><strong>{row.source}</strong></td>
+                  <td>{row.campaign}</td>
+                  <td>{row.landing_view}</td>
+                  <td>{row.intake_started}</td>
+                  <td>{row.intake_submitted}</td>
+                  <td>{row.checkout_started}</td>
+                  <td>{row.paid_lead}</td>
+                </tr>
+              )) : (
+                <tr><td colSpan={7}>Nog geen conversie-events in de laatste 30 dagen.</td></tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section className="ops-grid">

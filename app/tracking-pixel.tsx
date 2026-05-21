@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect } from "react";
+import { sendGoogleEvent } from "./lib/client-analytics";
 
 export default function TrackingPixel({ eventName, metadata = {} }: { eventName: "landing_view"; metadata?: Record<string, unknown> }) {
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
+    sendGoogleEvent(eventName, metadata);
     const payload = JSON.stringify({
       eventName,
       source: searchParams.get("utm_source") ?? searchParams.get("source") ?? "",
