@@ -86,6 +86,10 @@ export default function IntakeForm() {
       <form className="form-panel" onSubmit={onSubmit}>
         <input type="hidden" name="source" value={source} />
         <input type="hidden" name="campaign" value={campaign} />
+        <div className="spam-check" aria-hidden="true">
+          <label htmlFor="website">Website</label>
+          <input id="website" name="website" tabIndex={-1} autoComplete="off" />
+        </div>
         <div className="field-grid">
           <div className="field">
             <label htmlFor="company">Bedrijfsnaam</label>

@@ -1,38 +1,102 @@
 param(
-  [string]$BaseUrl = "https://snuushco.nl"
+  [string]$BaseUrl = "https://snuushco.nl",
+  [string]$OpsUser = "",
+  [string]$OpsPassword = "",
+  [string]$CredentialName = "snuushco_ops",
+  [switch]$SkipCredentialLookup
 )
 
 $ErrorActionPreference = "Stop"
 
-$routes = @(
+function Get-OpsCredential {
+  if ($SkipCredentialLookup -or ($OpsUser -and $OpsPassword)) {
+    return
+  }
+
+  $credentialScript = "C:\Users\GuusB\.openclaw\workspace-emily\scripts\get-credential.ps1"
+  if (-not (Test-Path $credentialScript)) {
+    return
+  }
+
+  try {
+    $credential = & powershell -NoProfile -File $credentialScript -Name $CredentialName
+    if (-not $OpsUser -and $credential.User) {
+      $script:OpsUser = $credential.User
+    }
+    if (-not $OpsPassword -and $credential.Password) {
+      $script:OpsPassword = $credential.Password
+    }
+  } catch {
+    # Public smoke checks can still run without internal ops credentials.
+  }
+}
+
+function Invoke-SmokeRequest {
+  param(
+    [string]$Url,
+    [hashtable]$Headers = @{}
+  )
+
+  try {
+    $response = Invoke-WebRequest -Uri $Url -MaximumRedirection 5 -TimeoutSec 30 -UseBasicParsing -Headers $Headers
+    return [pscustomobject]@{
+      status = [int]$response.StatusCode
+      ok = [int]$response.StatusCode -ge 200 -and [int]$response.StatusCode -lt 300
+      content = $response.Content
+      error = ""
+    }
+  } catch {
+    $status = 0
+    if ($_.Exception.Response) {
+      $status = [int]$_.Exception.Response.StatusCode
+    }
+    return [pscustomobject]@{
+      status = $status
+      ok = $false
+      content = ""
+      error = $_.Exception.Message
+    }
+  }
+}
+
+Get-OpsCredential
+
+$publicRoutes = @(
   "/",
   "/intake",
   "/doelgroepen/security-facilitair",
   "/doelgroepen/bouw-techniek",
   "/privacy",
-  "/voorwaarden",
-  "/api/ops/health"
+  "/voorwaarden"
 )
 
-$results = foreach ($route in $routes) {
+$results = foreach ($route in $publicRoutes) {
   $url = "$BaseUrl$route"
-  try {
-    $response = Invoke-WebRequest -Uri $url -MaximumRedirection 5 -TimeoutSec 30 -UseBasicParsing
-    [pscustomobject]@{
-      url = $url
-      status = [int]$response.StatusCode
-      ok = [int]$response.StatusCode -ge 200 -and [int]$response.StatusCode -lt 300
-      hasForbiddenCopy = $response.Content -match "AI upsell|AI workflows|vage AI|dit is voor mij|Maandbudget|Websitebudget|Onder EUR 1.000"
-    }
-  } catch {
-    [pscustomobject]@{
-      url = $url
-      status = 0
-      ok = $false
-      hasForbiddenCopy = $false
-      error = $_.Exception.Message
-    }
+  $result = Invoke-SmokeRequest -Url $url
+  [pscustomobject]@{
+    url = $url
+    status = $result.status
+    ok = $result.ok
+    hasForbiddenCopy = $result.content -match "AI upsell|AI workflows|vage AI|dit is voor mij|Maandbudget|Websitebudget|Onder EUR 1.000"
+    error = $result.error
   }
+}
+
+$opsHealthUrl = "$BaseUrl/api/ops/health"
+$opsHeaders = @{}
+if ($OpsUser -and $OpsPassword) {
+  $token = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes("${OpsUser}:${OpsPassword}"))
+  $opsHeaders.Authorization = "Basic $token"
+}
+
+$opsHealth = Invoke-SmokeRequest -Url $opsHealthUrl -Headers $opsHeaders
+$results += [pscustomobject]@{
+  url = $opsHealthUrl
+  status = $opsHealth.status
+  ok = if ($OpsUser -and $OpsPassword) { $opsHealth.ok } else { $opsHealth.status -eq 401 }
+  hasForbiddenCopy = $false
+  authMode = if ($OpsUser -and $OpsPassword) { "basic" } else { "protected_401_expected" }
+  error = if (($OpsUser -and $OpsPassword) -or $opsHealth.status -ne 401) { $opsHealth.error } else { "" }
 }
 
 $failed = @($results | Where-Object { -not $_.ok -or $_.hasForbiddenCopy })

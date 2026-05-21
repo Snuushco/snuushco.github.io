@@ -18,6 +18,7 @@ const intakeSchema = z.object({
   consent: z.literal("on"),
   source: z.string().optional(),
   campaign: z.string().optional(),
+  website: z.string().optional(),
 });
 
 const followUpAdvice: Record<string, string> = {
@@ -113,6 +114,10 @@ export async function POST(request: Request) {
   const parsed = intakeSchema.safeParse(body);
   if (!parsed.success) {
     return NextResponse.json({ error: "Ongeldige intake", details: parsed.error.flatten() }, { status: 400 });
+  }
+
+  if (parsed.data.website?.trim()) {
+    return NextResponse.json({ advice: null, leadStorage: "skipped" }, { status: 202 });
   }
 
   const advice = classify(parsed.data);
