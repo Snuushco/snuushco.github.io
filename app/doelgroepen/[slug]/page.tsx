@@ -16,14 +16,47 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: segment ? `${segment.label} | Snuushco` : "Doelgroep | Snuushco",
     description: segment?.promise,
+    alternates: {
+      canonical: segment ? `/doelgroepen/${segment.slug}` : "/doelgroepen",
+    },
+    openGraph: {
+      title: segment ? `${segment.label} | Snuushco` : "Doelgroep | Snuushco",
+      description: segment?.promise,
+      url: segment ? `https://snuushco.nl/doelgroepen/${segment.slug}` : "https://snuushco.nl",
+      type: "website",
+      locale: "nl_NL",
+    },
   };
 }
 
 export default async function SegmentPage({ params }: Props) {
   const { slug } = await params;
   const segment = segments.find((item) => item.slug === slug) ?? segments[0];
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `https://snuushco.nl/doelgroepen/${segment.slug}#service`,
+    name: `${segment.packageName} voor ${segment.label.toLowerCase()}`,
+    url: `https://snuushco.nl/doelgroepen/${segment.slug}`,
+    provider: {
+      "@type": "Organization",
+      name: "Snuushco",
+      url: "https://snuushco.nl",
+    },
+    areaServed: ["Nederland", "België"],
+    audience: {
+      "@type": "Audience",
+      audienceType: segment.label,
+    },
+    description: `${segment.promise} ${segment.pain}`,
+    serviceOutput: segment.followUp,
+  };
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <Header />
       <main>
         <section className="hero segment-hero">

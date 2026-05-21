@@ -3,8 +3,90 @@ import Link from "next/link";
 import { packages, recurringPlans, segments } from "./data";
 
 export default function Home() {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://snuushco.nl/#organization",
+        name: "Snuushco",
+        url: "https://snuushco.nl",
+        description: "Snuushco bouwt websites en aanvraagroutes voor dienstverleners die betere aanvragen willen en minder handmatig opvolgwerk.",
+        parentOrganization: {
+          "@type": "Organization",
+          name: "Praesidion Holding B.V.",
+        },
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://snuushco.nl/#website",
+        url: "https://snuushco.nl",
+        name: "Snuushco",
+        inLanguage: "nl-NL",
+        publisher: {
+          "@id": "https://snuushco.nl/#organization",
+        },
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://snuushco.nl/#service",
+        name: "Snuushco websites en aanvraagroutes",
+        url: "https://snuushco.nl",
+        areaServed: ["Nederland", "België"],
+        serviceType: "Webdesign, lead intake en aanvraagroute optimalisatie voor dienstverleners",
+        provider: {
+          "@id": "https://snuushco.nl/#organization",
+        },
+        offers: packages.map((item) => ({
+          "@type": "Offer",
+          name: item.name,
+          description: item.for,
+          priceSpecification: {
+            "@type": "PriceSpecification",
+            priceCurrency: "EUR",
+            description: item.price,
+          },
+        })),
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://snuushco.nl/#faq",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "Voor wie is Snuushco bedoeld?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Snuushco is bedoeld voor dienstverleners die betere aanvragen willen ontvangen en minder tijd kwijt willen zijn aan handmatig opvolgwerk.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Wat levert Snuushco op?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Snuushco levert een website met een gerichte aanvraagroute, pakketadvies via intake en waar nodig extra review voor maatwerk, integraties of gevoelige claims.",
+            },
+          },
+          {
+            "@type": "Question",
+            name: "Welke pakketten zijn er?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Snuushco biedt Website Quickstart, Business Website, Growth Website en Premium Maatwerk. De intake adviseert welk pakket past bij de aanvraag.",
+            },
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <Header />
       <main>
         <section className="hero">

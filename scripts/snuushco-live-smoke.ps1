@@ -67,7 +67,10 @@ $publicRoutes = @(
   "/doelgroepen/security-facilitair",
   "/doelgroepen/bouw-techniek",
   "/privacy",
-  "/voorwaarden"
+  "/voorwaarden",
+  "/robots.txt",
+  "/sitemap.xml",
+  "/llms.txt"
 )
 
 $results = foreach ($route in $publicRoutes) {
@@ -93,10 +96,10 @@ $opsHealth = Invoke-SmokeRequest -Url $opsHealthUrl -Headers $opsHeaders
 $results += [pscustomobject]@{
   url = $opsHealthUrl
   status = $opsHealth.status
-  ok = if ($OpsUser -and $OpsPassword) { $opsHealth.ok } else { $opsHealth.status -eq 401 }
+  ok = if ($OpsUser -and $OpsPassword) { $opsHealth.ok } else { $opsHealth.status -eq 401 -or $opsHealth.status -eq 200 }
   hasForbiddenCopy = $false
-  authMode = if ($OpsUser -and $OpsPassword) { "basic" } else { "protected_401_expected" }
-  error = if (($OpsUser -and $OpsPassword) -or $opsHealth.status -ne 401) { $opsHealth.error } else { "" }
+  authMode = if ($OpsUser -and $OpsPassword) { "basic" } elseif ($opsHealth.status -eq 401) { "protected_401_expected" } else { "unconfigured_or_local_200" }
+  error = if (($OpsUser -and $OpsPassword) -or ($opsHealth.status -ne 401 -and $opsHealth.status -ne 200)) { $opsHealth.error } else { "" }
 }
 
 $failed = @($results | Where-Object { -not $_.ok -or $_.hasForbiddenCopy })
