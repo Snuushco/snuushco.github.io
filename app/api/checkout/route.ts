@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { z } from "zod";
-import { markCheckoutStarted } from "../../lib/db";
+import { markCheckoutStarted, saveConversionEvent } from "../../lib/db";
 
 const checkoutSchema = z.object({
   packageName: z.string(),
@@ -90,6 +90,21 @@ export async function POST(request: Request) {
 
   if (parsed.data.leadId && session.id) {
     await markCheckoutStarted(parsed.data.leadId, session.id);
+  }
+
+  try {
+    await saveConversionEvent({
+      eventName: "checkout_started",
+      leadId: parsed.data.leadId ?? null,
+      sessionId: session.id,
+      metadata: {
+        packageName: parsed.data.packageName,
+        company: parsed.data.company ?? "",
+        amount: selected.amount,
+      },
+    });
+  } catch {
+    // Checkout must not fail because analytics storage is unavailable.
   }
 
   return NextResponse.json({ url: session.url });

@@ -26,11 +26,42 @@ export default function IntakeForm() {
   const [leadId, setLeadId] = useState<string | null>(null);
   const [checkoutStatus, setCheckoutStatus] = useState<"idle" | "loading" | "error">("idle");
   const [status, setStatus] = useState<"idle" | "submitting" | "done" | "error">("idle");
+  const [started, setStarted] = useState(false);
 
   const segmentOptions = useMemo(() => segments, []);
 
+  function track(eventName: "intake_started" | "intake_submitted" | "checkout_started", metadata: Record<string, unknown> = {}, trackedLeadId = leadId) {
+    const payload = JSON.stringify({
+      eventName,
+      leadId: trackedLeadId,
+      source,
+      campaign,
+      path: window.location.pathname,
+      metadata,
+    });
+
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon("/api/events", new Blob([payload], { type: "application/json" }));
+      return;
+    }
+
+    void fetch("/api/events", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: payload,
+      keepalive: true,
+    });
+  }
+
+  function markStarted() {
+    if (started) return;
+    setStarted(true);
+    track("intake_started", { segment: initialSegment });
+  }
+
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    markStarted();
     setStatus("submitting");
     const formData = new FormData(event.currentTarget);
     const payload = Object.fromEntries(formData.entries());
@@ -49,6 +80,7 @@ export default function IntakeForm() {
     const data = await response.json();
     setAdvice(data.advice);
     setLeadId(data.leadId ?? null);
+    track("intake_submitted", { packageName: data.advice?.package, route: data.advice?.route }, data.leadId ?? null);
     setStatus("done");
   }
 
@@ -74,6 +106,7 @@ export default function IntakeForm() {
 
     const data = await response.json();
     if (data.url) {
+      track("checkout_started", { packageName: advice.package });
       window.location.href = data.url;
       return;
     }
@@ -83,7 +116,7 @@ export default function IntakeForm() {
 
   return (
     <div className="form-shell">
-      <form className="form-panel" onSubmit={onSubmit}>
+      <form className="form-panel" onSubmit={onSubmit} onFocusCapture={markStarted}>
         <input type="hidden" name="source" value={source} />
         <input type="hidden" name="campaign" value={campaign} />
         <div className="spam-check" aria-hidden="true">

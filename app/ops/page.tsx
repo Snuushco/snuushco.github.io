@@ -94,9 +94,11 @@ export default async function OpsPage({ searchParams }: { searchParams?: Promise
   const leads = data.leads as Array<JsonMap>;
   const tasks = data.tasks as Array<JsonMap>;
   const summary = data.summary as Array<{ status: string; count: number }>;
+  const events = data.events as Array<{ event_name: string; count: number }>;
   const paid = leads.filter((lead) => lead.status === "paid").length;
   const review = tasks.filter((task) => task.status === "review_required").length;
   const ready = tasks.filter((task) => task.status === "ready_for_production").length;
+  const intakeSubmits = events.find((event) => event.event_name === "intake_submitted")?.count ?? 0;
 
   return (
     <main className="ops-page">
@@ -124,6 +126,7 @@ export default async function OpsPage({ searchParams }: { searchParams?: Promise
         <article><CheckCircle2 /><span>{paid}</span><p>Betaald</p></article>
         <article><ClipboardList /><span>{ready}</span><p>Klaar voor productie</p></article>
         <article><LockKeyhole /><span>{review}</span><p>Review nodig</p></article>
+        <article><ClipboardList /><span>{intakeSubmits}</span><p>Intake events</p></article>
       </section>
 
       <section className="ops-grid">

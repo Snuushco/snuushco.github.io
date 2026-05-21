@@ -62,6 +62,22 @@ export async function ensureSnuushcoTables() {
 
     create index if not exists snuushco_fulfillment_tasks_lead_id_idx on snuushco_fulfillment_tasks (lead_id);
     create index if not exists snuushco_fulfillment_tasks_status_idx on snuushco_fulfillment_tasks (status);
+
+    create table if not exists snuushco_conversion_events (
+      id bigserial primary key,
+      created_at timestamptz not null default now(),
+      event_name text not null,
+      lead_id bigint references snuushco_intakes(id) on delete set null,
+      session_id text,
+      source text,
+      campaign text,
+      path text,
+      metadata jsonb not null default '{}'::jsonb
+    );
+
+    create index if not exists snuushco_conversion_events_created_at_idx on snuushco_conversion_events (created_at desc);
+    create index if not exists snuushco_conversion_events_event_name_idx on snuushco_conversion_events (event_name);
+    create index if not exists snuushco_conversion_events_lead_id_idx on snuushco_conversion_events (lead_id);
   `);
 
   await db.query(`
@@ -82,6 +98,48 @@ export async function ensureSnuushcoTables() {
   `);
 
   return true;
+}
+
+export async function saveConversionEvent(input: {
+  eventName: string;
+  leadId?: string | null;
+  sessionId?: string | null;
+  source?: string | null;
+  campaign?: string | null;
+  path?: string | null;
+  metadata?: Record<string, unknown>;
+}) {
+  const db = getPool();
+  if (!db) return null;
+
+  await ensureSnuushcoTables();
+
+  const result = await db.query(
+    `
+      insert into snuushco_conversion_events (
+        event_name,
+        lead_id,
+        session_id,
+        source,
+        campaign,
+        path,
+        metadata
+      )
+      values ($1, nullif($2, '')::bigint, nullif($3, ''), nullif($4, ''), nullif($5, ''), nullif($6, ''), $7::jsonb)
+      returning id
+    `,
+    [
+      input.eventName,
+      input.leadId ?? "",
+      input.sessionId ?? "",
+      input.source ?? "",
+      input.campaign ?? "",
+      input.path ?? "",
+      JSON.stringify(input.metadata ?? {}),
+    ],
+  );
+
+  return String(result.rows[0].id);
 }
 
 export async function saveIntake(input: {
@@ -199,15 +257,17 @@ export async function getOperationsHealth() {
 
   await ensureSnuushcoTables();
 
-  const [intakes, tasks] = await Promise.all([
+  const [intakes, tasks, events] = await Promise.all([
     db.query("select count(*)::int as count from snuushco_intakes"),
     db.query("select status, count(*)::int as count from snuushco_fulfillment_tasks group by status order by status"),
+    db.query("select event_name, count(*)::int as count from snuushco_conversion_events group by event_name order by event_name"),
   ]);
 
   return {
     database: "ok",
     intakes: intakes.rows[0].count,
     fulfillment: tasks.rows,
+    events: events.rows,
   };
 }
 
@@ -243,7 +303,7 @@ export async function getOperationsDashboard(filters: { q?: string; status?: str
   }
   const whereSql = where.length ? `where ${where.join(" and ")}` : "";
 
-  const [leads, tasks, summary] = await Promise.all([
+  const [leads, tasks, summary, events] = await Promise.all([
     db.query(
       `
         select
@@ -307,6 +367,15 @@ export async function getOperationsDashboard(filters: { q?: string; status?: str
         order by status
       `,
     ),
+    db.query(
+      `
+        select event_name, count(*)::int as count
+        from snuushco_conversion_events
+        where created_at > now() - interval '30 days'
+        group by event_name
+        order by event_name
+      `,
+    ),
   ]);
 
   return {
@@ -314,6 +383,7 @@ export async function getOperationsDashboard(filters: { q?: string; status?: str
     leads: leads.rows,
     tasks: tasks.rows,
     summary: summary.rows,
+    events: events.rows,
   };
 }
 

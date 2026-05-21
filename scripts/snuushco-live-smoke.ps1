@@ -64,6 +64,7 @@ Get-OpsCredential
 $publicRoutes = @(
   "/",
   "/intake",
+  "/website-laten-maken/dienstverleners",
   "/doelgroepen/security-facilitair",
   "/doelgroepen/bouw-techniek",
   "/privacy",

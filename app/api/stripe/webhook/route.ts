@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
-import { markCheckoutCompleted } from "../../../lib/db";
+import { markCheckoutCompleted, saveConversionEvent } from "../../../lib/db";
 
 export async function POST(request: Request) {
   const stripeSecret = process.env.STRIPE_SECRET_KEY?.trim();
@@ -29,6 +29,23 @@ export async function POST(request: Request) {
     const session = event.data.object as Stripe.Checkout.Session;
     if (session.id) {
       await markCheckoutCompleted(session.id, session.payment_status ?? "completed");
+      if (session.payment_status === "paid") {
+        try {
+          await saveConversionEvent({
+            eventName: "paid_lead",
+            leadId: session.metadata?.leadId ?? null,
+            sessionId: session.id,
+            metadata: {
+              packageName: session.metadata?.packageName ?? "",
+              company: session.metadata?.company ?? "",
+              amountTotal: session.amount_total ?? null,
+              currency: session.currency ?? "eur",
+            },
+          });
+        } catch {
+          // Stripe webhook acknowledgement must not fail because analytics storage is unavailable.
+        }
+      }
     }
   }
 

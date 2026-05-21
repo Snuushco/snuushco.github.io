@@ -23,6 +23,7 @@ Snuushco bouwt websites en aanvraagroutes voor dienstverleners die betere aanvra
 
 - Home: https://snuushco.nl
 - Intake: https://snuushco.nl/intake
+- Commerciële landingspagina: https://snuushco.nl/website-laten-maken/dienstverleners
 - Privacy: https://snuushco.nl/privacy
 - Voorwaarden: https://snuushco.nl/voorwaarden
 
