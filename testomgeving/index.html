@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Snuushco Testomgeving</title>
+  <meta name="description" content="Interne Snuushco testomgeving voor producties, landingspagina's en validatieflows.">
+  <link rel="icon" type="image/png" href="../static/img/Snuushco Logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/style.css">
+  <style>
+    main{min-height:100svh;padding:140px var(--pad) 80px;position:relative;overflow:hidden}.test-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 45% at 12% 18%,rgba(0,240,222,.08),transparent 65%),radial-gradient(ellipse 45% 50% at 88% 12%,rgba(0,240,222,.04),transparent 65%);pointer-events:none}.wrap{position:relative;max-width:1180px;margin:0 auto}.eyebrow{font-family:var(--ff-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:28px}.hero-title{font-family:var(--ff-display);font-size:clamp(54px,9vw,132px);font-weight:300;line-height:.95;letter-spacing:-.03em;margin-bottom:28px}.hero-title em{color:var(--gold);font-style:italic}.lead{max-width:720px;color:var(--text-2);font-size:clamp(16px,1.6vw,20px);line-height:1.85;margin-bottom:54px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:36px 0 60px}.card{border:1px solid var(--border-2);background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012));padding:28px;min-height:230px}.card strong{display:block;font-family:var(--ff-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}.card h2{font-family:var(--ff-display);font-size:32px;font-weight:300;margin-bottom:14px}.card p{color:var(--text-2);font-size:14px;line-height:1.75}.actions{display:flex;gap:14px;flex-wrap:wrap}.btn-test{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--gold-border);padding:14px 18px;font-family:var(--ff-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);background:rgba(0,240,222,.05)}.btn-test:hover{background:rgba(0,240,222,.1)}.note{border-top:1px solid var(--border);padding-top:24px;color:var(--text-2);font-size:13px;line-height:1.8}.status-row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:30px}.pill{font-family:var(--ff-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--green);border:1px solid rgba(74,222,128,.22);background:rgba(74,222,128,.08);padding:8px 10px}@media(max-width:900px){.grid{grid-template-columns:1fr}main{padding-top:110px}}
+  </style>
+</head>
+<body>
+  <nav class="nav scrolled">
+    <a href="../" class="nav-logo"><span class="nav-logo-mark"></span><span>Snuushco</span></a>
+    <div class="nav-links"><a href="../contact.html">Contact</a><a href="../demo.html">Demo</a></div>
+  </nav>
+  <main>
+    <div class="test-bg"></div>
+    <section class="wrap">
+      <div class="eyebrow">// Interne live testomgeving</div>
+      <h1 class="hero-title">Producties testen voordat ze <em>live geld</em> kosten.</h1>
+      <p class="lead">Deze omgeving is bedoeld voor Snuushco-producties, landingspagina's, intakeflows en validatie-assets voordat ze commercieel worden ingezet. Pagina's zijn noindex en bevatten geen actieve outreach.</p>
+      <div class="status-row">
+        <span class="pill">Noindex</span><span class="pill">Live smoke target</span><span class="pill">Geen outreach</span><span class="pill">Geen echte betalingen zonder akkoord</span>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <strong>Productie 01</strong>
+          <h2>Offerteheractivatie dakbedrijven</h2>
+          <p>Revenue-validatiepagina voor dakbedrijven: oude offertes heractiveren met een compacte pilot, intakeplaceholder en betalingsvoorbehoud.</p>
+          <br><a class="btn-test" href="offerteheractivatie-dakbedrijven/">Open testpagina â†’</a>
+        </article>
+        <article class="card">
+          <strong>Pipeline</strong>
+          <h2>Nieuwe producties</h2>
+          <p>Toekomstige funnels krijgen hier een eigen route, status, eigenaar en acceptatiecriteria voordat ze naar outreach of betaling gaan.</p>
+        </article>
+        <article class="card">
+          <strong>Governance</strong>
+          <h2>Review gates</h2>
+          <p>Elke productie moet door copy-, privacy-, payment- en smoke-testcontrole voordat er prospects worden benaderd.</p>
+        </article>
+      </div>
+      <div class="actions"><a class="btn-test" href="../">Terug naar Snuushco</a><a class="btn-test" href="../contact.html">Contact</a></div>
+      <p class="note">Interne stagingomgeving. AI mag ondersteunend in de workflow worden gebruikt, maar is geen primair verkoopargument. Eventuele AI-verwerking wordt alleen in privacy/disclaimer-context benoemd.</p>
+    </section>
+  </main>
+</body>
+</html>
