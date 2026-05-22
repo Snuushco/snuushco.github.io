@@ -1,29 +1,53 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, ClipboardCheck, ShieldCheck } from "lucide-react";
+import { ArrowRight, CheckCircle2, ClipboardCheck, MailCheck, ShieldCheck, Sparkles } from "lucide-react";
 
 export const metadata = {
   title: "Offerteheractivatie Pilot | Snuushco Testomgeving",
-  description: "Live testpagina voor de offerteheractivatie pilot voor Nederlandse dakbedrijven.",
+  description:
+    "Live testpagina voor de offerteheractivatie pilot voor Nederlandse dakbedrijven: oude/open offertes opvolgen en warme kansen terugkrijgen.",
   robots: {
     index: false,
     follow: false,
   },
 };
 
-const steps = [
-  "Upload 3–5 geanonimiseerde voorbeelden of een export",
-  "Segmentatie van oude/open offertes",
-  "Gecontroleerde opvolgberichten binnen afgesproken grenzen",
-  "Reactietriage en warme kansen terug naar het team",
-  "Eindrapport met pipelinewaarde, reacties en verliesredenen",
+const inclusions = [
+  "14 dagen offerteheractivatie",
+  "Tot 50 oude of open dakoffertes",
+  "Segmentatie op waarde, ouderdom, status en bezwaar",
+  "Persoonlijke conceptopvolging per segment",
+  "Reactietriage: warm, later, verloren, bezwaar of opt-out",
+  "Eindrapport met pipelinewaarde, reacties en vervolgstappen",
 ];
 
-const checks = [
-  "Geen CRM-migratie",
-  "Geen omzetgarantie",
-  "AI alleen als ondersteunend hulpmiddel disclosed",
-  "Opt-outs worden gerespecteerd",
-  "Geen zelfstandige prijs-, planning- of contractbeloftes",
+const process = [
+  {
+    title: "U deelt een export of voorbeelden",
+    body: "CSV, Excel, PDF of 3-5 geanonimiseerde voorbeelden is genoeg voor de mini-audit. Geen CRM-migratie nodig.",
+  },
+  {
+    title: "Wij segmenteren de offertes",
+    body: "We scheiden recente, oudere, hoge waarde, onduidelijke status en bekende bezwaren zodat opvolging gecontroleerd blijft.",
+  },
+  {
+    title: "We bereiden nette opvolging voor",
+    body: "Berichten blijven binnen afgesproken grenzen. Geen zelfstandige prijs-, planning- of contractbeloftes namens het dakbedrijf.",
+  },
+  {
+    title: "Warme reacties gaan terug naar uw team",
+    body: "Uw team hoeft alleen te reageren op kansrijke of inhoudelijke reacties; opt-outs en verloren redenen worden apart vastgelegd.",
+  },
+  {
+    title: "U krijgt een kort rapport",
+    body: "Wat kwam terug, welke bezwaren kwamen vaak voor, welke kansen zijn warm en wat is logisch als vervolgstap?",
+  },
+];
+
+const boundaries = [
+  "Geen omzetgarantie; wel opvolging, triage en inzicht",
+  "Geen outreach of klantdata zonder expliciet akkoord",
+  "Geen echte betaling in testmodus; betaalflow blijft approval-gated",
+  "AI alleen als ondersteunend hulpmiddel, netjes vermeld in privacy/disclaimer",
 ];
 
 export default function OfferteheractivatieTestPage() {
@@ -36,25 +60,32 @@ export default function OfferteheractivatieTestPage() {
         </Link>
         <nav className="nav">
           <Link href="/testomgeving">Overzicht</Link>
+          <a href="#werkwijze">Werkwijze</a>
           <a href="#pilot">Pilot</a>
-          <a href="#privacy">Privacy</a>
+          <a href="#grenzen">Grenzen</a>
         </nav>
       </header>
 
       <main>
         <section className="hero segment-hero">
           <div className="hero-content">
-            <p className="eyebrow">Testpagina — niet voor outreach zonder akkoord</p>
+            <p className="eyebrow">Live testpagina — offerteheractivatie voor dakbedrijven</p>
             <h1>Haal meer uit dakoffertes die nu blijven liggen.</h1>
             <p className="lead">
-              Testvariant voor een 14-daagse offerteheractivatie pilot voor Nederlandse dakbedrijven: maximaal 50 oude/open offertes, nette opvolging en warme kansen terug.
+              Een compacte 14-daagse pilot voor dakbedrijven: oude of open offertes netjes opvolgen, reacties triëren en warme kansen terugbrengen naar het team — zonder CRM-migratie of extra druk op de planning.
             </p>
             <div className="hero-actions">
-              <Link className="button" href="/intake?product=offerteheractivatie-dakbedrijven">
-                Test mini-audit intake <ArrowRight size={18} />
+              <Link
+                className="button"
+                href="/intake?segment=bouw-techniek&source=testomgeving&campaign=offerteheractivatie-dakbedrijven&intent=mini-audit"
+              >
+                Vraag gratis mini-audit aan <ArrowRight size={18} />
               </Link>
-              <a className="button secondary" href="#pilot">Bekijk pilotvoorwaarden</a>
+              <a className="button secondary" href="#pilot">Bekijk pilot van €750 ex btw</a>
             </div>
+            <p className="muted">
+              Testomgeving: noindex, geen outreach, geen echte betaling zonder afzonderlijk akkoord.
+            </p>
           </div>
         </section>
 
@@ -62,70 +93,116 @@ export default function OfferteheractivatieTestPage() {
           <div className="inner">
             <div className="section-head">
               <div>
-                <p className="eyebrow">Probleem</p>
+                <p className="eyebrow">Het lek</p>
                 <h2>Veel offertes krijgen nooit een duidelijke ja of nee.</h2>
               </div>
               <p>
-                Dakbedrijven hebben vaak voldoende aanvraagdruk, maar oude offertes verdwijnen tussen planning, uitvoering en nieuw werk. Deze pilot test of een kleine async herstelronde genoeg waarde oplevert.
+                Dakbedrijven hebben vaak genoeg aanvraagdruk, maar oude offertes verdwijnen tussen nieuw werk, planning en uitvoering. Eén teruggewonnen dakproject kan de pilot al ruimschoots rechtvaardigen.
               </p>
             </div>
             <div className="grid three">
-              <article className="tile"><h3>Open offertes</h3><p>Na één of twee contactmomenten stopt opvolging vaak terwijl de projectwaarde hoog is.</p></article>
-              <article className="tile"><h3>Bovenop bestaande systemen</h3><p>Geen nieuwe CRM-implementatie. We werken met export, mailbox of geanonimiseerde voorbeelden.</p></article>
-              <article className="tile"><h3>Warme kansen terug</h3><p>Het team krijgt alleen bruikbare reacties, bezwaren en concrete vervolgstappen terug.</p></article>
+              <article className="tile">
+                <MailCheck color="#24455f" />
+                <h3>Offertes blijven open</h3>
+                <p>Na één of twee contactmomenten stopt opvolging vaak terwijl de klantvraag nog niet definitief verloren is.</p>
+              </article>
+              <article className="tile">
+                <ClipboardCheck color="#24455f" />
+                <h3>Geen nieuwe software</h3>
+                <p>We werken bovenop export, mailbox of offertesoftware. Geen implementatieproject, geen datamigratie.</p>
+              </article>
+              <article className="tile">
+                <Sparkles color="#24455f" />
+                <h3>Warme kansen terug</h3>
+                <p>Uw team krijgt alleen kansrijke reacties, bezwaren en concrete vervolgstappen terug.</p>
+              </article>
             </div>
           </div>
         </section>
 
-        <section className="band" id="pilot">
+        <section className="band" id="werkwijze">
+          <div className="inner">
+            <div className="section-head">
+              <div>
+                <p className="eyebrow">Werkwijze</p>
+                <h2>Geen softwaremigratie. Gewoon een kleine herstelronde.</h2>
+              </div>
+              <p>
+                De pilot is bewust smal gehouden: maximaal 50 offertes, vaste looptijd, vaste prijs en duidelijke grenzen voor opvolging.
+              </p>
+            </div>
+            <div className="grid two">
+              {process.map((step, index) => (
+                <article className="tile" key={step.title}>
+                  <p className="eyebrow">Stap {index + 1}</p>
+                  <h3>{step.title}</h3>
+                  <p>{step.body}</p>
+                </article>
+              ))}
+              <article className="tile warning">
+                <ShieldCheck color="#a84f35" />
+                <h3>Menselijke controle blijft leidend</h3>
+                <p>
+                  Conceptberichten, datagebruik en commerciële claims blijven review-gated. De testpagina activeert geen zelfstandige outreach.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section className="band white" id="pilot">
           <div className="inner grid two">
             <article className="tile">
               <p className="eyebrow">Pilot</p>
               <h2>€750 ex btw</h2>
-              <p className="muted">14 dagen offerteheractivatie voor maximaal 50 oude/open dakoffertes.</p>
+              <p className="lead">14 dagen offerteheractivatie voor maximaal 50 oude of open dakoffertes.</p>
               <ul>
-                <li>Segmentatie en opvolgstrategie</li>
-                <li>Persoonlijke conceptopvolging</li>
-                <li>Reactietriage: warm, later, verloren, bezwaar, opt-out</li>
-                <li>Eindrapport met redenen en vervolgstappen</li>
-                <li>Bij nul bruikbare reacties: éénmalig 14 dagen verlenging</li>
+                {inclusions.map((item) => <li key={item}>{item}</li>)}
               </ul>
               <div className="actions">
-                <Link className="button" href="/intake?product=offerteheractivatie-dakbedrijven&intent=pilot">
-                  Test start pilot
+                <Link
+                  className="button"
+                  href="/intake?segment=bouw-techniek&source=testomgeving&campaign=offerteheractivatie-dakbedrijven&intent=pilot"
+                >
+                  Test pilot-intake
                 </Link>
-                <Link className="button secondary" href="/intake?product=offerteheractivatie-dakbedrijven&intent=mini-audit">
-                  Test mini-audit
-                </Link>
+                <a className="button secondary" href="mailto:snuushco@gmail.com?subject=Test%20offerteheractivatie%20dakbedrijven">
+                  Test contact via mail
+                </a>
               </div>
             </article>
             <article className="tile">
-              <ClipboardCheck color="#a84f35" />
-              <h3>Werkwijze</h3>
-              <ol>
-                {steps.map((step) => <li key={step}>{step}</li>)}
-              </ol>
+              <p className="eyebrow">Belofte zonder overclaim</p>
+              <h3>Bij nul bruikbare reacties: éénmalig 14 dagen verlenging.</h3>
+              <p>
+                Geen omzetgarantie. Wel een duidelijke herstelronde, gestructureerde triage en concrete feedback over waarom offertes wel of niet terugkomen.
+              </p>
+              <div className="pill-row">
+                <span className="pill">Vaste scope</span>
+                <span className="pill">Vaste prijs</span>
+                <span className="pill">Async per e-mail</span>
+              </div>
             </article>
           </div>
         </section>
 
-        <section className="band dark" id="privacy">
+        <section className="band dark" id="grenzen">
           <div className="inner">
             <div className="section-head">
               <div>
-                <p className="eyebrow">Grenzen</p>
-                <h2>Veilig testen voordat we prospects benaderen.</h2>
+                <p className="eyebrow">Testgrenzen</p>
+                <h2>Live genoeg om te testen. Veilig genoeg om nog niet te verkopen.</h2>
               </div>
               <p>
-                Deze pagina is voor live QA. De outreachmail blijft apart ter goedkeuring. Betaling, intake en dataverwerking worden pas productie-klaar gezet na review.
+                Deze pagina staat klaar als testbare funnelbasis. Outreachmail, payment link en klantdataverwerking blijven aparte approval gates.
               </p>
             </div>
-            <div className="grid three">
-              {checks.map((check) => (
-                <article className="tile" key={check}>
+            <div className="grid two">
+              {boundaries.map((item) => (
+                <article className="tile" key={item}>
                   <CheckCircle2 color="#c69a43" />
-                  <h3>{check}</h3>
-                  <p>Controlepunt voor de pilot voordat de funnel naar prospects gaat.</p>
+                  <h3>{item}</h3>
+                  <p>Controlepunt vóór commerciële activatie van deze productie.</p>
                 </article>
               ))}
             </div>
@@ -136,15 +213,15 @@ export default function OfferteheractivatieTestPage() {
           <div className="inner grid two">
             <article className="tile">
               <ShieldCheck color="#0f513f" />
-              <h3>Privacy/disclaimer tekst</h3>
+              <h3>Privacy/disclaimer</h3>
               <p>
-                We gebruiken gestructureerde templates, menselijke controle en ondersteunende software, waaronder AI-hulpmiddelen. Data wordt alleen gebruikt voor de mini-audit of pilot. Er worden geen zelfstandige toezeggingen namens het dakbedrijf gedaan.
+                Data wordt alleen gebruikt voor de mini-audit of pilot. Geanonimiseerde voorbeelden hebben de voorkeur bij de eerste beoordeling. We verkopen of delen geen klantdata.
               </p>
             </article>
-            <article className="tile warning">
-              <h3>Nog niet doen</h3>
-              <p className="muted">
-                Geen outreach, geen bulkmail, geen revenueclaim en geen klantdata verwerken voordat de intake, payment link, privacytekst en mails expliciet zijn goedgekeurd.
+            <article className="tile">
+              <h3>AI disclosure</h3>
+              <p>
+                Snuushco kan gestructureerde templates, menselijke controle en ondersteunende software gebruiken, waaronder AI-hulpmiddelen. Er worden geen zelfstandige toezeggingen namens het dakbedrijf gedaan.
               </p>
             </article>
           </div>
