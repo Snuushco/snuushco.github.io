@@ -197,6 +197,29 @@ export default function KassiePage() {
           </div>
         </section>
 
+        <section className="vo-style-band" aria-label="Snuushco huisstijl">
+          <div className="vo-container vo-style-grid">
+            <div className="vo-style-copy">
+              <p className="vo-kicker">Snuushco huisstijl</p>
+              <h2>Warmer, herkenbaarder en minder software-achtig.</h2>
+              <p>
+                De nieuwe visuele richting is verwerkt als zachte zandbasis met koper, cacao en diep groen als
+                accenten. Kassie blijft helder en praktisch, maar voelt meer als een betrouwbare assistent dan als
+                een standaard dashboardtool.
+              </p>
+              <div className="vo-palette" aria-label="Huisstijlkleuren">
+                <span style={{ background: "#ffe0b0" }}>Zand</span>
+                <span style={{ background: "#d9a87d" }}>Koper</span>
+                <span style={{ background: "#5b1a08", color: "#fff" }}>Cacao</span>
+                <span style={{ background: "#173126", color: "#fff" }}>Groen</span>
+              </div>
+            </div>
+            <div className="vo-style-card">
+              <img src="/brand/snuushco-house-style-reference.jpg" alt="Snuushco huisstijl referentie" />
+            </div>
+          </div>
+        </section>
+
         <section id="hoe-het-werkt" className="vo-section">
           <div className="vo-container">
             <div className="vo-section-head">
