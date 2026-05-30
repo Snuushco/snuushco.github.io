@@ -77,6 +77,27 @@ const useCases = [
   },
 ];
 
+const pricingPlans = [
+  {
+    name: "Starter",
+    price: "Gratis proberen",
+    description: "Voor zzp'ers die Kassie rustig willen testen met bonnen en facturen.",
+    points: ["30 dagen proberen", "WhatsApp bonnen sturen", "Facturen klaarzetten", "Geen creditcard nodig"],
+  },
+  {
+    name: "Kassie Pro",
+    price: "Vanaf €19 p/m",
+    description: "Voor vakmensen die hun administratie structureel via WhatsApp willen bijhouden.",
+    points: ["Onbeperkt bonnen uploaden", "Facturen en klanten beheren", "Btw-bedragen duidelijk zichtbaar", "Dashboard voor overzicht"],
+  },
+  {
+    name: "Team",
+    price: "Op aanvraag",
+    description: "Voor groeiende vakbedrijven met meerdere mensen, rollen of administratiestromen.",
+    points: ["Meerdere gebruikers", "Werkstromen per team", "Hulp bij inrichting", "Maatwerk koppelingen mogelijk"],
+  },
+];
+
 export default function KassiePage() {
   const structuredData = {
     "@context": "https://schema.org",
@@ -111,7 +132,7 @@ export default function KassiePage() {
             <nav className="vo-nav" aria-label="Kassie navigatie">
               <a href="#hoe-het-werkt">Hoe het werkt</a>
               <a href="#voor-wie">Voor wie</a>
-              <a href={`${appBaseUrl}/pricing`}>Prijzen</a>
+              <a href="#prijzen">Prijzen</a>
             </nav>
 
             <div className="vo-header-actions">
@@ -284,6 +305,37 @@ export default function KassiePage() {
             <div className="vo-strip-item">
               <ShieldCheck size={28} />
               <div><h3>Controle blijft bij jou</h3><p>Kassie helpt, maar verstuurt niets zonder dat jij het ziet.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="prijzen" className="vo-section">
+          <div className="vo-container">
+            <div className="vo-section-row">
+              <div className="vo-section-head">
+                <p>Prijzen</p>
+                <h2>Eerst proberen. Daarna pas kiezen.</h2>
+              </div>
+              <a href={`${appBaseUrl}/register`} className="vo-button vo-button-primary">
+                Start gratis <ArrowRight size={16} />
+              </a>
+            </div>
+
+            <div className="vo-cards three">
+              {pricingPlans.map((plan) => (
+                <article key={plan.name} className="vo-card vo-price-card">
+                  <div>
+                    <p className="vo-price-eyebrow">{plan.name}</p>
+                    <h3>{plan.price}</h3>
+                    <p>{plan.description}</p>
+                  </div>
+                  <ul>
+                    {plan.points.map((point) => (
+                      <li key={point}><CheckCircle2 size={18} /> {point}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
             </div>
           </div>
         </section>

@@ -648,6 +648,11 @@ textarea { min-height: 110px; resize: vertical; }
 .vo-plain-icon { color: #1f8f5f; }
 .vo-card h3 { margin: 20px 0 0; color: #173126; font-size: 22px; font-weight: 950; }
 .vo-card p { margin: 12px 0 0; color: #5f564a; line-height: 1.65; }
+.vo-price-card { display: flex; flex-direction: column; justify-content: space-between; min-height: 100%; }
+.vo-price-eyebrow { margin: 0 !important; color: #18774f !important; font-size: 13px; font-weight: 950; letter-spacing: 0.06em; text-transform: uppercase; }
+.vo-price-card ul { display: grid; gap: 10px; margin: 22px 0 0; padding: 0; list-style: none; color: #314034; font-weight: 800; }
+.vo-price-card li { display: flex; align-items: flex-start; gap: 9px; line-height: 1.45; }
+.vo-price-card svg { flex: none; color: #18774f; margin-top: 1px; }
 .vo-dark { background: #173126; color: #fff; }
 .vo-dark h2 { color: #fff; }
 .vo-dark p:not(.vo-kicker) { margin-top: 20px; color: rgba(255,255,255,0.72); font-size: 18px; line-height: 1.65; }
