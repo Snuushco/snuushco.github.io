@@ -1,63 +1,93 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, BadgeEuro, CheckCircle2, ClipboardList, MessageSquareText, ShieldCheck, Sparkles } from "lucide-react";
-import { Footer, Header } from "../page";
+import {
+  ArrowRight,
+  Banknote,
+  CheckCircle2,
+  Clock3,
+  FileText,
+  MessageCircle,
+  ReceiptText,
+  ShieldCheck,
+  Sparkles,
+  Upload,
+} from "lucide-react";
 import TrackingPixel from "../tracking-pixel";
 
+const appBaseUrl = "https://backoffice-platform-murex.vercel.app";
+
 export const metadata: Metadata = {
-  title: "Kassie | Betaal- en aanvraagflow voor dienstverleners",
+  title: "Kassie | Boekhouden via WhatsApp voor vakmensen",
   description:
-    "Kassie is een compacte betaal- en aanvraaglanding voor dienstverleners: duidelijk aanbod, gerichte intake en een nette route naar akkoord of betaling.",
+    "Kassie maakt boekhouden begrijpelijk. Stuur een bon, opdracht of vraag via WhatsApp. Kassie zet het klaar, jij controleert, klaar.",
   alternates: {
     canonical: "/kassie",
   },
   openGraph: {
-    title: "Kassie | Snuushco",
-    description: "Een simpele, nette route van interesse naar aanvraag, akkoord of betaling.",
+    title: "Kassie | Boekhouden via WhatsApp",
+    description: "App Kassie. Je factuur is bijna klaar.",
     url: "https://snuushco.nl/kassie",
     type: "website",
     locale: "nl_NL",
   },
 };
 
-const useCases = [
-  "Losse diensten met vaste vanafprijs",
-  "Intake vóór offerte of kennismaking",
-  "Aanbetaling of akkoord voor start",
-  "Campagnes waar snelheid belangrijker is dan een complete website",
-];
-
 const steps = [
   {
-    title: "Aanbod scherp maken",
-    copy: "We brengen één dienst, pakket of campagne terug naar een heldere belofte, vanafprijs en vervolgstap.",
+    title: "App een bon of opdracht",
+    description: "Maak een foto of stuur een kort bericht. Kassie begrijpt wat je bedoelt.",
+    icon: MessageCircle,
   },
   {
-    title: "Intake en triage",
-    copy: "De bezoeker levert de informatie aan die jij nodig hebt om te bepalen of het past, urgent is of review vraagt.",
+    title: "Kassie zet alles klaar",
+    description: "Klant, bedrag, btw en omschrijving worden ingevuld waar dat kan.",
+    icon: Sparkles,
   },
   {
-    title: "Akkoord of betaling",
-    copy: "Waar logisch koppelen we door naar betaling, aanbetaling of een nette akkoordroute. Geen losse chaos in mail of app.",
+    title: "Jij controleert en verstuurt",
+    description: "Je ziet precies wat er gebeurt. Akkoord? Dan is je factuur klaar.",
+    icon: CheckCircle2,
   },
 ];
 
-export default function KassieLandingPage() {
+const benefits = [
+  "Geen boekhoudtaal nodig",
+  "Werkt vanuit WhatsApp",
+  "Facturen en bonnen op een plek",
+  "Btw en bedragen duidelijk zichtbaar",
+  "Gebouwd voor vakmensen en zzp'ers",
+  "Rustig dashboard zonder overbodige rommel",
+];
+
+const useCases = [
+  {
+    title: "Factuur maken",
+    text: "App: maak factuur voor Janssen, 6 uur werk, materiaal 84 euro.",
+    icon: FileText,
+  },
+  {
+    title: "Bon bewaren",
+    text: "Stuur een foto van je tankbon of bouwmarktbon. Kassie zet hem bij je administratie.",
+    icon: ReceiptText,
+  },
+  {
+    title: "Openstaand bedrag zien",
+    text: "Vraag gewoon: wat staat er nog open? Kassie geeft direct overzicht.",
+    icon: Banknote,
+  },
+];
+
+export default function KassiePage() {
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "Service",
-    "@id": "https://snuushco.nl/kassie#service",
+    "@type": "SoftwareApplication",
+    "@id": "https://snuushco.nl/kassie#app",
     name: "Kassie",
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web, WhatsApp",
     url: "https://snuushco.nl/kassie",
-    provider: {
-      "@type": "Organization",
-      name: "Snuushco",
-      url: "https://snuushco.nl",
-    },
-    areaServed: ["Nederland", "België"],
-    serviceType: "Betaal- en aanvraaglanding voor dienstverleners",
     description:
-      "Kassie helpt dienstverleners een losse dienst, actie of pakket snel om te zetten naar een duidelijke aanvraag-, akkoord- of betaalflow.",
+      "Kassie helpt vakmensen en zzp'ers met bonnen, facturen en boekhouding via WhatsApp.",
   };
 
   return (
@@ -66,96 +96,215 @@ export default function KassieLandingPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <TrackingPixel eventName="landing_view" metadata={{ landing: "kassie" }} />
-      <Header />
-      <main>
-        <section className="hero kassie-hero">
-          <div className="hero-content">
-            <p className="eyebrow">Kassie by Snuushco</p>
-            <h1>Van interesse naar aanvraag, akkoord of betaling — zonder omwegen.</h1>
-            <p className="lead">
-              Kassie is een compacte landingpage voor dienstverleners die één aanbod snel
-              verkoopklaar willen maken: duidelijk uitgelegd, goed uitgevraagd en klaar voor opvolging.
-            </p>
-            <div className="hero-actions">
-              <Link className="button" href="/intake?source=kassie&campaign=kassie">
-                Start met Kassie <ArrowRight size={18} />
-              </Link>
-              <a className="button secondary" href="#werking">Bekijk hoe het werkt</a>
+      <TrackingPixel eventName="landing_view" metadata={{ landing: "vakoffice-kassie" }} />
+      <main className="vakoffice-page">
+        <header className="vo-header">
+          <div className="vo-container vo-header-inner">
+            <Link href="/kassie" className="vo-brand" aria-label="Kassie home">
+              <div className="vo-brand-mark">K</div>
+              <div>
+                <div className="vo-brand-title">Kassie</div>
+                <div className="vo-brand-subtitle">Boekhouden via WhatsApp</div>
+              </div>
+            </Link>
+
+            <nav className="vo-nav" aria-label="Kassie navigatie">
+              <a href="#hoe-het-werkt">Hoe het werkt</a>
+              <a href="#voor-wie">Voor wie</a>
+              <a href={`${appBaseUrl}/pricing`}>Prijzen</a>
+            </nav>
+
+            <div className="vo-header-actions">
+              <a href={`${appBaseUrl}/login`} className="vo-login">Inloggen</a>
+              <a href={`${appBaseUrl}/register`} className="vo-button vo-button-primary">
+                Start gratis <ArrowRight size={16} />
+              </a>
+            </div>
+          </div>
+        </header>
+
+        <section className="vo-hero">
+          <div className="vo-container vo-hero-grid">
+            <div>
+              <div className="vo-badge">
+                <MessageCircle size={16} />
+                Voor vakmensen die geen zin hebben in boekhouding
+              </div>
+
+              <h1>App Kassie. Je factuur is bijna klaar.</h1>
+
+              <p className="vo-lead">
+                Kassie maakt boekhouden begrijpelijk. Jij stuurt een bon, opdracht of vraag via WhatsApp.
+                Kassie zet het klaar, jij controleert, klaar.
+              </p>
+
+              <div className="vo-actions">
+                <a href={`${appBaseUrl}/register`} className="vo-button vo-button-primary vo-button-large">
+                  Probeer Kassie gratis <ArrowRight size={20} />
+                </a>
+                <a href="#hoe-het-werkt" className="vo-button vo-button-secondary vo-button-large">
+                  Bekijk de flow
+                </a>
+              </div>
+
+              <div className="vo-trust-row">
+                <span><CheckCircle2 size={16} /> Geen creditcard</span>
+                <span><CheckCircle2 size={16} /> 30 dagen proberen</span>
+                <span><CheckCircle2 size={16} /> Werkt op mobiel</span>
+              </div>
+            </div>
+
+            <div className="vo-phone-shell" aria-label="WhatsApp voorbeeldgesprek met Kassie">
+              <div className="vo-phone">
+                <div className="vo-phone-head">
+                  <div className="vo-avatar">K</div>
+                  <div>
+                    <div className="vo-phone-title">Kassie</div>
+                    <div className="vo-phone-status">online via WhatsApp</div>
+                  </div>
+                </div>
+
+                <div className="vo-chat">
+                  <div className="vo-message vo-message-user">
+                    Maak factuur voor Van Dijk. 5 uur werk, 2 stopcontacten vervangen, materiaal 63 euro.
+                  </div>
+                  <div className="vo-message vo-message-kassie">
+                    Ik heb de factuur klaargezet. Totaal: 488,84 euro incl. btw. Klantgegevens gevonden. Wil je versturen?
+                  </div>
+                  <div className="vo-message vo-message-user small">Ja, verstuur maar.</div>
+                  <div className="vo-message vo-message-kassie">
+                    Klaar. Factuur verzonden en opgeslagen in je administratie.
+                  </div>
+                </div>
+
+                <div className="vo-phone-card">
+                  <div>
+                    <span>Vandaag geregeld</span>
+                    <strong>3 facturen</strong>
+                  </div>
+                  <div className="vo-progress"><span /></div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="band white">
-          <div className="inner">
-            <div className="section-head">
-              <div>
-                <p className="eyebrow">Waarom Kassie</p>
-                <h2>Voor aanbiedingen die te belangrijk zijn voor een losse app of rommelige mailthread.</h2>
-              </div>
-              <p>
-                Niet elke dienst heeft meteen een volledige website nodig. Soms wil je één aanbod strak neerzetten,
-                snel testen en bezoekers zonder frictie naar de juiste vervolgstap sturen.
-              </p>
+        <section id="hoe-het-werkt" className="vo-section">
+          <div className="vo-container">
+            <div className="vo-section-head">
+              <p>Hoe het werkt</p>
+              <h2>Geen cursus. Geen boekhoudboek. Gewoon doen.</h2>
             </div>
-            <div className="grid four kassie-card-grid">
-              <article className="tile"><BadgeEuro /><h3>Prijs of vanafprijs</h3><p>Maak meteen duidelijk wat iemand kan verwachten, zonder commerciële mist.</p></article>
-              <article className="tile"><ClipboardList /><h3>Gerichte vragen</h3><p>Vraag alleen uit wat nodig is voor inschatting, akkoord of vervolggesprek.</p></article>
-              <article className="tile"><MessageSquareText /><h3>Betere opvolging</h3><p>Iedere aanvraag komt binnen met context, urgentie en gewenste vervolgstap.</p></article>
-              <article className="tile"><ShieldCheck /><h3>Controle waar nodig</h3><p>Complexe of gevoelige aanvragen blijven eerst langs menselijke review gaan.</p></article>
+
+            <div className="vo-cards three">
+              {steps.map((step, index) => {
+                const Icon = step.icon;
+                return (
+                  <article key={step.title} className="vo-card">
+                    <div className="vo-card-top">
+                      <div className="vo-icon"><Icon size={24} /></div>
+                      <span>0{index + 1}</span>
+                    </div>
+                    <h3>{step.title}</h3>
+                    <p>{step.description}</p>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>
 
-        <section id="werking" className="band">
-          <div className="inner">
-            <div className="section-head">
-              <div>
-                <p className="eyebrow">Werkwijze</p>
-                <h2>Een kleine funnel, strak genoeg om serieus mee te verkopen.</h2>
-              </div>
+        <section id="voor-wie" className="vo-section vo-dark">
+          <div className="vo-container vo-split">
+            <div>
+              <p className="vo-kicker">Voor wie</p>
+              <h2>Voor ondernemers die liever werken dan administreren.</h2>
               <p>
-                Kassie is bedoeld als snelle commerciële route: geen maanden projectscope,
-                wel genoeg kwaliteit om live verkeer niet te verspillen.
+                Installateurs, schilders, bouwers, monteurs, schoonmakers, beveiligers en andere vakmensen.
+                Kassie houdt de taal simpel en de acties logisch.
               </p>
             </div>
-            <div className="grid three process">
-              {steps.map((step) => (
-                <article className="tile" key={step.title}>
-                  <h3>{step.title}</h3>
-                  <p>{step.copy}</p>
-                </article>
+
+            <div className="vo-benefits">
+              {benefits.map((benefit) => (
+                <div key={benefit} className="vo-benefit">
+                  <CheckCircle2 size={20} />
+                  <span>{benefit}</span>
+                </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="band dark">
-          <div className="inner kassie-split">
-            <div>
-              <p className="eyebrow">Geschikt voor</p>
-              <h2>Een productized service, actie, intake of betaalbare eerste stap.</h2>
-              <p className="muted">
-                Denk aan een quickscan, spoedklus, adviesgesprek, intakepakket, onderhoudsaanbod,
-                aanbetaling of tijdelijke campagne. Kassie maakt de route helder voordat jij opvolgt.
-              </p>
-              <div className="hero-actions">
-                <Link className="button" href="/intake?source=kassie&campaign=kassie-fit">
-                  Check of Kassie past <CheckCircle2 size={18} />
-                </Link>
+        <section className="vo-section">
+          <div className="vo-container">
+            <div className="vo-section-row">
+              <div className="vo-section-head">
+                <p>Dagelijks gebruik</p>
+                <h2>Dit moet een vakman direct herkennen.</h2>
               </div>
+              <a href={`${appBaseUrl}/register`} className="vo-button vo-button-primary">
+                Start met Kassie <ArrowRight size={16} />
+              </a>
             </div>
-            <div className="kassie-panel">
-              <Sparkles />
-              <h3>Typische Kassie-usecases</h3>
-              <ul>
-                {useCases.map((item) => <li key={item}>{item}</li>)}
-              </ul>
+
+            <div className="vo-cards three">
+              {useCases.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <article key={item.title} className="vo-card">
+                    <div className="vo-plain-icon"><Icon size={28} /></div>
+                    <h3>{item.title}</h3>
+                    <p>{item.text}</p>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>
+
+        <section className="vo-feature-strip">
+          <div className="vo-container vo-strip-grid">
+            <div className="vo-strip-item">
+              <Clock3 size={28} />
+              <div><h3>Snel aan de slag</h3><p>Account aanmaken, bedrijfsgegevens invullen, eerste factuur sturen.</p></div>
+            </div>
+            <div className="vo-strip-item">
+              <Upload size={28} />
+              <div><h3>Bonnen zonder gedoe</h3><p>Foto sturen is genoeg. Kassie zet het netjes klaar.</p></div>
+            </div>
+            <div className="vo-strip-item">
+              <ShieldCheck size={28} />
+              <div><h3>Controle blijft bij jou</h3><p>Kassie helpt, maar verstuurt niets zonder dat jij het ziet.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section className="vo-final-cta">
+          <div className="vo-container">
+            <h2>Klaar om minder tijd kwijt te zijn aan administratie?</h2>
+            <p>
+              Begin met een simpele test: maak een account aan, stuur een bon en laat Kassie het zware werk doen.
+            </p>
+            <div className="vo-actions center">
+              <a href={`${appBaseUrl}/register`} className="vo-button vo-button-primary vo-button-large">
+                Probeer gratis <ArrowRight size={20} />
+              </a>
+              <a href={`${appBaseUrl}/login`} className="vo-button vo-button-secondary vo-button-large">
+                Ik heb al een account
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <footer className="vo-footer">
+          <div className="vo-container vo-footer-inner">
+            <span>Kassie</span>
+            <span>Boekhouden via WhatsApp voor vakmensen.</span>
+            <span>© 2026 Kassie</span>
+          </div>
+        </footer>
       </main>
-      <Footer />
     </>
   );
 }
