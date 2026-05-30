@@ -119,6 +119,7 @@ h3 { margin-bottom: 10px; font-size: 22px; line-height: 1.15; }
 .dark .muted, .dark .section-head p { color: rgba(255, 255, 255, 0.72); }
 .grid { display: grid; gap: 16px; }
 .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .tile {
   min-height: 100%;
@@ -202,10 +203,33 @@ textarea { min-height: 110px; resize: vertical; }
 .legal h1 { color: var(--ink); font-size: clamp(42px, 6vw, 72px); }
 .legal h2 { margin-top: 34px; font-size: 28px; }
 .legal p { color: var(--muted); line-height: 1.7; }
+.kassie-hero {
+  min-height: 78vh;
+  background-image:
+    radial-gradient(circle at 78% 18%, rgba(198, 154, 67, 0.32), transparent 30%),
+    linear-gradient(90deg, rgba(17, 19, 21, 0.88), rgba(15, 81, 63, 0.62), rgba(17, 19, 21, 0.18)),
+    url("https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1800&q=80");
+}
+.kassie-card-grid svg { color: var(--green); margin-bottom: 18px; }
+.kassie-split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.55fr);
+  gap: clamp(24px, 5vw, 72px);
+  align-items: center;
+}
+.kassie-panel {
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.07);
+}
+.kassie-panel svg { color: var(--gold); margin-bottom: 18px; }
+.kassie-panel ul { margin: 18px 0 0; padding-left: 20px; }
+.kassie-panel li { margin: 10px 0; color: rgba(255, 255, 255, 0.76); line-height: 1.5; }
 @media (max-width: 860px) {
   .nav { display: none; }
   .hero { min-height: 82vh; background-position: center; }
-  .section-head, .form-shell, .grid.three, .grid.two { grid-template-columns: 1fr; }
+  .section-head, .form-shell, .kassie-split, .grid.three, .grid.four, .grid.two { grid-template-columns: 1fr; }
   .field-grid { grid-template-columns: 1fr; }
   .footer .inner { flex-direction: column; }
 }
