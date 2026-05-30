@@ -101,7 +101,7 @@ export default function KassiePage() {
         <header className="vo-header">
           <div className="vo-container vo-header-inner">
             <Link href="/kassie" className="vo-brand" aria-label="Kassie home">
-              <div className="vo-brand-mark">K</div>
+              <img className="vo-brand-mark vo-profile-img" src="/brand/kassie-profile.jpg" alt="Kassie" />
               <div>
                 <div className="vo-brand-title">Kassie</div>
                 <div className="vo-brand-subtitle">Boekhouden via WhatsApp</div>
@@ -152,12 +152,20 @@ export default function KassiePage() {
                 <span><CheckCircle2 size={16} /> 30 dagen proberen</span>
                 <span><CheckCircle2 size={16} /> Werkt op mobiel</span>
               </div>
+
+              <div className="vo-kassie-profile-strip" aria-label="Kassie profiel">
+                <img src="/brand/kassie-profile.jpg" alt="Kassie" />
+                <div>
+                  <strong>Kassie</strong>
+                  <span>Je herkenbare boekhoudassistent in WhatsApp en op het web.</span>
+                </div>
+              </div>
             </div>
 
             <div className="vo-phone-shell" aria-label="WhatsApp voorbeeldgesprek met Kassie">
               <div className="vo-phone">
                 <div className="vo-phone-head">
-                  <div className="vo-avatar">K</div>
+                  <img className="vo-avatar vo-profile-img" src="/brand/kassie-profile.jpg" alt="Kassie" />
                   <div>
                     <div className="vo-phone-title">Kassie</div>
                     <div className="vo-phone-status">online via WhatsApp</div>
