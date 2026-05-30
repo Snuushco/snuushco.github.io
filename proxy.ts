@@ -1,4 +1,5 @@
 import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
 const sessionCookie = "snuushco_ops_session";
 
@@ -20,10 +21,31 @@ async function hasValidSession(request: NextRequest, username: string, secret: s
 }
 
 export async function proxy(request: NextRequest) {
+  const host = request.headers.get("host")?.toLowerCase().split(":")[0] ?? "";
+  const { pathname } = request.nextUrl;
+
+  if (host === "www.kassieapp.nl") {
+    const url = request.nextUrl.clone();
+    url.hostname = "kassieapp.nl";
+    return NextResponse.redirect(url, 308);
+  }
+
+  if ((host === "snuushco.nl" || host === "www.snuushco.nl") && pathname === "/kassie") {
+    return NextResponse.redirect("https://kassieapp.nl", 308);
+  }
+
+  if (host === "kassieapp.nl") {
+    if (pathname === "/kassie") {
+      return NextResponse.redirect(new URL("/", request.url), 308);
+    }
+    if (pathname === "/") {
+      return NextResponse.rewrite(new URL("/kassie", request.url));
+    }
+  }
+
   const password = process.env.SNUUSHCO_OPS_PASSWORD;
   if (!password) return;
 
-  const { pathname } = request.nextUrl;
   if (pathname === "/ops/login" || pathname === "/api/ops/login") return;
 
   const authorization = request.headers.get("authorization") ?? "";
@@ -50,5 +72,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/ops/:path*", "/api/ops/:path*"],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
 };

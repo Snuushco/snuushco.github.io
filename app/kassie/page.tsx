@@ -15,18 +15,19 @@ import {
 import TrackingPixel from "../tracking-pixel";
 
 const appBaseUrl = "https://backoffice-platform-murex.vercel.app";
+const kassieMarketingUrl = "https://kassieapp.nl";
 
 export const metadata: Metadata = {
   title: "Kassie | Boekhouden via WhatsApp voor vakmensen",
   description:
     "Kassie maakt boekhouden begrijpelijk. Stuur een bon, opdracht of vraag via WhatsApp. Kassie zet het klaar, jij controleert, klaar.",
   alternates: {
-    canonical: "/kassie",
+    canonical: kassieMarketingUrl,
   },
   openGraph: {
     title: "Kassie | Boekhouden via WhatsApp",
     description: "App Kassie. Je factuur is bijna klaar.",
-    url: "https://snuushco.nl/kassie",
+    url: kassieMarketingUrl,
     type: "website",
     locale: "nl_NL",
   },
@@ -102,11 +103,11 @@ export default function KassiePage() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "@id": "https://snuushco.nl/kassie#app",
+    "@id": `${kassieMarketingUrl}#app`,
     name: "Kassie",
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web, WhatsApp",
-    url: "https://snuushco.nl/kassie",
+    url: kassieMarketingUrl,
     description:
       "Kassie helpt vakmensen en zzp'ers met bonnen, facturen en boekhouding via WhatsApp.",
   };
