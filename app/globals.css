@@ -571,8 +571,8 @@ textarea { min-height: 110px; resize: vertical; }
   transition: background 0.18s ease, transform 0.18s ease;
 }
 .vo-button:hover { transform: translateY(-1px); }
-.vo-button-primary { background: #1f8f5f; color: #fff; box-shadow: 0 8px 18px rgba(31, 143, 95, 0.18); }
-.vo-button-primary:hover { background: #18774f; }
+.vo-button-primary { background: #18774f; color: #fff; box-shadow: 0 8px 18px rgba(24, 119, 79, 0.18); }
+.vo-button-primary:hover { background: #135f40; }
 .vo-button-secondary { border: 1px solid #cfc5b5; background: #fff; color: #173126; }
 .vo-button-secondary:hover { background: #fffaf2; }
 .vo-button-large { border-radius: 14px; padding: 16px 24px; font-size: 16px; }
