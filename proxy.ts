@@ -53,6 +53,10 @@ export async function proxy(request: NextRequest) {
     }
   }
 
+  if (!pathname.startsWith("/ops") && !pathname.startsWith("/api/ops")) {
+    return;
+  }
+
   const password = process.env.SNUUSHCO_OPS_PASSWORD;
   if (!password) return;
 
