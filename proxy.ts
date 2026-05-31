@@ -35,11 +35,17 @@ export async function proxy(request: NextRequest) {
   }
 
   if (host === "kassieapp.nl") {
-    if (pathname === "/kassie" || pathname.startsWith("/kassie/")) {
+    const isInternalKassieRewrite = request.headers.get("x-kassie-root-rewrite") === "1";
+
+    if ((pathname === "/kassie" || pathname.startsWith("/kassie/")) && !isInternalKassieRewrite) {
       return NextResponse.redirect(new URL("/", request.url), 308);
     }
     if (pathname === "/") {
-      return NextResponse.rewrite(new URL("/kassie", request.url));
+      const requestHeaders = new Headers(request.headers);
+      requestHeaders.set("x-kassie-root-rewrite", "1");
+      return NextResponse.rewrite(new URL("/kassie", request.url), {
+        request: { headers: requestHeaders },
+      });
     }
   }
 
