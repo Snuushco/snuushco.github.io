@@ -3,11 +3,15 @@ import Link from "next/link";
 import {
   ArrowRight,
   BarChart3,
+  Bot,
+  BrainCircuit,
   CheckCircle2,
   ClipboardCheck,
+  FileSearch,
   LineChart,
   Megaphone,
   MousePointerClick,
+  Search,
   ShieldCheck,
   Sparkles,
   Target,
@@ -16,16 +20,16 @@ import { Footer, Header } from "../page";
 import TrackingPixel from "../tracking-pixel";
 
 export const metadata: Metadata = {
-  title: "Marketing agency voor MKB-groei | Snuushco",
+  title: "Marketing agency voor SEO en AI-SO groei | Snuushco",
   description:
-    "Snuushco Marketing bouwt campagnes, landingspagina's en opvolgroutes voor MKB-bedrijven die aantoonbaar betere aanvragen willen ontvangen.",
+    "Snuushco Marketing bouwt campagnes, SEO en AI-SO zichtbaarheid voor MKB-bedrijven die vindbaar willen zijn in Google, ChatGPT en andere AI-antwoorden.",
   alternates: {
     canonical: "/marketing",
   },
   openGraph: {
-    title: "Snuushco Marketing | Campagnes die aanvragen opleveren",
+    title: "Snuushco Marketing | SEO, AI-SO en campagnes die aanvragen opleveren",
     description:
-      "Marketing agency voor MKB-bedrijven: positionering, landingspagina's, advertentiecampagnes, tracking en opvolging in één commerciële route.",
+      "Marketing agency voor MKB-bedrijven: SEO, AI Search Optimization, landingspagina's, advertentiecampagnes, tracking en opvolging in één commerciële route.",
     url: "https://snuushco.nl/marketing",
     type: "website",
     locale: "nl_NL",
@@ -55,6 +59,29 @@ const services = [
   },
 ];
 
+const seoAiServices = [
+  {
+    icon: Search,
+    title: "SEO voor koopintentie",
+    text: "We bouwen zoekpagina's rond concrete problemen, regio's en diensten waar klanten actief naar zoeken.",
+  },
+  {
+    icon: Bot,
+    title: "AI-SO: vindbaar in AI-antwoorden",
+    text: "We structureren content zodat ChatGPT, Perplexity, Gemini en AI-overviews je aanbod beter kunnen begrijpen, citeren en vergelijken.",
+  },
+  {
+    icon: FileSearch,
+    title: "Contentclusters met bewijs",
+    text: "Geen blogvulling, maar servicepagina's, FAQ's, cases en bronvermeldingen die autoriteit opbouwen rond je niche.",
+  },
+  {
+    icon: BrainCircuit,
+    title: "Entity en llms.txt basis",
+    text: "We maken je bedrijf, diensten, locaties, prijzen en bewijspunten machine-leesbaar met schema, interne links en AI-contextbestanden.",
+  },
+];
+
 const packages = [
   {
     name: "Launch Sprint",
@@ -69,6 +96,12 @@ const packages = [
     items: ["Maandelijkse campagne-optimalisatie", "Nieuwe landingspagina's", "A/B-test backlog", "Leadkwaliteit review"],
   },
   {
+    name: "SEO + AI-SO Engine",
+    price: "vanaf €1.450 p/m",
+    for: "Voor bedrijven die structureel gevonden willen worden in Google én in AI-antwoorden.",
+    items: ["SEO/AI-SO audit", "Contentclusters per dienst", "Schema en llms.txt", "Maandelijkse vindbaarheidsrapportage"],
+  },
+  {
     name: "Managed Revenue",
     price: "maatwerk",
     for: "Voor teams die marketing, intake en commerciële opvolging als één systeem willen laten draaien.",
@@ -78,8 +111,8 @@ const packages = [
 
 const process = [
   "Aanbod en doelgroep scherp maken",
-  "Landingspagina en intake bouwen",
-  "Campagnes live zetten met meetplan",
+  "Landingspagina, SEO-cluster en intake bouwen",
+  "Campagnes en AI-SO basis live zetten met meetplan",
   "Wekelijks leren van aanvraagkwaliteit",
 ];
 
@@ -91,14 +124,14 @@ export default function MarketingAgencyPage() {
     name: "Snuushco Marketing",
     url: "https://snuushco.nl/marketing",
     description:
-      "Marketing agency voor MKB-bedrijven: positionering, campagne-landingspagina's, performance campagnes, tracking en commerciële opvolgroutes.",
+      "Marketing agency voor MKB-bedrijven: SEO, AI Search Optimization, campagne-landingspagina's, performance campagnes, tracking en commerciële opvolgroutes.",
     areaServed: ["Nederland", "België"],
     provider: {
       "@type": "Organization",
       name: "Snuushco",
       url: "https://snuushco.nl",
     },
-    serviceType: "Marketing agency, performance marketing, landingspagina's en leadgeneratie",
+    serviceType: "Marketing agency, SEO, AI Search Optimization, performance marketing, landingspagina's en leadgeneratie",
     offers: packages.map((item) => ({
       "@type": "Offer",
       name: item.name,
@@ -128,20 +161,20 @@ export default function MarketingAgencyPage() {
               <p className="marketing-eyebrow">Snuushco Marketing Agency</p>
               <h1>Marketing die niet druk oogt, maar aanvragen oplevert.</h1>
               <p className="marketing-lead">
-                We bouwen commerciële routes voor MKB-bedrijven: positionering, campagnepagina's,
-                advertenties, tracking en opvolging. Strak genoeg om snel live te gaan, kritisch genoeg
-                om budget niet te verbranden.
+                We bouwen commerciële routes voor MKB-bedrijven: SEO, AI-SO, campagnepagina's,
+                advertenties, tracking en opvolging. Zodat je vindbaar bent in Google, zichtbaar wordt
+                in AI-antwoorden en budget niet verbrandt aan losse marketingdrukte.
               </p>
               <div className="marketing-actions">
                 <Link className="marketing-button primary" href="/intake?source=marketing&campaign=agency">
                   Plan groeiscan <ArrowRight size={18} />
                 </Link>
-                <a className="marketing-button secondary" href="#aanpak">Bekijk aanpak</a>
+                <a className="marketing-button secondary" href="#seo-ai-so">Bekijk SEO + AI-SO</a>
               </div>
               <div className="marketing-proof-row" aria-label="Marketing resultaten waarop gestuurd wordt">
                 <span><strong>14 dagen</strong> tot eerste campagnebasis</span>
-                <span><strong>1 route</strong> van klik tot opvolging</span>
-                <span><strong>0 ruis</strong> in rapportage</span>
+                <span><strong>AI-SO</strong> voor ChatGPT en AI-overviews</span>
+                <span><strong>SEO</strong> gekoppeld aan omzetintentie</span>
               </div>
             </div>
             <aside className="marketing-dashboard" aria-label="Campagne dashboard illustratie">
@@ -162,9 +195,9 @@ export default function MarketingAgencyPage() {
                 <span style={{ height: "69%" }} />
               </div>
               <div className="dashboard-card-list">
-                <div><CheckCircle2 size={16} /> Propositie gevalideerd</div>
-                <div><CheckCircle2 size={16} /> Landingspagina live</div>
-                <div><BarChart3 size={16} /> Campagnebudget bewaakt</div>
+                <div><CheckCircle2 size={16} /> SEO-cluster live</div>
+                <div><Bot size={16} /> AI-SO context ingericht</div>
+                <div><BarChart3 size={16} /> Aanvragen en vindbaarheid bewaakt</div>
               </div>
             </aside>
           </div>
@@ -194,6 +227,59 @@ export default function MarketingAgencyPage() {
                   </article>
                 );
               })}
+            </div>
+          </div>
+        </section>
+
+
+
+        <section className="marketing-band ai-so" id="seo-ai-so">
+          <div className="marketing-inner">
+            <div className="marketing-section-head">
+              <div>
+                <p className="marketing-eyebrow">SEO + AI-SO business</p>
+                <h2>Word gevonden waar klanten nu zoeken: Google én AI-antwoorden.</h2>
+              </div>
+              <p>
+                Zoekgedrag verschuift. Klanten vergelijken niet alleen via Google, maar vragen ook ChatGPT,
+                Perplexity, Gemini en AI-overviews om opties. Wij maken je aanbod duidelijk, bewijsbaar en
+                machine-leesbaar, zodat je bedrijf vaker in aanmerking komt wanneer iemand zoekt naar een
+                oplossing zoals die van jou.
+              </p>
+            </div>
+            <div className="marketing-ai-panel">
+              <div className="marketing-ai-copy">
+                <p className="marketing-eyebrow">Concreet aanbod</p>
+                <h3>SEO + AI-SO Engine</h3>
+                <p>
+                  Een doorlopende businesslijn voor bedrijven die structurele organische vraag willen opbouwen.
+                  We combineren technische SEO, servicepagina's, structured data, llms.txt, autoriteitscontent en
+                  rapportage op zoek- én AI-zichtbaarheid.
+                </p>
+                <ul>
+                  <li>Audit van huidige SEO, content, technische indexatie en AI-leesbaarheid.</li>
+                  <li>Nieuwe contentclusters rond diensten, doelgroepen, regio's en koopintentie.</li>
+                  <li>Schema markup, FAQ's, interne links en duidelijke entity-informatie over bedrijf en aanbod.</li>
+                  <li>Maandelijkse optimalisatie op vindbaarheid, citatiekans, aanvragen en leadkwaliteit.</li>
+                </ul>
+                <Link className="marketing-button primary" href="/intake?source=marketing&campaign=seo-ai-so">
+                  Start SEO + AI-SO intake <ArrowRight size={18} />
+                </Link>
+              </div>
+              <div className="marketing-ai-stack" aria-label="SEO en AI-SO onderdelen">
+                {seoAiServices.map((service) => {
+                  const Icon = service.icon;
+                  return (
+                    <article className="marketing-ai-item" key={service.title}>
+                      <Icon size={22} />
+                      <div>
+                        <h3>{service.title}</h3>
+                        <p>{service.text}</p>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </section>
