@@ -122,7 +122,7 @@ export default function KassiePage() {
       <main className="vakoffice-page">
         <header className="vo-header">
           <div className="vo-container vo-header-inner">
-            <Link href="/kassie" className="vo-brand" aria-label="Kassie home">
+            <Link href="/" className="vo-brand" aria-label="Kassie home">
               <img className="vo-brand-mark vo-profile-img" src="/brand/kassie-profile.jpg" alt="Kassie" />
               <div>
                 <div className="vo-brand-title">Kassie</div>

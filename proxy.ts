@@ -30,12 +30,12 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(url, 308);
   }
 
-  if ((host === "snuushco.nl" || host === "www.snuushco.nl") && pathname === "/kassie") {
+  if ((host === "snuushco.nl" || host === "www.snuushco.nl") && (pathname === "/kassie" || pathname.startsWith("/kassie/"))) {
     return NextResponse.redirect("https://kassieapp.nl", 308);
   }
 
   if (host === "kassieapp.nl") {
-    if (pathname === "/kassie") {
+    if (pathname === "/kassie" || pathname.startsWith("/kassie/")) {
       return NextResponse.redirect(new URL("/", request.url), 308);
     }
     if (pathname === "/") {
