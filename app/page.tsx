@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle2, ClipboardCheck, ShieldCheck, SlidersHorizontal } from "lucide-react";
+import { ArrowRight, Bot, CheckCircle2, ClipboardCheck, FileSearch, Search, ShieldCheck, SlidersHorizontal } from "lucide-react";
 import Link from "next/link";
 import { packages, recurringPlans, segments } from "./data";
 
@@ -11,7 +11,9 @@ export default function Home() {
         "@id": "https://snuushco.nl/#organization",
         name: "Snuushco",
         url: "https://snuushco.nl",
-        description: "Snuushco bouwt websites en aanvraagroutes voor dienstverleners die betere aanvragen willen en minder handmatig opvolgwerk.",
+        description: "Snuushco bouwt websites, SEO + AI-SO vindbaarheid en aanvraagroutes voor dienstverleners die betere aanvragen willen en minder handmatig opvolgwerk.",
+        logo: "https://snuushco.nl/brand/snuushco-logo-dark.jpg",
+        sameAs: ["https://snuushco.com"],
         parentOrganization: {
           "@type": "Organization",
           name: "Praesidion Holding B.V.",
@@ -30,10 +32,10 @@ export default function Home() {
       {
         "@type": "ProfessionalService",
         "@id": "https://snuushco.nl/#service",
-        name: "Snuushco websites en aanvraagroutes",
+        name: "Snuushco websites, SEO en aanvraagroutes",
         url: "https://snuushco.nl",
         areaServed: ["Nederland", "België"],
-        serviceType: "Webdesign, lead intake en aanvraagroute optimalisatie voor dienstverleners",
+        serviceType: "Webdesign, SEO, AI Search Optimization, lead intake en aanvraagroute optimalisatie voor dienstverleners",
         provider: {
           "@id": "https://snuushco.nl/#organization",
         },
@@ -127,6 +129,27 @@ export default function Home() {
             </div>
           </div>
         </section>
+        <section id="seo-ai-so" className="band seo-home-band">
+          <div className="inner">
+            <div className="section-head">
+              <div>
+                <p className="eyebrow">SEO + AI Search Optimization</p>
+                <h2>Gebouwd om gevonden te worden in Google én AI-antwoorden.</h2>
+              </div>
+              <p>
+                Voor Snuushco en klantprojecten bouwen we vindbaarheid als systeem: technische SEO,
+                servicepagina's per zoekintentie, structured data, interne links, llms.txt en content die
+                ook door ChatGPT, Perplexity, Gemini en AI-overviews begrepen kan worden.
+              </p>
+            </div>
+            <div className="grid three">
+              <article className="tile"><Search color="#533afd" /><h3>SEO voor koopintentie</h3><p>Pagina's rond diensten, doelgroepen en regio's waar klanten concreet naar zoeken.</p></article>
+              <article className="tile"><Bot color="#533afd" /><h3>AI-SO voor nieuwe zoekkanalen</h3><p>Entity-informatie, FAQ's, schema en AI-context zodat je aanbod beter citeerbaar wordt.</p></article>
+              <article className="tile"><FileSearch color="#533afd" /><h3>Meetbare contentclusters</h3><p>Geen losse blogs, maar clusters met bewijs, CTA's en rapportage op aanvragen en leadkwaliteit.</p></article>
+            </div>
+            <div className="actions"><Link className="button" href="/seo-ai-so">Bekijk SEO + AI-SO <ArrowRight size={18} /></Link><Link className="button secondary" href="/marketing#seo-ai-so">Marketingaanbod</Link></div>
+          </div>
+        </section>
         <section id="beheer" className="band">
           <div className="inner">
             <div className="section-head">
@@ -211,10 +234,14 @@ export default function Home() {
 export function Header() {
   return (
     <header className="site-header">
-      <Link href="/" className="brand" aria-label="Snuushco home"><span className="brand-mark">S</span><span>Snuushco</span></Link>
+      <Link href="/" className="brand" aria-label="Snuushco home">
+        <img className="brand-logo" src="/brand/snuushco-logo-dark.jpg" alt="" aria-hidden="true" />
+        <span className="brand-text">Snuushco</span>
+      </Link>
       <nav className="nav" aria-label="Hoofdnavigatie">
         <Link href="/#diensten">Diensten</Link>
-        <Link href="/#beheer">Beheer</Link>
+        <Link href="/seo-ai-so">SEO + AI-SO</Link>
+        <Link href="/marketing">Marketing</Link>
         <Link href="/#doelgroepen">Doelgroepen</Link>
         <Link href="/#werkwijze">Werkwijze</Link>
         <Link href="/intake">Intake</Link>
@@ -227,9 +254,12 @@ export function Header() {
 export function Footer() {
   return (
     <footer className="footer">
-      <div className="inner">
-        <div><strong>Snuushco</strong><p>Websites en aanvraagroutes met menselijke controle.</p></div>
-        <p><Link href="/privacy">Privacy</Link> · <Link href="/voorwaarden">Voorwaarden</Link></p>
+      <div className="inner footer-inner">
+        <div className="footer-brand">
+          <img className="footer-logo" src="/brand/snuushco-logo-light.jpg" alt="Snuushco" />
+          <p>Websites, SEO + AI-SO en aanvraagroutes met menselijke controle.</p>
+        </div>
+        <p><Link href="/marketing">Marketing</Link> · <Link href="/seo-ai-so">SEO + AI-SO</Link> · <Link href="/privacy">Privacy</Link> · <Link href="/voorwaarden">Voorwaarden</Link></p>
       </div>
     </footer>
   );

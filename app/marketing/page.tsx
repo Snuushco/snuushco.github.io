@@ -23,6 +23,7 @@ export const metadata: Metadata = {
   title: "Marketing agency voor SEO en AI-SO groei | Snuushco",
   description:
     "Snuushco Marketing bouwt campagnes, SEO en AI-SO zichtbaarheid voor MKB-bedrijven die vindbaar willen zijn in Google, ChatGPT en andere AI-antwoorden.",
+  keywords: ["marketing agency MKB", "SEO bureau Nederland", "AI-SO bureau", "AI Search Optimization", "landingspagina leadgeneratie", "Snuushco Marketing"],
   alternates: {
     canonical: "/marketing",
   },
@@ -33,6 +34,7 @@ export const metadata: Metadata = {
     url: "https://snuushco.nl/marketing",
     type: "website",
     locale: "nl_NL",
+    images: [{ url: "/brand/snuushco-logo-dark.jpg", width: 1024, height: 1024, alt: "Snuushco Marketing" }],
   },
 };
 
@@ -170,6 +172,7 @@ export default function MarketingAgencyPage() {
                   Plan groeiscan <ArrowRight size={18} />
                 </Link>
                 <a className="marketing-button secondary" href="#seo-ai-so">Bekijk SEO + AI-SO</a>
+                <Link className="marketing-button secondary" href="/seo-ai-so">SEO + AI-SO servicepagina</Link>
               </div>
               <div className="marketing-proof-row" aria-label="Marketing resultaten waarop gestuurd wordt">
                 <span><strong>14 dagen</strong> tot eerste campagnebasis</span>
