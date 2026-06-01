@@ -32,6 +32,10 @@ export const metadata: Metadata = {
     locale: "nl_NL",
     images: [{ url: `${kassieMarketingUrl}/brand/kassie-og.jpg`, alt: "Kassie slim boekhouden" }],
   },
+  icons: {
+    icon: `${kassieMarketingUrl}/brand/kassie-profile.png`,
+    apple: `${kassieMarketingUrl}/brand/kassie-profile.png`,
+  },
 };
 
 const steps = [
