@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     url: kassieMarketingUrl,
     type: "website",
     locale: "nl_NL",
-    images: [{ url: "/brand/kassie-og.jpg", alt: "Kassie slim boekhouden" }],
+    images: [{ url: `${kassieMarketingUrl}/brand/kassie-og.jpg`, alt: "Kassie slim boekhouden" }],
   },
 };
 
