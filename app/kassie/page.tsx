@@ -18,18 +18,19 @@ const appBaseUrl = "https://backoffice-platform-murex.vercel.app";
 const kassieMarketingUrl = "https://kassieapp.nl";
 
 export const metadata: Metadata = {
-  title: "Kassie | Boekhouden via WhatsApp voor vakmensen",
+  title: "Kassie | Slim boekhouden via WhatsApp",
   description:
-    "Kassie maakt boekhouden begrijpelijk. Stuur een bon, opdracht of vraag via WhatsApp. Kassie zet het klaar, jij controleert, klaar.",
+    "Kassie maakt boekhouden begrijpelijk voor praktische ondernemers. Stuur een bon, opdracht of vraag via WhatsApp. Kassie zet het klaar, jij controleert, klaar.",
   alternates: {
     canonical: kassieMarketingUrl,
   },
   openGraph: {
-    title: "Kassie | Boekhouden via WhatsApp",
-    description: "App Kassie. Je factuur is bijna klaar.",
+    title: "Kassie | Slim boekhouden via WhatsApp",
+    description: "Overzichtelijk, betrouwbaar en gemaakt voor praktische ondernemers.",
     url: kassieMarketingUrl,
     type: "website",
     locale: "nl_NL",
+    images: [{ url: "/brand/kassie-og.jpg", alt: "Kassie slim boekhouden" }],
   },
 };
 
@@ -56,7 +57,7 @@ const benefits = [
   "Werkt vanuit WhatsApp",
   "Facturen en bonnen op een plek",
   "Btw en bedragen duidelijk zichtbaar",
-  "Gebouwd voor vakmensen en zzp'ers",
+  "Voor salon, bouw, transport, zorg en service",
   "Rustig dashboard zonder overbodige rommel",
 ];
 
@@ -88,13 +89,13 @@ const pricingPlans = [
   {
     name: "Kassie Pro",
     price: "Vanaf €19 p/m",
-    description: "Voor vakmensen die hun administratie structureel via WhatsApp willen bijhouden.",
+    description: "Voor praktische ondernemers die hun administratie structureel via WhatsApp willen bijhouden.",
     points: ["Onbeperkt bonnen uploaden", "Facturen en klanten beheren", "Btw-bedragen duidelijk zichtbaar", "Dashboard voor overzicht"],
   },
   {
     name: "Team",
     price: "Op aanvraag",
-    description: "Voor groeiende vakbedrijven met meerdere mensen, rollen of administratiestromen.",
+    description: "Voor groeiende bedrijven met meerdere mensen, rollen of administratiestromen.",
     points: ["Meerdere gebruikers", "Werkstromen per team", "Hulp bij inrichting", "Maatwerk koppelingen mogelijk"],
   },
 ];
@@ -109,7 +110,7 @@ export default function KassiePage() {
     operatingSystem: "Web, WhatsApp",
     url: kassieMarketingUrl,
     description:
-      "Kassie helpt vakmensen en zzp'ers met bonnen, facturen en boekhouding via WhatsApp.",
+      "Kassie helpt praktische ondernemers met bonnen, facturen en boekhouding via WhatsApp.",
   };
 
   return (
@@ -150,7 +151,7 @@ export default function KassiePage() {
             <div>
               <div className="vo-badge">
                 <MessageCircle size={16} />
-                Voor vakmensen die geen zin hebben in boekhouding
+                Voor vakmensen, makers en dienstverleners die geen zin hebben in boekhouding
               </div>
 
               <h1>App Kassie. Je factuur is bijna klaar.</h1>
@@ -173,6 +174,10 @@ export default function KassiePage() {
                 <span><CheckCircle2 size={16} /> Geen creditcard</span>
                 <span><CheckCircle2 size={16} /> 30 dagen proberen</span>
                 <span><CheckCircle2 size={16} /> Werkt op mobiel</span>
+              </div>
+
+              <div className="vo-kassie-banner-card">
+                <img src="/brand/kassie-banner.jpg" alt="Kassie slim boekhouden: overzichtelijk, betrouwbaar en voor ondernemers" />
               </div>
 
               <div className="vo-kassie-profile-strip" aria-label="Kassie profiel">
@@ -250,7 +255,7 @@ export default function KassiePage() {
               <p className="vo-kicker">Voor wie</p>
               <h2>Voor ondernemers die liever werken dan administreren.</h2>
               <p>
-                Installateurs, schilders, bouwers, monteurs, schoonmakers, beveiligers en andere vakmensen.
+                Kappers, stukadoors, timmerlieden, beautysalons, chauffeurs, schilders, installateurs, schoonmakers en andere ondernemers.
                 Kassie houdt de taal simpel en de acties logisch.
               </p>
             </div>
@@ -271,11 +276,15 @@ export default function KassiePage() {
             <div className="vo-section-row">
               <div className="vo-section-head">
                 <p>Dagelijks gebruik</p>
-                <h2>Dit moet een vakman direct herkennen.</h2>
+                <h2>Dit moet elke ondernemer direct herkennen.</h2>
               </div>
               <a href={`${appBaseUrl}/register`} className="vo-button vo-button-primary">
                 Start met Kassie <ArrowRight size={16} />
               </a>
+            </div>
+
+            <div className="vo-kassie-wide-banner">
+              <img src="/brand/kassie-support-banner.jpg" alt="Kassie helpt met facturen, overzicht en checklist" />
             </div>
 
             <div className="vo-cards three">
@@ -361,7 +370,7 @@ export default function KassiePage() {
         <footer className="vo-footer">
           <div className="vo-container vo-footer-inner">
             <span>Kassie</span>
-            <span>Boekhouden via WhatsApp voor vakmensen.</span>
+            <span>Boekhouden via WhatsApp voor praktische ondernemers.</span>
             <span>© 2026 Kassie</span>
           </div>
         </footer>
