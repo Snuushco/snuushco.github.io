@@ -143,7 +143,7 @@ export default function KassiePage() {
 
             <div className="vo-header-actions">
               <a href={`${appBaseUrl}/login`} className="vo-login">Inloggen</a>
-              <a href={`${appBaseUrl}/register`} className="vo-button vo-button-primary">
+              <a href={`${appBaseUrl}/signup`} className="vo-button vo-button-primary">
                 Start gratis <ArrowRight size={16} />
               </a>
             </div>
@@ -166,7 +166,7 @@ export default function KassiePage() {
               </p>
 
               <div className="vo-actions">
-                <a href={`${appBaseUrl}/register`} className="vo-button vo-button-primary vo-button-large">
+                <a href={`${appBaseUrl}/signup`} className="vo-button vo-button-primary vo-button-large">
                   Probeer Kassie gratis <ArrowRight size={20} />
                 </a>
                 <a href="#hoe-het-werkt" className="vo-button vo-button-secondary vo-button-large">
@@ -282,7 +282,7 @@ export default function KassiePage() {
                 <p>Dagelijks gebruik</p>
                 <h2>Dit moet elke ondernemer direct herkennen.</h2>
               </div>
-              <a href={`${appBaseUrl}/register`} className="vo-button vo-button-primary">
+              <a href={`${appBaseUrl}/signup`} className="vo-button vo-button-primary">
                 Start met Kassie <ArrowRight size={16} />
               </a>
             </div>
@@ -330,7 +330,7 @@ export default function KassiePage() {
                 <p>Prijzen</p>
                 <h2>Eerst proberen. Daarna pas kiezen.</h2>
               </div>
-              <a href={`${appBaseUrl}/register`} className="vo-button vo-button-primary">
+              <a href={`${appBaseUrl}/signup`} className="vo-button vo-button-primary">
                 Start gratis <ArrowRight size={16} />
               </a>
             </div>
@@ -361,7 +361,7 @@ export default function KassiePage() {
               Begin met een simpele test: maak een account aan, stuur een bon en laat Kassie het zware werk doen.
             </p>
             <div className="vo-actions center">
-              <a href={`${appBaseUrl}/register`} className="vo-button vo-button-primary vo-button-large">
+              <a href={`${appBaseUrl}/signup`} className="vo-button vo-button-primary vo-button-large">
                 Probeer gratis <ArrowRight size={20} />
               </a>
               <a href={`${appBaseUrl}/login`} className="vo-button vo-button-secondary vo-button-large">

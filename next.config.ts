@@ -13,8 +13,8 @@ const nextConfig: NextConfig = {
         permanent: false,
       },
       {
-        source: "/register",
-        destination: "https://mijn.kassieapp.nl/register",
+        source: "/signup",
+        destination: "https://mijn.kassieapp.nl/signup",
         permanent: false,
       },
       {
