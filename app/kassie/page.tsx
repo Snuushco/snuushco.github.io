@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import TrackingPixel from "../tracking-pixel";
 
-const appBaseUrl = "https://backoffice-platform-murex.vercel.app";
+const appBaseUrl = "https://mijn.kassieapp.nl";
 const kassieMarketingUrl = "https://kassieapp.nl";
 
 export const metadata: Metadata = {
