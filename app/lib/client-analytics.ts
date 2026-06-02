@@ -23,4 +23,3 @@ export function sendGoogleEvent(eventName: SnuushcoEventName, metadata: Record<s
     ...metadata,
   });
 }
-
