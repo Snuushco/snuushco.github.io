@@ -1,5 +1,6 @@
 import { ArrowRight, Bot, CheckCircle2, ClipboardCheck, FileSearch, Search, ShieldCheck, SlidersHorizontal } from "lucide-react";
 import Link from "next/link";
+import { MobileStickyCta } from "./mobile-sticky-cta";
 import { packages, recurringPlans, segments } from "./data";
 
 export default function Home() {
@@ -101,7 +102,12 @@ export default function Home() {
             </p>
             <div className="hero-actions">
               <Link className="button" href="/intake">Doe de intake <ArrowRight size={18} /></Link>
-              <a className="button secondary" href="#doelgroepen">Bekijk doelgroepen</a>
+              <a className="button secondary" href="#diensten">Bekijk pakketten</a>
+            </div>
+            <div className="mobile-proof-row" aria-label="Waarom Snuushco mobiel snel werkt">
+              <span>✓ Intake in minuten</span>
+              <span>✓ Mobiel-first</span>
+              <span>✓ Menselijke review</span>
             </div>
           </div>
         </section>
@@ -227,6 +233,7 @@ export default function Home() {
         </section>
       </main>
       <Footer />
+      <MobileStickyCta />
     </>
   );
 }
@@ -247,6 +254,12 @@ export function Header() {
         <Link href="/intake">Intake</Link>
       </nav>
       <Link className="button" href="/intake">Start intake <ArrowRight size={18} /></Link>
+      <nav className="mobile-nav" aria-label="Snelle mobiele navigatie">
+        <Link href="/#diensten">Pakketten</Link>
+        <Link href="/#seo-ai-so">SEO</Link>
+        <Link href="/#doelgroepen">Branches</Link>
+        <Link href="/#werkwijze">Aanpak</Link>
+      </nav>
     </header>
   );
 }
