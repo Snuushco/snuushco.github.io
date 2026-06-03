@@ -86,21 +86,21 @@ const useCases = [
 const pricingPlans = [
   {
     name: "Starter",
-    price: "Gratis proberen",
-    description: "Voor zzp'ers die Kassie rustig willen testen met bonnen en facturen.",
-    points: ["30 dagen proberen", "WhatsApp bonnen sturen", "Facturen klaarzetten", "Geen creditcard nodig"],
+    price: "€29 p/m",
+    description: "Voor zzp'ers en kleine bedrijven die hun boekhouding zelf willen regelen.",
+    points: ["30 dagen gratis proberen", "WhatsApp bonnen sturen", "Facturen klaarzetten", "Geen creditcard nodig"],
   },
   {
     name: "Kassie Pro",
-    price: "Vanaf €19 p/m",
+    price: "€79 p/m",
     description: "Voor praktische ondernemers die hun administratie structureel via WhatsApp willen bijhouden.",
-    points: ["Onbeperkt bonnen uploaden", "Facturen en klanten beheren", "Btw-bedragen duidelijk zichtbaar", "Dashboard voor overzicht"],
+    points: ["30 dagen gratis proberen", "Onbeperkt bonnen uploaden", "Facturen en klanten beheren", "Dashboard voor overzicht"],
   },
   {
-    name: "Team",
-    price: "Op aanvraag",
+    name: "Enterprise",
+    price: "€199 p/m",
     description: "Voor groeiende bedrijven met meerdere mensen, rollen of administratiestromen.",
-    points: ["Meerdere gebruikers", "Werkstromen per team", "Hulp bij inrichting", "Maatwerk koppelingen mogelijk"],
+    points: ["30 dagen gratis proberen", "Meerdere gebruikers", "Werkstromen per team", "Hulp bij inrichting"],
   },
 ];
 
