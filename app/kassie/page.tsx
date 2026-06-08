@@ -83,24 +83,26 @@ const useCases = [
   },
 ];
 
-const pricingPlans = [
+const pricingChoices = [
   {
-    name: "Starter",
-    price: "€29 p/m",
-    description: "Voor zzp'ers en kleine bedrijven die hun boekhouding zelf willen regelen.",
-    points: ["30 dagen gratis proberen", "WhatsApp bonnen sturen", "Facturen klaarzetten", "Geen creditcard nodig"],
-  },
-  {
-    name: "Kassie Pro",
+    audience: "Voor ondernemers",
+    name: "Kassie totaalpakket",
     price: "€79 p/m",
-    description: "Voor praktische ondernemers die hun administratie structureel via WhatsApp willen bijhouden.",
-    points: ["30 dagen gratis proberen", "Onbeperkt bonnen uploaden", "Facturen en klanten beheren", "Dashboard voor overzicht"],
+    description:
+      "Eén keuze voor ondernemers: facturen, bonnen, klanten, btw-overzicht, WhatsApp en dashboard zitten standaard in Kassie.",
+    points: ["30 dagen gratis proberen", "Geen pakketkeuze", "Alle ondernemerfuncties inbegrepen", "Geen creditcard nodig"],
+    cta: "Start gratis",
+    href: `${appBaseUrl}/signup`,
   },
   {
-    name: "Enterprise",
+    audience: "Voor boekhouders",
+    name: "Kassie Kantoor",
     price: "€199 p/m",
-    description: "Voor groeiende bedrijven met meerdere mensen, rollen of administratiestromen.",
-    points: ["30 dagen gratis proberen", "Meerdere gebruikers", "Werkstromen per team", "Hulp bij inrichting"],
+    description:
+      "Eén keuze voor boekhoudkantoren: klanten, taken, controles en samenwerking met ondernemers in één kantooromgeving.",
+    points: ["30 dagen gratis proberen", "Geen kantoorvarianten", "Klantoverzicht en controles", "Samenwerken met ondernemers"],
+    cta: "Bekijk Kassie Kantoor",
+    href: "https://kantoor.kassieapp.nl",
   },
 ];
 
@@ -328,19 +330,20 @@ export default function KassiePage() {
             <div className="vo-section-row">
               <div className="vo-section-head">
                 <p>Prijzen</p>
-                <h2>Eerst proberen. Daarna pas kiezen.</h2>
+                <h2>Eén keuze voor ondernemers. Eén keuze voor boekhouders.</h2>
               </div>
               <a href={`${appBaseUrl}/signup`} className="vo-button vo-button-primary">
                 Start gratis <ArrowRight size={16} />
               </a>
             </div>
 
-            <div className="vo-cards three">
-              {pricingPlans.map((plan) => (
+            <div className="vo-cards two">
+              {pricingChoices.map((plan) => (
                 <article key={plan.name} className="vo-card vo-price-card">
                   <div>
-                    <p className="vo-price-eyebrow">{plan.name}</p>
+                    <p className="vo-price-eyebrow">{plan.audience}</p>
                     <h3>{plan.price}</h3>
+                    <strong>{plan.name}</strong>
                     <p>{plan.description}</p>
                   </div>
                   <ul>
@@ -348,6 +351,9 @@ export default function KassiePage() {
                       <li key={point}><CheckCircle2 size={18} /> {point}</li>
                     ))}
                   </ul>
+                  <a href={plan.href} className="vo-button vo-button-primary vo-price-cta">
+                    {plan.cta} <ArrowRight size={16} />
+                  </a>
                 </article>
               ))}
             </div>

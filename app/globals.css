@@ -849,6 +849,7 @@ textarea { min-height: 110px; resize: vertical; }
   font-weight: 950;
 }
 .vo-cards { display: grid; gap: 16px; margin-top: 32px; }
+.vo-cards.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .vo-cards.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .vo-card { border: 1px solid #ded6c8; border-radius: 20px; background: #fff; padding: 24px; box-shadow: 0 6px 18px rgba(49, 39, 24, 0.04); }
 .vo-card-top { display: flex; align-items: center; justify-content: space-between; }
@@ -862,6 +863,7 @@ textarea { min-height: 110px; resize: vertical; }
 .vo-price-card ul { display: grid; gap: 10px; margin: 22px 0 0; padding: 0; list-style: none; color: #314034; font-weight: 800; }
 .vo-price-card li { display: flex; align-items: flex-start; gap: 9px; line-height: 1.45; }
 .vo-price-card svg { flex: none; color: #b96036; margin-top: 1px; }
+.vo-price-cta { margin-top: 24px; justify-content: center; }
 .vo-dark { background: #173126; color: #fff; }
 .vo-dark h2 { color: #fff; }
 .vo-dark p:not(.vo-kicker) { margin-top: 20px; color: rgba(255,255,255,0.72); font-size: 18px; line-height: 1.65; }
@@ -885,7 +887,7 @@ textarea { min-height: 110px; resize: vertical; }
 .vo-footer-inner span:first-child { color: #173126; font-weight: 900; }
 @media (max-width: 900px) {
   .vo-nav, .vo-login { display: none; }
-  .vo-hero-grid, .vo-split, .vo-cards.three, .vo-strip-grid { grid-template-columns: 1fr; }
+  .vo-hero-grid, .vo-split, .vo-cards.two, .vo-cards.three, .vo-strip-grid { grid-template-columns: 1fr; }
   .vo-phone-shell { max-width: 520px; }
   .vo-benefits { grid-template-columns: 1fr; }
   .vo-section-row { align-items: flex-start; flex-direction: column; }
