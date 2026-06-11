@@ -2,37 +2,38 @@ import type { MetadataRoute } from "next";
 import { segments } from "./data";
 import { comparisons, knowledgeTerms, pillarPages, professions, toolPages } from "./kassie/content";
 
-const baseUrl = "https://snuushco.nl";
+const snuushcoBaseUrl = "https://snuushco.nl";
+const kassieSiteBaseUrl = "https://kassieapp.nl";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
   const staticRoutes: MetadataRoute.Sitemap = [
     {
-      url: baseUrl,
+      url: snuushcoBaseUrl,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: `${baseUrl}/intake`,
+      url: `${snuushcoBaseUrl}/intake`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/website-laten-maken/dienstverleners`,
+      url: `${snuushcoBaseUrl}/website-laten-maken/dienstverleners`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.95,
     },
     {
-      url: `${baseUrl}/marketing`,
+      url: `${snuushcoBaseUrl}/marketing`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.95,
     },
     {
-      url: `${baseUrl}/seo-ai-so`,
+      url: `${snuushcoBaseUrl}/seo-ai-so`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.98,
@@ -44,13 +45,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/privacy`,
+      url: `${snuushcoBaseUrl}/privacy`,
       lastModified: now,
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
-      url: `${baseUrl}/voorwaarden`,
+      url: `${snuushcoBaseUrl}/voorwaarden`,
       lastModified: now,
       changeFrequency: "yearly",
       priority: 0.3,
@@ -58,20 +59,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   const segmentRoutes: MetadataRoute.Sitemap = segments.map((segment) => ({
-    url: `${baseUrl}/doelgroepen/${segment.slug}`,
+    url: `${snuushcoBaseUrl}/doelgroepen/${segment.slug}`,
     lastModified: now,
     changeFrequency: "monthly",
     priority: 0.8,
   }));
 
   const kassieRoutes: MetadataRoute.Sitemap = [
-    ...pillarPages.map((page) => ({ url: `${baseUrl}/${page.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.85 })),
-    ...professions.map((item) => ({ url: `${baseUrl}/boekhouden-voor/${item.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.72 })),
-    ...knowledgeTerms.map((item) => ({ url: `${baseUrl}/kennisbank/${item.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.65 })),
-    ...comparisons.map((item) => ({ url: `${baseUrl}/vergelijk/${item.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.68 })),
-    ...toolPages.map((item) => ({ url: `${baseUrl}/tools/${item.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.8 })),
-    { url: `${baseUrl}/e-facturatie/vida-peppol-tijdlijn`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.9 },
-    { url: `${baseUrl}/marketing/kassie-operating-model`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.4 },
+    ...pillarPages.map((page) => ({ url: `${kassieSiteBaseUrl}/${page.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.85 })),
+    ...professions.map((item) => ({ url: `${kassieSiteBaseUrl}/boekhouden-voor/${item.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.72 })),
+    ...knowledgeTerms.map((item) => ({ url: `${kassieSiteBaseUrl}/kennisbank/${item.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.65 })),
+    ...comparisons.map((item) => ({ url: `${kassieSiteBaseUrl}/vergelijk/${item.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.68 })),
+    ...toolPages.map((item) => ({ url: `${kassieSiteBaseUrl}/tools/${item.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.8 })),
+    { url: `${kassieSiteBaseUrl}/e-facturatie/vida-peppol-tijdlijn`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.9 },
+    { url: `${kassieSiteBaseUrl}/marketing/kassie-operating-model`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.4 },
   ];
 
   return [...staticRoutes, ...segmentRoutes, ...kassieRoutes];
