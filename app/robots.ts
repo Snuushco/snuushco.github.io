@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { kassieDisallowedPaths } from "./lib/kassie-seo";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -6,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/ops", "/ops/", "/ops/*", "/api/ops", "/api/ops/*"],
+        disallow: [...kassieDisallowedPaths],
       },
     ],
     sitemap: ["https://snuushco.nl/sitemap.xml", "https://kassieapp.nl/sitemap.xml"],

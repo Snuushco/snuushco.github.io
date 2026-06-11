@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { segments } from "./data";
 import { comparisons, knowledgeTerms, pillarPages, professions, toolPages } from "./kassie/content";
+import { kassieStaticMarketingRoutes } from "./lib/kassie-seo";
 
 const snuushcoBaseUrl = "https://snuushco.nl";
 const kassieSiteBaseUrl = "https://kassieapp.nl";
@@ -66,13 +67,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const kassieRoutes: MetadataRoute.Sitemap = [
-    ...pillarPages.map((page) => ({ url: `${kassieSiteBaseUrl}/${page.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.85 })),
+    ...kassieStaticMarketingRoutes.map((route) => ({ url: route ? `${kassieSiteBaseUrl}/${route}` : kassieSiteBaseUrl, lastModified: now, changeFrequency: "weekly" as const, priority: route === "" ? 0.9 : route.startsWith("marketing/") ? 0.4 : 0.85 })),
+    ...pillarPages.filter((page) => !kassieStaticMarketingRoutes.includes(page.slug as typeof kassieStaticMarketingRoutes[number])).map((page) => ({ url: `${kassieSiteBaseUrl}/${page.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.85 })),
     ...professions.map((item) => ({ url: `${kassieSiteBaseUrl}/boekhouden-voor/${item.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.72 })),
     ...knowledgeTerms.map((item) => ({ url: `${kassieSiteBaseUrl}/kennisbank/${item.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.65 })),
     ...comparisons.map((item) => ({ url: `${kassieSiteBaseUrl}/vergelijk/${item.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.68 })),
     ...toolPages.map((item) => ({ url: `${kassieSiteBaseUrl}/tools/${item.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.8 })),
-    { url: `${kassieSiteBaseUrl}/e-facturatie/vida-peppol-tijdlijn`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.9 },
-    { url: `${kassieSiteBaseUrl}/marketing/kassie-operating-model`, lastModified: now, changeFrequency: "weekly" as const, priority: 0.4 },
   ];
 
   return [...staticRoutes, ...segmentRoutes, ...kassieRoutes];

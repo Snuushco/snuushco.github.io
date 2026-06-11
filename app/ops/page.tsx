@@ -99,6 +99,10 @@ export default async function OpsPage({ searchParams }: { searchParams?: Promise
     source: string;
     campaign: string;
     landing_view: number;
+    kassie_tool_view: number;
+    kassie_tool_used: number;
+    newsletter_signup: number;
+    contact_click: number;
     intake_started: number;
     intake_submitted: number;
     checkout_started: number;
@@ -150,6 +154,10 @@ export default async function OpsPage({ searchParams }: { searchParams?: Promise
                 <th>Bron</th>
                 <th>Campagne</th>
                 <th>Landing</th>
+                <th>Tool view</th>
+                <th>Tool gebruikt</th>
+                <th>Nieuwsbrief</th>
+                <th>Contact</th>
                 <th>Intake start</th>
                 <th>Intake klaar</th>
                 <th>Checkout</th>
@@ -162,13 +170,17 @@ export default async function OpsPage({ searchParams }: { searchParams?: Promise
                   <td><strong>{row.source}</strong></td>
                   <td>{row.campaign}</td>
                   <td>{row.landing_view}</td>
+                  <td>{row.kassie_tool_view}</td>
+                  <td>{row.kassie_tool_used}</td>
+                  <td>{row.newsletter_signup}</td>
+                  <td>{row.contact_click}</td>
                   <td>{row.intake_started}</td>
                   <td>{row.intake_submitted}</td>
                   <td>{row.checkout_started}</td>
                   <td>{row.paid_lead}</td>
                 </tr>
               )) : (
-                <tr><td colSpan={7}>Nog geen conversie-events in de laatste 30 dagen.</td></tr>
+                <tr><td colSpan={11}>Nog geen conversie-events in de laatste 30 dagen.</td></tr>
               )}
             </tbody>
           </table>

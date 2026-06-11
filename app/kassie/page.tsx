@@ -13,6 +13,7 @@ import {
   Upload,
 } from "lucide-react";
 import TrackingPixel from "../tracking-pixel";
+import { JsonLd, buildContactActionSchema, buildKassieProductSoftwareSchema } from "../lib/kassie-seo";
 
 const appBaseUrl = "https://mijn.kassieapp.nl";
 const kassieMarketingUrl = "https://kassieapp.nl";
@@ -107,24 +108,11 @@ const pricingChoices = [
 ];
 
 export default function KassiePage() {
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "@id": `${kassieMarketingUrl}#app`,
-    name: "Kassie",
-    applicationCategory: "BusinessApplication",
-    operatingSystem: "Web, WhatsApp",
-    url: kassieMarketingUrl,
-    description:
-      "Kassie helpt praktische ondernemers met bonnen, facturen en boekhouding via WhatsApp.",
-  };
+  const structuredData = [buildKassieProductSoftwareSchema(), buildContactActionSchema()];
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <JsonLd data={structuredData} />
       <TrackingPixel eventName="landing_view" metadata={{ landing: "vakoffice-kassie" }} />
       <main className="vakoffice-page">
         <header className="vo-header">
