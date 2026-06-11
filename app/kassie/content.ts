@@ -65,7 +65,8 @@ export const pillarPages: ContentPage[] = [
     sections: [
       { heading: "Peildatum: juni 2026", body: ["EU ViDA stuurt richting verplichte e-facturatie en digitale rapportage voor grensoverschrijdende B2B-transacties per 1 juli 2030.", "Voor Nederland wordt binnenlandse B2B-e-facturatie via Peppol onderzocht en voorbereid. Een definitief Nederlands invoeringspad moet apart worden vastgesteld."] },
       { heading: "Wat is Peppol?", body: ["Peppol is een netwerk om elektronische facturen gestructureerd tussen systemen te versturen.", "Een pdf per e-mail is handig voor mensen, maar geen echte gestructureerde e-factuur voor systemen."] },
-      { heading: "Waarom nu al opletten?", body: ["België verplicht B2B e-facturatie al sinds 1 januari 2026. Nederlandse ondernemers met Belgische klanten kunnen daardoor nu al vragen krijgen.", "Kassie gebruikt dit thema als autoriteitshub: rustig uitleggen, geen paniekmarketing."] },
+      { heading: "Waarom nu al opletten?", body: ["België verplicht B2B e-facturatie al sinds 1 januari 2026. Nederlandse ondernemers met Belgische klanten kunnen daardoor nu al vragen krijgen.", "Kassie gebruikt dit thema als autoriteitshub: rustig uitleggen, primaire bronnen tonen, concepten reviewen en geen paniekmarketing over nog niet definitieve Nederlandse regels."] },
+      { heading: "Wat kun je zonder stress doen?", body: ["Breng in kaart hoe je nu factureert: Word/PDF, boekhoudpakket, UBL-export, Peppol-aansluiting en buitenlandse klanten.", "Wacht niet op paniekposts, maar volg de tijdlijn op kassieapp.nl en laat fiscale uitzonderingen of internationale situaties controleren door je boekhouder."] },
     ],
     faqs: [{ question: "Is e-facturatie nu al verplicht in Nederland?", answer: "Niet generiek voor alle binnenlandse B2B-facturen. Voor overheden en specifieke situaties gelden al regels; toekomstige uitbreiding wordt voorbereid." }, { question: "Is een pdf-factuur hetzelfde als e-facturatie?", answer: "Nee. Een echte e-factuur is gestructureerd, bijvoorbeeld UBL via een netwerk zoals Peppol." }],
     links: [{ label: "ViDA tijdlijn", href: "/e-facturatie/vida-peppol-tijdlijn" }, { label: "Peppol-ready-check", href: "/tools/peppol-ready-check" }, { label: "Factuurgenerator", href: "/tools/factuurgenerator" }],
@@ -120,7 +121,8 @@ export const comparisons = ["moneybird", "e-boekhouden", "snelstart", "rompslomp
 export const toolPages = [{ slug: "factuurgenerator", title: "Gratis factuurgenerator", description: "Maak een eenvoudige ZZP-factuur zonder login en download het resultaat." }, { slug: "btw-calculator", title: "BTW-calculator", description: "Bereken bedragen inclusief/exclusief btw en krijg een KOR-check op hoofdlijnen." }, { slug: "peppol-ready-check", title: "Peppol-ready-check", description: "Check of je facturatie klaar is voor e-facturatie via UBL/Peppol." }, { slug: "uurtarief-calculator", title: "Uurtarief-calculator ZZP", description: "Schat welk uurtarief past bij inkomen, kosten en reserveringen." }, { slug: "aftrekposten-checker", title: "Aftrekposten-checker", description: "Loop veelvoorkomende zakelijke kosten en fiscale aandachtspunten langs." }];
 export const approvalAssets = {
   linkedin: [
-    "ViDA klinkt ver weg, maar België verplicht B2B e-facturatie al sinds 2026. Nederlandse ondernemers met Belgische klanten merken dit dus nu al.",
+    "ViDA klinkt ver weg, maar België verplicht B2B e-facturatie al sinds 2026. Nederlandse ondernemers met Belgische klanten merken dit dus nu al. Check de rustige tijdlijn: https://kassieapp.nl/e-facturatie/vida-peppol-tijdlijn",
+    "E-facturatie hoeft geen paniekproject te zijn. Begin met weten welke facturen je maakt, of je UBL kunt exporteren en welke klanten Peppol gaan vragen. Praktische uitleg: https://kassieapp.nl/e-facturatie-peppol-vida",
     "Boekhouden moet niet beginnen met menus en grootboektaal. Een ondernemer wil sturen: 'maak factuur voor klus X'. Daarna controle. Klaar.",
     "Een pdf-factuur is handig voor mensen. Een echte e-factuur is data die systemen begrijpen. Dat verschil gaat de komende jaren belangrijk worden.",
     "Kassie bouwen we bewust review-safe: automatiseren wat kan, maar fiscale twijfel markeren in plaats van doen alsof software alles zeker weet.",
@@ -137,7 +139,8 @@ export const approvalAssets = {
     "5 minuten ZZP-administratie #1 — check openstaande facturen, bewaar losse bonnen direct, en lees waarom Peppol meer is dan een pdf per mail.",
     "5 minuten ZZP-administratie #2 — maak deze week je btw-map compleet: verkoopfacturen, bonnen, creditnota's en bankmutaties bij elkaar.",
     "5 minuten ZZP-administratie #3 — factuurnummers moeten uniek en opeenvolgend zijn. Gebruik geen losse Word-bestanden zonder overzicht.",
-    "5 minuten ZZP-administratie #4 — Belgische B2B e-facturatie is al verplicht. Heb je Belgische klanten? Check of je proces klaar is."
+    "5 minuten ZZP-administratie #4 — Belgische B2B e-facturatie is al verplicht. Heb je Belgische klanten? Check of je proces klaar is via https://kassieapp.nl/tools/peppol-ready-check",
+    "ViDA/Peppol update — wat is vastgesteld, wat is nog verwachting en welke bron moet je volgen? Bewaar de tijdlijn: https://kassieapp.nl/e-facturatie/vida-peppol-tijdlijn"
   ],
   outreachProspects: [
     "ZZP Nederland — gastartikel over Peppol zonder paniekmarketing",
@@ -147,4 +150,104 @@ export const approvalAssets = {
     "Brancheverenigingen voor vakmensen — boekhouden per beroep als praktische gids"
   ],
   outreachPitch: "Voorstel gastbijdrage: 'Wat Nederlandse ZZP'ers nu al moeten weten over Peppol en e-facturatie'. Praktisch, zonder paniekmarketing, met Belgische B2B-verplichting als actuele aanleiding."
+};
+
+export const vidaPeppolAuthorityHub = {
+  peildatum: "juni 2026",
+  sources: [
+    {
+      name: "Europese Commissie — VAT in the Digital Age (ViDA)",
+      url: "https://taxation-customs.ec.europa.eu/taxation/vat/vat-digital-age-vida_en",
+      use: "Primaire EU-bron voor vastgesteld ViDA-beleid, mijlpalen en digitale rapportage/e-facturatie op EU-niveau.",
+    },
+    {
+      name: "Raad van de Europese Unie — ViDA persberichten en besluitvorming",
+      url: "https://www.consilium.europa.eu/",
+      use: "Check of er formele Raad-besluiten, uitstel of definitieve tekstwijzigingen zijn.",
+    },
+    {
+      name: "Rijksoverheid / Ministerie van Financiën — Kamerbrieven e-facturatie",
+      url: "https://www.rijksoverheid.nl/ministeries/ministerie-van-financien/documenten/kamerstukken",
+      use: "Nederlandse beleidslijn: kabinetsreactie, invoeringspad, consultaties en beslisnota's.",
+    },
+    {
+      name: "Tweede Kamer — dossiers, brieven en commissiedebatten",
+      url: "https://www.tweedekamer.nl/kamerstukken",
+      use: "Parlementaire voortgang, vragen en stukken rond e-facturatie, ViDA, Peppol en btw-rapportage.",
+    },
+    {
+      name: "Forum Standaardisatie — Peppol en e-facturatiestandaarden",
+      url: "https://www.forumstandaardisatie.nl/",
+      use: "Nederlandse standaardisatiecontext: verplicht/open standaarden, adoptie en overheidsgebruik.",
+    },
+    {
+      name: "Peppol International / OpenPeppol",
+      url: "https://peppol.org/",
+      use: "Netwerk-, specificatie- en adoption-updates die uitleg op Kassie kunnen aanscherpen.",
+    },
+    {
+      name: "NPa / Nederlandse Peppolautoriteit",
+      url: "https://www.rijksoverheid.nl/onderwerpen/digitale-overheid/peppol",
+      use: "Nederlandse Peppol-inrichting, overheidscontext en praktische aansluitinformatie.",
+    },
+    {
+      name: "Belastingdienst — factuureisen en btw",
+      url: "https://www.belastingdienst.nl/wps/wcm/connect/nl/btw/content/factuureisen",
+      use: "Altijd checken voor actuele Nederlandse factuureisen; Kassie-content mag fiscale uitzonderingen niet als zekerheid presenteren.",
+    },
+    {
+      name: "Belgische overheid / FOD Financiën — B2B e-facturatie",
+      url: "https://financien.belgium.be/",
+      use: "Praktische trigger voor Nederlandse ondernemers met Belgische klanten en leveranciers.",
+    },
+  ],
+  monitorQueries: [
+    "site:rijksoverheid.nl e-facturatie Peppol ViDA Nederland",
+    "site:tweedekamer.nl e-facturatie Peppol ViDA OR btw digitale rapportage",
+    "site:belastingdienst.nl e-facturatie factuureisen Peppol UBL",
+    "site:forumstandaardisatie.nl Peppol e-facturatie standaard",
+    "site:peppol.org Netherlands Peppol e-invoicing update",
+    "site:taxation-customs.ec.europa.eu VAT in the Digital Age e-invoicing timeline",
+    "site:financien.belgium.be B2B e-invoicing 2026 Peppol",
+  ],
+  triggerCriteria: [
+    "Nieuwe Kamerbrief, kabinetsreactie, consultatie of wetsvoorstel over Nederlandse B2B e-facturatie.",
+    "Wijziging in EU/ViDA-tijdlijn, scope, uitzonderingen of digitale rapportageverplichting.",
+    "Nieuwe of gewijzigde Belastingdienst-uitleg over factuureisen, UBL/e-facturen of grensoverschrijdende btw.",
+    "Peppol/OpenPeppol-specificatie of Nederlandse Peppolautoriteit-update die impact heeft op kleine ondernemers of boekhoudsoftware.",
+    "Belgische B2B-e-facturatie update die relevant is voor Nederlandse ondernemers met Belgische klanten.",
+    "Nieuws dat veel paniekclaims veroorzaakt; Kassie reageert alleen met broncheck, peildatum en praktische acties.",
+  ],
+  articleTemplate: [
+    "Titel: Wat verandert er rond [ViDA/Peppol/e-facturatie] en wat betekent dit voor ZZP'ers?",
+    "Peildatum + bronblok: noem datum, primaire bron-URL's en markeer wat vastgesteld is versus verwachting.",
+    "Kern in 3 bullets: 1) wat is nieuw, 2) wie merkt dit nu, 3) wat hoeft vandaag nog niet.",
+    "Praktische checklist: facturen/UBL/export/klanten buitenland/boekhouder-vraag.",
+    "Geen paniek: leg uit dat Nederland nog eigen invoeringsbesluiten kan nemen en dat Kassie review-safe werkt.",
+    "CTA: verwijs naar https://kassieapp.nl/tools/peppol-ready-check en de tijdlijn op kassieapp.nl.",
+    "Reviewregel: fiscale of juridische zekerheid nooit claimen zonder broncheck door Guus/boekhouder.",
+  ],
+  linkedinDraftTemplate: [
+    "Hook: [nieuw bronfeit] klinkt groot, maar voor de meeste ZZP'ers is de eerste stap simpel.",
+    "Bron: [naam bron + datum], peildatum [datum].",
+    "Duiding: wat is vastgesteld / wat is nog niet definitief voor Nederland.",
+    "Praktische actie: check of je factuurproces UBL/Peppol kan en waar Belgische klanten om vragen.",
+    "CTA: rustige uitleg op https://kassieapp.nl/e-facturatie/vida-peppol-tijdlijn — concept, pas posten na review.",
+  ],
+  newsletterDraftTemplate: [
+    "Onderwerp: ViDA/Peppol update zonder paniek: dit is nu relevant",
+    "Intro: in 4 zinnen wat er is veranderd en welke bron dat bevestigt.",
+    "Voor wie: ZZP'ers met Belgische klanten, ondernemers die nu facturen in Word/PDF maken, boekhouders met kleine klanten.",
+    "Actie deze week: bewaar facturen gestructureerd, check UBL-export, vraag boekhouder/softwareleverancier naar Peppol.",
+    "Lees verder: https://kassieapp.nl/e-facturatie-peppol-vida en https://kassieapp.nl/tools/peppol-ready-check.",
+    "Reviewgate: niet verzenden voordat Guus bron, toon en CTA heeft goedgekeurd.",
+  ],
+  timelineUpdateInstructions: [
+    "Voeg alleen mijlpalen toe met primaire bron, datum en status: vastgesteld / aangekondigd / verwacht / vervallen.",
+    "Werk metadata-description en peildatum bij wanneer een nieuw besluit de pagina wijzigt.",
+    "Update de pillarpage-sectie in app/kassie/content.ts als de ondernemersactie verandert.",
+    "Gebruik uitsluitend kassieapp.nl-links voor CTA's, sitemap en draftprompts.",
+    "Laat oude verwachtingen niet staan als feit; markeer ze als ingehaald of verwijder ze met bronvermelding in de commit.",
+  ],
+  cronPrompt: "Monitor wekelijks ViDA, Peppol en e-facturatie bronnen voor Kassie. Gebruik alleen kassieapp.nl als publieke Kassie-host. Geef bron-URL's, triggerclassificatie, voorgestelde tijdlijnwijziging, artikelconcept, LinkedIn-concept en nieuwsbriefblok terug ter review. Niet posten, niet mailen, niet DM'en, niet publiceren en geen bestanden aanpassen zonder expliciete Guus-goedkeuring.",
 };
