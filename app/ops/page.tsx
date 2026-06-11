@@ -104,6 +104,8 @@ export default async function OpsPage({ searchParams }: { searchParams?: Promise
     checkout_started: number;
     paid_lead: number;
   }>;
+  const kassieLeads = data.kassieLeads as Array<JsonMap>;
+  const kassieSummary = data.kassieSummary as Array<{ kind: string; status: string; count: number }>;
   const paid = leads.filter((lead) => lead.status === "paid").length;
   const review = tasks.filter((task) => task.status === "review_required").length;
   const ready = tasks.filter((task) => task.status === "ready_for_production").length;
@@ -136,6 +138,49 @@ export default async function OpsPage({ searchParams }: { searchParams?: Promise
         <article><ClipboardList /><span>{ready}</span><p>Klaar voor productie</p></article>
         <article><LockKeyhole /><span>{review}</span><p>Review nodig</p></article>
         <article><ClipboardList /><span>{intakeSubmits}</span><p>Intake events</p></article>
+      </section>
+
+      <section className="ops-panel ops-funnel-panel">
+        <div className="ops-panel-head">
+          <h2>Kassie nieuwsbrief en contact</h2>
+          <div className="ops-summary">{kassieSummary.map((item) => <span key={`${item.kind}-${item.status}`}>{item.kind}/{item.status}: {item.count}</span>)}</div>
+        </div>
+        <div className="ops-table-wrap">
+          <table className="ops-table">
+            <thead>
+              <tr>
+                <th>Aangemaakt</th>
+                <th>Type</th>
+                <th>Naam / e-mail</th>
+                <th>Onderwerp</th>
+                <th>Status</th>
+                <th>Resend</th>
+              </tr>
+            </thead>
+            <tbody>
+              {kassieLeads.length ? kassieLeads.map((lead) => (
+                <tr key={String(lead.id)}>
+                  <td>{dateLabel(String(lead.created_at))}</td>
+                  <td>{String(lead.kind)}</td>
+                  <td>
+                    <strong>{value(lead.name)}</strong>
+                    <span>{String(lead.email)}</span>
+                    <span>{value(lead.company)}</span>
+                  </td>
+                  <td>
+                    <strong>{value(lead.topic)}</strong>
+                    <span>{value(lead.message)}</span>
+                    <span>bron: {value(lead.source)}</span>
+                  </td>
+                  <td>{String(lead.unsubscribed_at ? "unsubscribed" : lead.status)}</td>
+                  <td>{String(lead.resend_status)}</td>
+                </tr>
+              )) : (
+                <tr><td colSpan={6}>Nog geen Kassie nieuwsbrief- of contactleads opgeslagen.</td></tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section className="ops-panel ops-funnel-panel">

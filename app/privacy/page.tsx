@@ -19,11 +19,11 @@ export default function PrivacyPage() {
               projectbriefs te maken en betalingen of reviews te verwerken.
             </p>
             <h2>Welke gegevens</h2>
-            <p>Bedrijfsnaam, e-mailadres, doelgroep, regio, projectdoel, gewenste omvang, assets, deadline en toelichting op het knelpunt.</p>
+            <p>Bedrijfsnaam, e-mailadres, doelgroep, regio, projectdoel, gewenste omvang, assets, deadline en toelichting op het knelpunt. Voor Kassie-contact en nieuwsbrief bewaren we naam, e-mailadres, bedrijf, telefoonnummer, onderwerp, bericht, toestemming, bron en afmeldstatus waar ingevuld.</p>
             <h2>Waarvoor</h2>
-            <p>Voor pakketadvies, aanvraagbeoordeling, opvolging, betaling, projectvoorbereiding, kwaliteitscontrole en noodzakelijke administratie.</p>
+            <p>Voor pakketadvies, aanvraagbeoordeling, opvolging, betaling, projectvoorbereiding, kwaliteitscontrole, noodzakelijke administratie, contactopvolging en alleen na toestemming Kassie-updates. Nieuwsbrieven en contactberichten worden eerst intern gereviewd; campagnes worden niet automatisch verzonden.</p>
             <h2>Delen met derden</h2>
-            <p>Gegevens kunnen technisch worden verwerkt via hosting, database, Stripe voor betalingen en Telegram voor interne notificaties. We verkopen geen leadgegevens door.</p>
+            <p>Gegevens kunnen technisch worden verwerkt via hosting, database, Stripe voor betalingen, Telegram voor interne notificaties en Resend voor e-mailnotificaties of nieuwsbrieven zodra domein, afmelden en reviewflow zijn goedgekeurd. We verkopen geen leadgegevens door.</p>
             <h2>Bewaartermijn</h2>
             <p>Lead- en projectgegevens blijven bewaard zolang dat nodig is voor opvolging, levering, administratie of wettelijke verplichtingen.</p>
             <h2>Rechten</h2>

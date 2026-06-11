@@ -13,6 +13,7 @@ import {
   Upload,
 } from "lucide-react";
 import TrackingPixel from "../tracking-pixel";
+import { KassieOwnedMediaForms } from "./owned-media-forms";
 
 const appBaseUrl = "https://mijn.kassieapp.nl";
 const kassieMarketingUrl = "https://kassieapp.nl";
@@ -141,6 +142,7 @@ export default function KassiePage() {
               <a href="#hoe-het-werkt">Hoe het werkt</a>
               <a href="#voor-wie">Voor wie</a>
               <a href="#prijzen">Prijzen</a>
+              <a href="#contact">Contact</a>
             </nav>
 
             <div className="vo-header-actions">
@@ -359,6 +361,8 @@ export default function KassiePage() {
             </div>
           </div>
         </section>
+
+        <KassieOwnedMediaForms />
 
         <section className="vo-final-cta">
           <div className="vo-container">

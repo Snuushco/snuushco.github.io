@@ -879,6 +879,22 @@ textarea { min-height: 110px; resize: vertical; }
 .vo-strip-item svg { flex: none; color: #b96036; }
 .vo-strip-item h3 { margin: 0; color: #173126; font-size: 18px; font-weight: 950; }
 .vo-strip-item p { margin: 8px 0 0; color: #5f564a; font-size: 14px; line-height: 1.6; }
+.vo-owned-media { border-top: 1px solid #ded6c8; background: #fffaf2; }
+.vo-owned-grid { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 18px; margin-top: 32px; align-items: start; }
+.vo-owned-card { display: grid; gap: 14px; border: 1px solid #ded6c8; border-radius: 22px; background: #fff; padding: 24px; box-shadow: 0 10px 28px rgba(49, 39, 24, 0.06); }
+.vo-owned-card-head { display: flex; gap: 14px; align-items: flex-start; }
+.vo-owned-card-head svg { flex: none; color: #b96036; margin-top: 2px; }
+.vo-owned-card h3 { margin: 0; color: #173126; font-size: 24px; font-weight: 950; }
+.vo-owned-card p { margin: 8px 0 0; color: #5f564a; line-height: 1.6; }
+.vo-owned-card label { display: grid; gap: 7px; color: #173126; font-weight: 900; }
+.vo-owned-card input, .vo-owned-card textarea { border-color: #d8cab8; background: #fffdf8; }
+.vo-owned-card textarea { min-height: 132px; }
+.vo-owned-two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.vo-checkline { display: grid !important; grid-template-columns: 18px minmax(0, 1fr); align-items: start; color: #5f564a !important; font-weight: 700 !important; line-height: 1.45; }
+.vo-checkline input { width: 18px; min-height: 18px; margin-top: 2px; }
+.vo-form-ok, .vo-form-error { margin: 0 !important; border-radius: 12px; padding: 10px 12px; font-weight: 800; }
+.vo-form-ok { background: #e7efe8; color: #176044 !important; }
+.vo-form-error { background: #fff0eb; color: #8a3a21 !important; }
 .vo-final-cta { padding: clamp(60px, 8vw, 88px) 0; text-align: center; }
 .vo-final-cta h2 { max-width: 840px; margin-left: auto; margin-right: auto; }
 .vo-final-cta p { max-width: 680px; margin: 20px auto 0; color: #5f564a; font-size: 18px; line-height: 1.65; }
@@ -887,7 +903,7 @@ textarea { min-height: 110px; resize: vertical; }
 .vo-footer-inner span:first-child { color: #173126; font-weight: 900; }
 @media (max-width: 900px) {
   .vo-nav, .vo-login { display: none; }
-  .vo-hero-grid, .vo-split, .vo-cards.two, .vo-cards.three, .vo-strip-grid { grid-template-columns: 1fr; }
+  .vo-hero-grid, .vo-split, .vo-cards.two, .vo-cards.three, .vo-strip-grid, .vo-owned-grid { grid-template-columns: 1fr; }
   .vo-phone-shell { max-width: 520px; }
   .vo-benefits { grid-template-columns: 1fr; }
   .vo-section-row { align-items: flex-start; flex-direction: column; }
@@ -899,6 +915,7 @@ textarea { min-height: 110px; resize: vertical; }
   .vo-brand-subtitle { display: none; }
   .vakoffice-page h1 { font-size: 42px; }
   .vo-actions .vo-button { width: 100%; }
+  .vo-owned-two { grid-template-columns: 1fr; }
 }
 
 .vo-profile-img {
