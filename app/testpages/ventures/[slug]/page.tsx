@@ -99,9 +99,9 @@ export default async function VentureLandingPage({ params }: PageProps) {
               <p>{art.metricLabel}</p>
             </div>
 
-            <div className="venture-waitlist-card">
-              <p className="venture-eyebrow">Binnenkort</p>
-              <h2>{venture.waitlistTitle}</h2>
+            <div className="venture-waitlist-card venture-intent-card">
+              <p className="venture-eyebrow">Testfase</p>
+              <h2>{venture.intentQuestion}</h2>
               <p className="venture-waitlist-text">{venture.waitlistText}</p>
               <form className="venture-form" aria-label={`${venture.brand} testformulier`}>
                 <input type="email" placeholder="jij@example.nl" aria-label="E-mailadres" className="venture-input" disabled />
@@ -112,6 +112,75 @@ export default async function VentureLandingPage({ params }: PageProps) {
               <p className="venture-microcopy">{venture.microcopy}</p>
             </div>
           </aside>
+        </section>
+
+        <section className="venture-product-section" aria-label={`${venture.brand} productconcept`}>
+          <div className="venture-section-heading">
+            <p className="venture-eyebrow">{venture.product.eyebrow}</p>
+            <h2>{venture.product.title}</h2>
+            <p>{venture.product.description}</p>
+          </div>
+          <div className="venture-product-grid">
+            <div className="venture-product-mockup" aria-label={`${venture.brand} productmockup`}>
+              <div className="venture-box-lid" />
+              <div className="venture-box-face">
+                <span>{venture.brand}</span>
+                <strong>{venture.product.eyebrow}</strong>
+                <em>Concept pack</em>
+              </div>
+              <div className="venture-box-shadow" />
+            </div>
+            <div className="venture-product-includes">
+              {venture.product.includes.map((item) => (
+                <span key={item}>{item}</span>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="venture-packages-section" aria-label={`${venture.brand} pakketvoorstel`}>
+          <div className="venture-section-heading compact">
+            <p className="venture-eyebrow">Pakketvoorstel</p>
+            <h2>Prijsankers om interesse meetbaar te maken.</h2>
+            <p>Conceptprijzen voor validatie; nog geen checkout en geen betaling.</p>
+          </div>
+          <div className="venture-package-grid">
+            {venture.packages.map((pack) => (
+              <article key={pack.name} className="venture-package-card">
+                <p>{pack.name}</p>
+                <div>
+                  <strong>{pack.price}</strong>
+                  <span>{pack.cadence}</span>
+                </div>
+                <p>{pack.description}</p>
+                <ul>
+                  {pack.highlights.map((highlight) => (
+                    <li key={highlight}>{highlight}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="venture-flow-section" aria-label={`${venture.brand} testflow`}>
+          <div className="venture-step-grid">
+            {venture.steps.map((step, index) => (
+              <article key={step.title} className="venture-step-card">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </article>
+            ))}
+          </div>
+          <div className="venture-proof-card">
+            <p className="venture-eyebrow">{venture.proofTitle}</p>
+            <div>
+              {venture.proofPoints.map((point) => (
+                <span key={point}>{point}</span>
+              ))}
+            </div>
+          </div>
         </section>
 
         <p className="venture-note">{venture.note}</p>
