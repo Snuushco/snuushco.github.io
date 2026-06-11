@@ -1269,8 +1269,23 @@ textarea { min-height: 110px; resize: vertical; }
 .kassie-card details { border-top: 1px solid rgba(16,37,31,.12); padding: 14px 0; }
 .kassie-card a { color: #0b6b4f; font-weight: 750; }
 .kassie-tool { max-width: 820px; margin: 0 auto 80px; padding: clamp(22px, 4vw, 38px); display: grid; gap: 16px; }
+.kassie-tool.tool-grid-wide { max-width: 1120px; }
 .kassie-tool label { display: grid; gap: 8px; font-weight: 800; }
 .kassie-tool input, .kassie-tool select { width: 100%; border-radius: 14px; border: 1px solid rgba(16,37,31,.18); padding: 14px 16px; font: inherit; }
+.tool-input-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.tool-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.tool-checklist { display: grid; gap: 12px; }
+.checkbox-row { display: flex !important; align-items: flex-start; gap: 12px !important; padding: 14px; border: 1px solid rgba(16,37,31,.12); border-radius: 18px; background: #fbfcf8; }
+.checkbox-row input { width: auto !important; margin-top: 3px; }
+.checkbox-row small { color: #60736c; font-weight: 600; }
 .kassie-result { padding: 18px; border-radius: 18px; background: #e8f7ef; color: #123b2f; line-height: 1.9; }
+.invoice-preview { padding: clamp(20px, 4vw, 34px); }
+.invoice-header, .invoice-parties { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.invoice-header h2 { margin: 0; }
+.tool-table { width: 100%; border-collapse: collapse; margin: 18px 0; }
+.tool-table th, .tool-table td { border-bottom: 1px solid rgba(16,37,31,.12); padding: 12px 0; text-align: left; vertical-align: top; }
+.tool-table td { text-align: right; }
+.tool-email-box { border-top: 1px solid rgba(16,37,31,.12); padding-top: 18px; display: grid; gap: 12px; }
 .small-note { color: #60736c; font-size: .95rem; }
-@media (max-width: 720px) { .kassie-seo-hero { padding-top: 44px; } .kassie-seo-content { padding-left: 16px; padding-right: 16px; } }
+@media print { body * { visibility: hidden; } .printable-invoice, .printable-invoice * { visibility: visible; } .printable-invoice { position: absolute; left: 0; top: 0; width: 100%; box-shadow: none; border: 0; } }
+@media (max-width: 720px) { .kassie-seo-hero { padding-top: 44px; } .kassie-seo-content { padding-left: 16px; padding-right: 16px; } .invoice-parties, .invoice-header { display: grid; } .tool-table td { text-align: left; } }

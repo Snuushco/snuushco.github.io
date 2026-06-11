@@ -3,7 +3,17 @@ import { z } from "zod";
 import { saveConversionEvent } from "../../lib/db";
 
 const eventSchema = z.object({
-  eventName: z.enum(["intake_started", "intake_submitted", "checkout_started", "paid_lead", "landing_view"]),
+  eventName: z.enum([
+    "intake_started",
+    "intake_submitted",
+    "checkout_started",
+    "paid_lead",
+    "landing_view",
+    "tool_viewed",
+    "tool_completed",
+    "tool_exported",
+    "tool_email_requested",
+  ]),
   leadId: z.string().optional().nullable(),
   sessionId: z.string().optional().nullable(),
   source: z.string().max(120).optional().nullable(),
