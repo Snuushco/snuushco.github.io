@@ -21,6 +21,7 @@ const kassieMarketingPaths = new Set([
 
 function isKassieMarketingPath(pathname: string) {
   return kassieMarketingPaths.has(pathname)
+    || pathname.startsWith("/blog")
     || pathname.startsWith("/boekhouden-voor/")
     || pathname.startsWith("/kennisbank/")
     || pathname.startsWith("/vergelijk/");
