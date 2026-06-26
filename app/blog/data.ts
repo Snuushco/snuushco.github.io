@@ -18,6 +18,64 @@ export type KassieBlogPost = {
 
 export const kassieBlogPosts: KassieBlogPost[] = [
   {
+    slug: "vida-implementatie-werkprogramma-2026-e-facturatie",
+    title: "EU ViDA-werkprogramma 2026: e-facturatie blijft in beweging",
+    description: "De Europese Commissie heeft een ViDA-implementatieprogramma voor 2026 gepubliceerd. Wat betekent dat voorzichtig vertaald voor zzp’ers en kleine ondernemers?",
+    date: "2026-06-26",
+    updated: "2026-06-26",
+    monitorSource: "Kassie marketing monitor Peppol/ViDA — 26 juni 2026",
+    category: "E-facturatie",
+    readingTime: "3 min",
+    intro: "De Europese Commissie heeft een werkprogramma voor de implementatie van ViDA in 2026 gepubliceerd. Voor Nederlandse zzp’ers verandert dit niet direct de dagelijkse factuurpraktijk, maar het bevestigt wel dat de EU verder werkt aan digitale btw-rapportage, e-facturatie en technische standaarden. Dit artikel is review-safe: geen fiscaal of juridisch advies, wel bronnen en praktische voorbereiding.",
+    keyTakeaways: [
+      "De Commissie werkt in 2026 aan verdere technische en uitvoerende stappen voor ViDA, waaronder digital reporting en e-invoicing-standaarden.",
+      "Voor grensoverschrijdende B2B-transacties noemt de EU 1 juli 2030 als belangrijk moment voor digitale rapportageverplichtingen.",
+      "Er is in deze monitor geen nieuw Nederlands besluit gevonden dat direct een algemene binnenlandse B2B e-facturatieplicht voor zzp’ers bevestigt.",
+      "België is sinds 1 januari 2026 een dichtbij voorbeeld van verplichte gestructureerde B2B e-facturatie; de exacte impact voor Nederlandse ondernemers met Belgische relaties vraagt broncheck per situatie."
+    ],
+    sections: [
+      {
+        heading: "Wat is het nieuwe signaal?",
+        body: [
+          "Het nieuwe signaal is het ViDA-implementatie werkprogramma voor 2026 van de Europese Commissie. Daarin beschrijft de Commissie werkzaamheden voor de verdere uitwerking van VAT in the Digital Age, waaronder digitale rapportage, elektronische facturatie en onderdelen van de centrale VIES-architectuur.",
+          "Voor ondernemers is vooral de richting relevant: facturen en btw-rapportages worden steeds meer gestructureerde data. Dat betekent niet dat iedere Nederlandse zzp’er vandaag al een nieuwe verplichting heeft, maar wel dat voorbereiding op UBL, Peppol en nette klantdata verstandig blijft."
+        ]
+      },
+      {
+        heading: "Wat verandert er nu concreet voor Nederlandse zzp’ers?",
+        body: [
+          "Op basis van de vandaag gecontroleerde bronnen is er geen nieuw Nederlands besluit gevonden dat direct een algemene verplichting voor alle binnenlandse B2B-facturen oplegt. Nationale regels en praktische ingangsdata moeten uit Nederlandse wetgeving, Kamerstukken of officiële uitvoeringsinformatie blijken.",
+          "De EU-informatie noemt wel de bredere ViDA-route en onder meer 1 juli 2030 als moment voor digitale rapportageverplichtingen rond bepaalde grensoverschrijdende B2B-transacties. Zie dit daarom als koerssignaal, niet als persoonlijk fiscaal advies."
+        ]
+      },
+      {
+        heading: "Waarom België belangrijk blijft om te volgen",
+        body: [
+          "België verplicht sinds 1 januari 2026 gestructureerde elektronische facturen voor B2B-transacties tussen btw-plichtige ondernemingen. Dat maakt België een concreet voorbeeld dicht bij Nederland.",
+          "Voor Nederlandse ondernemers met Belgische klanten of leveranciers kan dit relevant zijn, maar de exacte gevolgen hangen af van de transactie, btw-status en contractafspraken. Markeer dit intern als broncheck nodig wanneer je hierover klantadvies of commerciële claims maakt."
+        ]
+      },
+      {
+        heading: "Praktische voorbereiding zonder paniek",
+        body: [
+          "Zet de basis op orde: volledige klantgegevens, btw-nummers waar nodig, gestructureerde factuurregels, duidelijke btw-keuzes en een proces dat ontbrekende gegevens terugvraagt in plaats van stilzwijgend te gokken.",
+          "Controleer daarnaast of je facturatietool UBL kan exporteren en of Peppol-verzending of -ontvangst op de roadmap staat. Dat is nuttig, ook als de Nederlandse verplichting nog niet definitief is uitgewerkt."
+        ]
+      }
+    ],
+    sources: [
+      { label: "Europese Commissie — VAT in the Digital Age", href: "https://taxation-customs.ec.europa.eu/taxation/vat/vat-digital-age-vida_en" },
+      { label: "Europese Commissie — ViDA implementation Work programme for 2026", href: "https://taxation-customs.ec.europa.eu/document/download/c6153542-8b34-4308-b7e4-9e65e55eb79d_en?filename=ViDA%20implementation-Work%20program.pdf" },
+      { label: "Belgische e-invoicing overheidssite", href: "https://einvoice.belgium.be/en" },
+      { label: "FPS Finance België — e-invoicing", href: "https://finance.belgium.be/en/enterprises/vat/e-invoicing" }
+    ],
+    related: [
+      { label: "ViDA en Peppol tijdlijn", href: "/e-facturatie/vida-peppol-tijdlijn" },
+      { label: "E-facturatie, Peppol & ViDA uitgelegd", href: "/e-facturatie-peppol-vida" },
+      { label: "Peppol-ready-check", href: "/tools/peppol-ready-check" }
+    ]
+  },
+  {
     slug: "vida-peppol-nederland-stand-van-zaken-juni-2026",
     title: "ViDA en Peppol in Nederland: stand van zaken voor zzp’ers",
     description: "Wat de recente ViDA-monitoring betekent voor Nederlandse zzp’ers en kleine ondernemers: EU-tijdlijn, Nederlands onderzoek, Peppol en wat je nu praktisch kunt voorbereiden.",
