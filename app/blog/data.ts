@@ -18,6 +18,66 @@ export type KassieBlogPost = {
 
 export const kassieBlogPosts: KassieBlogPost[] = [
   {
+    slug: "peppol-ubl-validatieregels-augustus-2026",
+    title: "Nieuwe Peppol/UBL-validatieregels vanaf augustus 2026",
+    description: "De Nederlandse Peppolautoriteit heeft mei 2026-releases van SI-UBL 2/NLCIUS en Peppol BIS 3 gepubliceerd. Wat betekent dit voorzichtig vertaald voor zzp’ers?",
+    date: "2026-06-29",
+    updated: "2026-06-29",
+    monitorSource: "Kassie marketing monitor Peppol/ViDA — 29 juni 2026",
+    category: "E-facturatie",
+    readingTime: "3 min",
+    intro: "De Nederlandse Peppolautoriteit meldt dat de mei 2026-releases van SI-UBL 2/NLCIUS en Peppol BIS 3 zijn gepubliceerd en vanaf 17 augustus 2026 verplicht worden voor validatie-artefacten. Voor ondernemers is dit vooral een software- en ketensignaal: zorg dat je factuursoftware en Peppol-koppeling actueel blijven. Dit artikel is geen fiscaal of juridisch advies.",
+    keyTakeaways: [
+      "De Nederlandse Peppolautoriteit publiceerde nieuwe SI-UBL 2/NLCIUS- en Peppol BIS 3-validatieartefacten in mei 2026.",
+      "Volgens de bron worden deze artefacten vanaf 17 augustus 2026 verplicht voor validatie binnen de betreffende standaarden.",
+      "Voor zzp’ers is dit meestal geen handmatige actie, maar wel een controlepunt voor factuursoftware, boekhoudpakketten en Peppol-serviceproviders.",
+      "Er is in deze monitor geen nieuw Nederlands besluit gevonden dat een algemene binnenlandse B2B e-facturatieplicht op korte termijn definitief maakt."
+    ],
+    sections: [
+      {
+        heading: "Wat is het nieuwe signaal?",
+        body: [
+          "Het concrete nieuwe signaal komt van de Nederlandse Peppolautoriteit: de mei 2026-releases van SI-UBL 2/NLCIUS en Peppol BIS 3 zijn gepubliceerd. In de bron staat dat deze validatie-artefacten vanaf 17 augustus 2026 verplicht worden.",
+          "Validatieregels bepalen of een gestructureerde factuur technisch en inhoudelijk volgens de afgesproken standaard is opgebouwd. Dat klinkt technisch, maar ondernemers merken het vooral wanneer software facturen weigert, foutmeldingen geeft of ontbrekende gegevens vraagt."
+        ]
+      },
+      {
+        heading: "Wat betekent dit voor zzp’ers en kleine ondernemers?",
+        body: [
+          "Voor de meeste ondernemers betekent dit niet dat zij zelf SI-UBL- of Peppol-documentatie hoeven te lezen. De praktische vraag is: wordt je boekhoud- of facturatiesoftware tijdig bijgewerkt en kan je leverancier uitleggen hoe Peppol/UBL-validatie wordt afgehandeld?",
+          "Werk je met Belgische klanten, grotere opdrachtgevers of partijen die al Peppol vragen, dan is het extra verstandig om te testen of je factuurdata compleet is: KvK- en btw-gegevens, adressen, factuurregels, btw-codes en referenties."
+        ]
+      },
+      {
+        heading: "Koppeling met ViDA en België",
+        body: [
+          "De EU werkt ondertussen door aan ViDA. De monitor noemt het implementatieprogramma 2026 en de bredere Europese tijdlijn voor digitale rapportage, waaronder 1 juli 2030 voor bepaalde grensoverschrijdende B2B-transacties.",
+          "België is sinds 1 januari 2026 een dichtbij praktijkvoorbeeld van verplichte gestructureerde B2B e-facturatie tussen btw-plichtige ondernemingen. Dat is geen bewijs dat Nederland dezelfde route of datum kiest, maar wel een signaal dat gestructureerde facturen normaler worden."
+        ]
+      },
+      {
+        heading: "Praktische check zonder paniek",
+        body: [
+          "Vraag je softwareleverancier of de mei 2026 SI-UBL 2/NLCIUS- en Peppol BIS 3-updates vóór 17 augustus 2026 zijn verwerkt. Bewaar het antwoord als interne broncheck als je hierover klanten informeert.",
+          "Gebruik dit moment ook om ontbrekende klantdata op te ruimen. Een Peppol-ready proces begint niet bij een pdf, maar bij correcte gestructureerde gegevens die zonder herstelwerk door validatie komen."
+        ]
+      }
+    ],
+    sources: [
+      { label: "Nederlandse Peppolautoriteit — mei-release van SI-UBL 2 en Peppol BIS 3 gepubliceerd", href: "https://www.peppolautoriteit.nl/actueel/nieuws/2026/05/22/mei-release-van-si-ubl-2-en-peppol-bis-3-gepubliceerd" },
+      { label: "Nederlandse Peppolautoriteit — actueel", href: "https://www.peppolautoriteit.nl/" },
+      { label: "Europese Commissie — VAT in the Digital Age", href: "https://taxation-customs.ec.europa.eu/taxation/vat/vat-digital-age-vida_en" },
+      { label: "Europese Commissie — ViDA implementation work programme 2026", href: "https://taxation-customs.ec.europa.eu/document/download/c6153542-8b34-4308-b7e4-9e65e55eb79d_en?filename=ViDA%20implementation-Work%20program.pdf" },
+      { label: "België — e-facturatie startpagina", href: "https://efactuur.belgium.be/nl" },
+      { label: "België — gestructureerde elektronische facturen tussen ondernemingen verplicht sinds 2026", href: "https://efactuur.belgium.be/nl/article/gestructureerde-elektronische-facturen-tussen-ondernemingen-verplicht-sinds-2026" }
+    ],
+    related: [
+      { label: "ViDA en Peppol tijdlijn", href: "/e-facturatie/vida-peppol-tijdlijn" },
+      { label: "E-facturatie, Peppol & ViDA uitgelegd", href: "/e-facturatie-peppol-vida" },
+      { label: "Peppol-ready-check", href: "/tools/peppol-ready-check" }
+    ]
+  },
+  {
     slug: "vida-implementatie-werkprogramma-2026-e-facturatie",
     title: "EU ViDA-werkprogramma 2026: e-facturatie blijft in beweging",
     description: "De Europese Commissie heeft een ViDA-implementatieprogramma voor 2026 gepubliceerd. Wat betekent dat voorzichtig vertaald voor zzp’ers en kleine ondernemers?",
