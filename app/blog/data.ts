@@ -18,6 +18,65 @@ export type KassieBlogPost = {
 
 export const kassieBlogPosts: KassieBlogPost[] = [
   {
+    slug: "belgie-e-facturatie-tolerantieperiode-voorbij-2026",
+    title: "België na de tolerantieperiode: e-facturatie is nu echt dagelijkse praktijk",
+    description: "België meldt dat de algemene tolerantieperiode voor verplichte gestructureerde B2B e-facturatie voorbij is. Voor Nederlandse zzp’ers is dit vooral een praktisch waarschuwingssignaal, geen Nederlands fiscaal advies.",
+    date: "2026-06-30",
+    updated: "2026-06-30",
+    monitorSource: "Kassie marketing monitor Peppol/ViDA — 30 juni 2026",
+    category: "E-facturatie",
+    readingTime: "3 min",
+    intro: "De Belgische overheid meldt dat de algemene tolerantieperiode rond verplichte gestructureerde B2B e-facturatie voorbij is. Voor Nederlandse zzp’ers betekent dit niet dat Nederland vandaag dezelfde plicht heeft, maar het laat wel zien dat Peppol, UBL en gestructureerde facturen in de praktijk dichterbij komen. Dit artikel is een praktische signalering en geen fiscaal of juridisch advies.",
+    keyTakeaways: [
+      "België verplicht sinds 1 januari 2026 gestructureerde B2B e-facturen tussen Belgische btw-plichtige ondernemingen.",
+      "De Belgische overheid meldt dat de algemene tolerantieperiode voorbij is; voor self-billing liep volgens de monitor nog een specifieke tolerantie tot en met 30 juni 2026.",
+      "Voor Nederlandse ondernemers is dit vooral relevant bij Belgische klanten, leveranciers of softwareketens die Peppol/UBL al actiever gebruiken.",
+      "Er is in deze monitor geen nieuw Nederlands besluit gevonden dat een algemene binnenlandse B2B e-facturatieplicht voor zzp’ers per direct invoert."
+    ],
+    sections: [
+      {
+        heading: "Wat is het nieuwe signaal?",
+        body: [
+          "Het nieuwe signaal komt uit België: de overheid communiceert dat de algemene tolerantieperiode voor verplichte gestructureerde elektronische B2B-facturen voorbij is. Daarmee verschuift het onderwerp van voorbereiding naar dagelijkse uitvoering bij Belgische btw-plichtige ondernemingen.",
+          "De monitor noemt daarnaast dat voor self-billing nog een specifieke tolerantie tot en met 30 juni 2026 liep. Gebruik dit als broncheckpunt wanneer je met Belgische self-billing-afspraken te maken hebt; de precieze gevolgen hangen af van de transactie en betrokken partijen."
+        ]
+      },
+      {
+        heading: "Waarom dit voor Nederlandse zzp’ers relevant is",
+        body: [
+          "Nederland heeft volgens deze monitor geen nieuw algemeen binnenlands B2B-mandaat aangekondigd. Toch kan België als voorloper invloed hebben op Nederlandse ondernemers die leveren aan Belgische zakelijke klanten, werken met internationale platforms of software gebruiken die voor meerdere landen tegelijk wordt aangepast.",
+          "De praktische vraag is dus niet: ‘moet iedere Nederlandse zzp’er nu verplicht e-factureren?’ De betere vraag is: ‘kan mijn administratie al gestructureerde factuurdata leveren als een klant, leverancier of softwareketen daarom vraagt?’"
+        ]
+      },
+      {
+        heading: "Koppeling met ViDA en Peppol",
+        body: [
+          "Tegelijk werkt de Europese Commissie verder aan ViDA. Het 2026-werkprogramma noemt stappen rond e-invoicing-standaarden, digitale rapportage en de centrale VIES-architectuur. Dat verandert niet alles morgen, maar het bevestigt wel de richting: facturen worden steeds meer gestructureerde data in plaats van alleen pdf’s.",
+          "Peppol en UBL blijven daarbij belangrijke begrippen. Ook de Nederlandse Peppolautoriteit publiceerde recent nieuwe SI-UBL 2/NLCIUS- en Peppol BIS 3-validatie-informatie. Voor ondernemers zit de actie vooral bij softwarekeuze, datakwaliteit en tijdig testen."
+        ]
+      },
+      {
+        heading: "Praktische check zonder paniek",
+        body: [
+          "Controleer of je boekhoud- of facturatiesoftware UBL kan maken, Peppol ondersteunt of een duidelijke planning heeft. Vraag ook wat er gebeurt bij ontbrekende btw-nummers, adressen, referenties of foutieve factuurregels.",
+          "Werk je met België of andere internationale klanten? Leg dan afspraken over factuurvorm, referenties en ontvangstkanaal expliciet vast. Laat fiscale twijfelgevallen altijd controleren door je boekhouder of adviseur."
+        ]
+      }
+    ],
+    sources: [
+      { label: "België — verplichte gestructureerde B2B e-facturen sinds 2026", href: "https://efacture.belgium.be/nl/article/gestructureerde-elektronische-facturen-tussen-ondernemingen-verplicht-sinds-2026" },
+      { label: "België — einde van de algemene tolerantieperiode", href: "https://efacture.belgium.be/nl/news/einde-van-de-algemene-tolerantieperiode-voor-e-facturering" },
+      { label: "EU — VAT in the Digital Age", href: "https://taxation-customs.ec.europa.eu/taxation/vat/vat-digital-age-vida_en" },
+      { label: "EU — ViDA implementation work programme 2026", href: "https://taxation-customs.ec.europa.eu/document/download/c6153542-8b34-4308-b7e4-9e65e55eb79d_en?filename=ViDA%20implementation-Work%20program.pdf" },
+      { label: "Nederlandse Peppolautoriteit — mei-release SI-UBL 2 en Peppol BIS 3", href: "https://peppolautoriteit.nl/actueel/nieuws/2026/05/22/mei-release-van-si-ubl-2-en-peppol-bis-3-gepubliceerd" }
+    ],
+    related: [
+      { label: "ViDA en Peppol tijdlijn", href: "/e-facturatie/vida-peppol-tijdlijn" },
+      { label: "E-facturatie, Peppol & ViDA uitgelegd", href: "/e-facturatie" },
+      { label: "Peppol-ready-check", href: "/tools/peppol-ready-check" }
+    ]
+  },
+  {
     slug: "peppol-ubl-validatieregels-augustus-2026",
     title: "Nieuwe Peppol/UBL-validatieregels vanaf augustus 2026",
     description: "De Nederlandse Peppolautoriteit heeft mei 2026-releases van SI-UBL 2/NLCIUS en Peppol BIS 3 gepubliceerd. Wat betekent dit voorzichtig vertaald voor zzp’ers?",
