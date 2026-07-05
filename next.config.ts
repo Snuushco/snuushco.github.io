@@ -8,6 +8,31 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/kassie-mc",
+        destination: "https://mijn.kassieapp.nl/kassie-mc",
+        permanent: false,
+      },
+      {
+        source: "/verwerkersovereenkomst",
+        destination: "https://mijn.kassieapp.nl/verwerkersovereenkomst",
+        permanent: false,
+      },
+      {
+        source: "/subprocessors",
+        destination: "https://mijn.kassieapp.nl/subprocessors",
+        permanent: false,
+      },
+      {
+        source: "/security",
+        destination: "https://mijn.kassieapp.nl/security",
+        permanent: false,
+      },
+      {
+        source: "/blog/:slug*",
+        destination: "https://mijn.kassieapp.nl/blog/:slug*",
+        permanent: false,
+      },
+      {
         source: "/login",
         destination: "https://mijn.kassieapp.nl/login",
         permanent: false,
