@@ -28,11 +28,6 @@ const nextConfig: NextConfig = {
         permanent: false,
       },
       {
-        source: "/blog/:slug*",
-        destination: "https://mijn.kassieapp.nl/blog/:slug*",
-        permanent: false,
-      },
-      {
         source: "/login",
         destination: "https://mijn.kassieapp.nl/login",
         permanent: false,
