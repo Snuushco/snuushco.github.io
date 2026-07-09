@@ -18,6 +18,66 @@ export type KassieBlogPost = {
 
 export const kassieBlogPosts: KassieBlogPost[] = [
   {
+    slug: "peppol-bekendheid-mkb-belgie-zes-maanden-2026",
+    title: "Peppol-bekendheid groeit, maar gebruik blijft nog laag",
+    description: "Nieuwe marktsignalen melden dat Nederlandse ondernemers Peppol vaker kennen dan gebruiken, terwijl België na zes maanden verplichte B2B e-facturatie positieve eerste ervaringen rapporteert. Voor zzp’ers is dit een voorbereidingstrend, geen nieuw Nederlands mandaat.",
+    date: "2026-07-09",
+    updated: "2026-07-09",
+    monitorSource: "Kassie marketing monitor Peppol/ViDA — 9 juli 2026",
+    category: "Peppol",
+    readingTime: "3 min",
+    intro: "De dagelijkse Kassie-monitor vond twee nieuwe marktsignalen rond Peppol en e-facturatie. Accountantweek/Yuki meldt dat de bekendheid met Peppol onder Nederlandse ondernemers groeit, maar dat daadwerkelijk gebruik en technische gereedheid achterblijven. ITdaily meldt daarnaast dat Belgische ondernemers na zes maanden verplichte B2B e-facturatie overwegend positief reageren. Beide signalen zijn nuttig als richtingwijzer, maar de onderliggende onderzoeksclaims vragen broncheck; dit artikel is geen fiscaal of juridisch advies.",
+    keyTakeaways: [
+      "Volgens Accountantweek/Yuki kent 34% van de bevraagde Nederlandse ondernemers Peppol, gebruikt 6% het en is 11% technisch klaar; de monitor markeert de onderliggende onderzoeksdata als broncheck nodig.",
+      "Bij kleine factuurvolumes zou 93% nog nooit informatie over Peppol hebben ontvangen en 23% wachten op de accountant; behandel dit als marktsignaal, niet als officiële overheidsmeting.",
+      "ITdaily meldt na zes maanden Belgische B2B e-facturatie positieve survey-uitkomsten, waaronder 82% positief en 60% tijdwinst; ook hier is broncheck nodig omdat het onderzoek in opdracht van Billit is gedaan.",
+      "Er is volgens deze monitor geen nieuw Nederlands besluit gevonden dat nu al een algemene binnenlandse B2B e-facturatieplicht voor zzp’ers invoert."
+    ],
+    sections: [
+      {
+        heading: "Wat is het nieuwe signaal?",
+        body: [
+          "Het Nederlandse signaal gaat niet over een nieuwe wet, maar over adoptie. Accountantweek/Yuki schrijft dat Peppol-bekendheid groeit terwijl gebruik, technische gereedheid en informatievoorziening bij kleine ondernemers achterblijven. Voor Kassie is vooral dat gat relevant: ondernemers horen vaker over Peppol, maar weten nog niet altijd welke praktische check ze vandaag kunnen doen.",
+          "Het Belgische signaal is praktijkgericht. België verplicht sinds 1 januari 2026 gestructureerde B2B e-facturatie voor Belgische btw-plichtige ondernemingen. ITdaily meldt dat een meerderheid van respondenten na zes maanden positief is en tijdwinst ervaart. Omdat de cijfers uit een survey in opdracht van Billit komen, blijven exacte percentages een broncheckpunt."
+        ]
+      },
+      {
+        heading: "Waarom dit voor Nederlandse zzp’ers relevant is",
+        body: [
+          "Nederland heeft volgens de monitor nog geen definitief besluit genomen over een algemene binnenlandse B2B e-facturatieplicht. De Kamerbrief en ViDA-stukken blijven daarom context: Nederland beweegt richting consultatie en implementatie, maar de concrete binnenlandse keuzes moeten nog worden vastgesteld.",
+          "Toch kan de markt eerder bewegen dan de verplichting. Belgische klanten, internationale platforms, boekhoudkantoren en softwareleveranciers kunnen al eerder om UBL, Peppol of betere factuurdata vragen. Wachten op een harde deadline is daarom niet nodig om je administratie alvast op orde te brengen."
+        ]
+      },
+      {
+        heading: "Wat kun je nu controleren zonder grote overstap?",
+        body: [
+          "Vraag je factuur- of boekhoudsoftware of UBL export en Peppol verzenden/ontvangen ondersteund worden. Controleer ook of klantgegevens, btw-nummers, adressen, orderreferenties en factuurregels gestructureerd worden opgeslagen in plaats van alleen als vrije tekst in een pdf.",
+          "Bespreek met je boekhouder welke klanten of leveranciers als eerste geraakt kunnen worden. Als er twijfel is over btw, grensoverschrijdende transacties of Belgische verplichtingen, laat dat apart controleren; Kassie presenteert dit signaal niet als fiscaal advies."
+        ]
+      },
+      {
+        heading: "Kassie-duiding voor de tijdlijn",
+        body: [
+          "Voor de Kassie ViDA/Peppol-tijdlijn past dit als marktsignaal bij 2026: België laat zien dat verplichte e-facturatie in dagelijkse processen belandt, terwijl Nederlandse ondernemers nog een informatie- en gereedheidskloof hebben.",
+          "De voorzichtige conclusie: Peppol is geen ver-van-je-bedthema meer, maar er is ook geen reden voor paniek. Begin met softwarecheck, datakwaliteit en een kort gesprek met de boekhouder."
+        ]
+      }
+    ],
+    sources: [
+      { label: "Accountantweek — waarom Peppol stagneert in het mkb", href: "https://accountantweek.nl/artikel/waarom-peppol-stagneert-in-het-mkb-en-waar-jij-als-accountant-het-verschil-maakt/" },
+      { label: "ITdaily — Belgische ondernemers over zes maanden e-facturatie", href: "https://itdaily.be/nieuws/software/driekwart-van-belgische-ondernemers-is-blij-met-e-facturatie/" },
+      { label: "Rijksoverheid — aanbiedingsbrief rapport ViDA, e-facturatie en digitale rapportage", href: "https://www.rijksoverheid.nl/documenten/2026/03/10/aanbiedingsbrief-rapport-vida-efacturatie-en-digitale-rapportage" },
+      { label: "Tweede Kamer — ViDA, e-facturatie en digitale rapportage", href: "https://zoek.officielebekendmakingen.nl/kst-22112-4290.html" },
+      { label: "Belgische overheid — gestructureerde B2B e-facturen verplicht sinds 2026", href: "https://efactuur.belgium.be/nl/article/gestructureerde-elektronische-facturen-tussen-ondernemingen-verplicht-sinds-2026" },
+      { label: "EU — VAT in the Digital Age", href: "https://taxation-customs.ec.europa.eu/taxation/vat/vat-digital-age-vida_en" }
+    ],
+    related: [
+      { label: "ViDA en Peppol tijdlijn", href: "/e-facturatie/vida-peppol-tijdlijn" },
+      { label: "Peppol-ready-check", href: "/tools/peppol-ready-check" },
+      { label: "E-facturatie, Peppol & ViDA uitgelegd", href: "/e-facturatie" }
+    ]
+  },
+  {
     slug: "nederland-vida-planning-e-facturatie-consultatie-2026",
     title: "Nederland geeft nieuw ViDA-planningssignaal voor e-facturatie",
     description: "Op 2 juli 2026 publiceerde de overheid nieuwe ViDA-stukken met planning voor platformeconomie, e-facturatie en digitale rapportage. Voor zzp’ers is dit een bronrijk signaal richting consultatie, geen nieuwe directe plicht.",
