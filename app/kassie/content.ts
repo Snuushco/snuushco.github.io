@@ -6,11 +6,19 @@ export type ContentPage = {
   title: string;
   description: string;
   h1: string;
+  updated?: string;
   primaryKeyword: string;
   secondaryKeywords: string[];
   intent: string;
   cta: string;
   sections: { heading: string; body: string[] }[];
+  checklist?: {
+    title: string;
+    intro: string;
+    downloadHref: string;
+    items: { time: string; title: string; checks: string[] }[];
+    reviewItems: string[];
+  };
   faqs: { question: string; answer: string }[];
   links: { label: string; href: string }[];
   sources?: { label: string; href: string }[];
@@ -212,24 +220,41 @@ export const pillarPages: ContentPage[] = [
   },
   {
     slug: "administratie-routine-zzp",
-    title: "Administratie-routine voor ZZP'ers: 20 minuten per week | Kassie",
-    description: "Een praktische wekelijkse routine voor bonnen, facturen, btw en openstaande betalingen zonder kwartaalstress.",
-    h1: "Administratie-routine voor ZZP'ers",
-    primaryKeyword: "administratie routine zzp",
-    secondaryKeywords: ["kwartaalstress voorkomen", "bonnen bijhouden", "facturen controleren"],
-    intent: "ZZP'er wil een simpele routine die vol te houden is.",
-    cta: "Start je weekroutine",
+    title: "Wekelijkse administratie checklist ZZP: klaar in 15 minuten | Kassie",
+    description: "Houd je administratie als zzp'er in 15 minuten per week bij met een gratis printbare checklist voor facturen, bonnen, bank, openstaande posten en btw-bewijs.",
+    h1: "Wekelijkse administratie checklist voor zzp'ers",
+    updated: "2026-07-10",
+    primaryKeyword: "wekelijkse administratie checklist zzp",
+    secondaryKeywords: ["administratie bijhouden zzp", "administratie checklist zzp", "bonnen bijhouden", "facturen controleren"],
+    intent: "ZZP'er zoekt een concrete, gratis weekcheck om de administratie zelf bij te houden en wil weten waar software kan helpen.",
+    cta: "Probeer Kassie 30 dagen",
     sections: [
-      { heading: "Kort antwoord", body: ["Reserveer wekelijks twintig minuten om bonnen door te sturen, afgerond werk te factureren, openstaande bedragen te controleren en btw-/boekhoudvragen te labelen. Dat is vaak effectiever dan wachten tot de btw-deadline.", "Kassie ondersteunt die routine door van losse berichten en foto's concrete administratie-acties te maken."] },
-      { heading: "De vrijdagcheck", body: ["1. Nieuwe bonnen doorsturen. 2. Afgerond werk factureren. 3. Openstaande facturen checken. 4. Twijfelgevallen markeren. 5. Btw-map per periode bijwerken.", "Maak het klein genoeg om vol te houden. Een routine die je uitvoert wint van een perfect systeem dat je ontwijkt."] },
-      { heading: "Wat levert het op?", body: ["Minder zoekwerk, sneller factureren, betere cashflow, minder btw-stress en duidelijkere vragen voor je boekhouder.", "Ook voor AI/automatisering is dit belangrijk: goede invoer geeft betere concepten." ] },
+      { heading: "Kort antwoord: plan elke week hetzelfde kwartier", body: ["Reserveer iedere week vijftien minuten op een vast moment. Controleer achtereenvolgens je verkoopfacturen, inkoopfacturen en bonnen, bankmutaties, openstaande posten en btw-bewijs. Zet alles wat niet duidelijk is apart voor review in plaats van te gokken.", "Jij controleert of werk echt is geleverd, een uitgave zakelijk is, een betaling klopt en bewijs compleet is. Kassie kan gegevens en conceptacties klaarzetten, maar jij of je boekhouder beoordeelt uitzonderingen en fiscale twijfel."] },
+      { heading: "Wat controleer je zelf en waar helpt Kassie?", body: ["Als ondernemer blijf je eigenaar van de feiten: klopt de klant, het bedrag, de omschrijving, de betaalstatus en de zakelijke reden? Controleer ook of een bon leesbaar is en of een afwijkende transactie uitleg nodig heeft.", "Kassie helpt met review-safe, auditbare automatisering: bonnen en berichten worden voorbereid als controleerbare concepten, ontbrekende informatie blijft zichtbaar en twijfelgevallen worden niet stilzwijgend definitief gemaakt."] },
+      { heading: "Maak van uitzonderingen een korte reviewlijst", body: ["Probeer een lastig geval niet in je weekkwartier op te lossen. Noteer wat er is gebeurd, om welk bedrag het gaat, welk bewijs je hebt en welke vraag nog openstaat. Zo kan jij of je boekhouder gericht beoordelen zonder de hele administratie opnieuw uit te zoeken.", "Vraag review bij onder meer buitenlandse facturen, verlegde btw, gemengd privé en zakelijk gebruik, creditnota's, contante betalingen, ontbrekende bonnen of een btw-tarief waarover je twijfelt."] },
+      { heading: "Kassie als hulp bij je weekroutine", body: ["Kassie kost €79 per maand exclusief btw en is 30 dagen te proberen. Je stuurt bijvoorbeeld een bon of opdracht via WhatsApp; Kassie zet de administratie-actie klaar en jij controleert voordat iets definitief wordt.", "Kassie belooft geen foutloze of volledig autonome fiscale verwerking. Het uitgangspunt is juist dat bewijs, wijzigingen en uitzonderingen controleerbaar blijven voor jou en waar nodig je boekhouder."] },
     ],
+    checklist: {
+      title: "Printbare 15-minuten weekchecklist",
+      intro: "Vink de regels af op je scherm of print dit blok. De tijden zijn een richtlijn; bij een uitzondering noteer je alleen de vraag en ga je door.",
+      downloadHref: "/downloads/wekelijkse-administratie-checklist-zzp.md",
+      items: [
+        { time: "0–3 min", title: "Verkoopfacturen", checks: ["Factureer afgerond werk dat nog niet is gefactureerd.", "Controleer klant, datum, omschrijving, factuurnummer, bedrag en btw.", "Verstuur pas nadat je het concept zelf hebt gecontroleerd."] },
+        { time: "3–6 min", title: "Inkoopfacturen en bonnen", checks: ["Verzamel nieuwe inkoopfacturen en maak bonfoto's goed leesbaar.", "Controleer leverancier, datum, bedrag, btw, betaalwijze en zakelijk doel.", "Koppel ontbrekend bewijs aan een concrete opvolgactie."] },
+        { time: "6–9 min", title: "Bankmutaties", checks: ["Vergelijk ontvangsten met verkoopfacturen en uitgaven met bewijsstukken.", "Markeer privéopnamen, privéstortingen en onbekende transacties apart.", "Noteer bij een afwijking wat je nog moet uitzoeken; boek niet op goed geluk."] },
+        { time: "9–12 min", title: "Openstaande posten", checks: ["Markeer ontvangen betalingen als betaald.", "Controleer welke facturen over de afgesproken betaaltermijn zijn.", "Beslis zelf of en wanneer je een vriendelijke herinnering stuurt."] },
+        { time: "12–15 min", title: "Btw-bewijs en uitzonderingen", checks: ["Controleer of iedere btw-post een leesbaar bewijsstuk en zakelijke context heeft.", "Zet creditnota's en correcties bij de juiste periode.", "Plaats twijfelgevallen op de reviewlijst voor jezelf of je boekhouder."] },
+      ],
+      reviewItems: ["Buitenlandse klant of leverancier", "Verlegde btw, KOR of vrijstelling", "Gemengd privé en zakelijk gebruik", "Ontbrekend of onleesbaar bewijs", "Ongebruikelijk btw-tarief of grote correctie"],
+    },
     faqs: [
-      { question: "Waarom wekelijks?", answer: "Omdat context dan nog vers is en bewijs makkelijker terug te vinden is." },
-      { question: "Wat als ik weinig transacties heb?", answer: "Ook dan is een korte check nuttig: openstaande facturen en ontbrekende bonnen vallen sneller op." },
-      { question: "Kan Kassie me herinneren?", answer: "De productbelofte is dat administratie-acties klein en zichtbaar worden; herinneringen passen daar logisch bij." },
+      { question: "Waarom mijn administratie wekelijks bijhouden?", answer: "Omdat klantafspraken, bonnen en betalingen dan nog herkenbaar zijn. Je ziet ontbrekend bewijs en openstaande facturen eerder dan wanneer je pas bij de btw-aangifte begint." },
+      { question: "Wat als ik weinig transacties heb?", answer: "Ook dan is een korte check nuttig. Je bent vaak sneller klaar, terwijl openstaande facturen, bankafwijkingen en ontbrekende bonnen wel tijdig opvallen." },
+      { question: "Doet Kassie mijn administratie volledig automatisch?", answer: "Nee. Kassie zet gegevens en conceptacties klaar. Jij controleert de feiten en fiscale uitzonderingen blijven reviewwerk voor jou of je boekhouder." },
+      { question: "Kan ik de checklist gratis downloaden?", answer: "Ja. De checklist staat zonder e-mailgate als printbare HTML op deze pagina en als downloadbaar markdownbestand." },
     ],
-    links: [{ label: "Boekhouden voor ZZP'ers", href: "/boekhouden-zzp" }, { label: "BTW-aangifte", href: "/btw-aangifte-zzp" }, { label: "WhatsApp-boekhouden", href: "/whatsapp-boekhouden" }],
+    links: [{ label: "Boekhouden voor ZZP'ers", href: "/boekhouden-zzp" }, { label: "Bonnen bewaren als ZZP'er", href: "/bonnen-bewaren-zzp" }, { label: "BTW-aangifte voor ZZP'ers", href: "/btw-aangifte-zzp" }],
+    sources: [{ label: "Belastingdienst — administratie bijhouden en bewaren", href: belastingdienst }],
   },
   {
     slug: "bonnen-bewaren-zzp",
