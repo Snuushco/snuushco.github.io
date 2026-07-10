@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { AnalyticsScripts } from "./analytics";
 import "./globals.css";
 
-export const metadata: Metadata = {
+const snuushcoMetadata: Metadata = {
   metadataBase: new URL("https://snuushco.nl"),
   title: "Snuushco | Websites, SEO en AI-SO die betere aanvragen opleveren",
   description:
@@ -47,6 +48,44 @@ export const metadata: Metadata = {
     },
   },
 };
+
+const kassieMetadata: Metadata = {
+  metadataBase: new URL("https://kassieapp.nl"),
+  title: "Kassie | Slim boekhouden via WhatsApp",
+  description:
+    "Kassie maakt boekhouden begrijpelijk voor praktische ondernemers. Stuur een bon, opdracht of vraag via WhatsApp. Kassie zet het klaar, jij controleert, klaar.",
+  alternates: {
+    canonical: "https://kassieapp.nl",
+  },
+  keywords: [
+    "boekhouden via WhatsApp",
+    "boekhoud app zzp",
+    "bonnen app",
+    "facturen maken zzp",
+    "btw administratie zzp",
+    "Kassie",
+  ],
+  openGraph: {
+    title: "Kassie | Slim boekhouden via WhatsApp",
+    description: "Overzichtelijk, betrouwbaar en gemaakt voor praktische ondernemers.",
+    url: "https://kassieapp.nl",
+    siteName: "Kassie",
+    locale: "nl_NL",
+    type: "website",
+    images: [{ url: "/brand/kassie-og.jpg", alt: "Kassie slim boekhouden" }],
+  },
+  icons: {
+    icon: "/brand/kassie-profile.png",
+    apple: "/brand/kassie-profile.png",
+  },
+  robots: snuushcoMetadata.robots,
+};
+
+export async function generateMetadata(): Promise<Metadata> {
+  const requestHeaders = await headers();
+  const host = requestHeaders.get("host")?.toLowerCase().split(":")[0] ?? "";
+  return host === "kassieapp.nl" ? kassieMetadata : snuushcoMetadata;
+}
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
