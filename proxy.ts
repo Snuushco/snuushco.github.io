@@ -77,6 +77,12 @@ export async function proxy(request: NextRequest) {
       });
     }
 
+    if (pathname === "/pricing" || pathname === "/blog" || pathname.startsWith("/blog/")) {
+      const appUrl = new URL(pathname, "https://mijn.kassieapp.nl");
+      appUrl.search = request.nextUrl.search;
+      return NextResponse.redirect(appUrl, 308);
+    }
+
     if (!pathname.startsWith("/ops") && !pathname.startsWith("/api/ops")) {
       return;
     }

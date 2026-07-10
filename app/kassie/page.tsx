@@ -24,6 +24,14 @@ export const metadata: Metadata = {
   alternates: {
     canonical: kassieMarketingUrl,
   },
+  keywords: [
+    "boekhouden via WhatsApp",
+    "boekhoud app zzp",
+    "bonnen app",
+    "facturen maken zzp",
+    "btw administratie zzp",
+    "Kassie",
+  ],
   openGraph: {
     title: "Kassie | Slim boekhouden via WhatsApp",
     description: "Overzichtelijk, betrouwbaar en gemaakt voor praktische ondernemers.",
