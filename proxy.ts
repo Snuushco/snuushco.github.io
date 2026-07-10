@@ -3,6 +3,30 @@ import { NextResponse } from "next/server";
 
 const sessionCookie = "snuushco_ops_session";
 
+const kassieMarketingPaths = new Set([
+  "/aftrekposten-zzp",
+  "/boekhouden-zzp",
+  "/btw-aangifte-zzp",
+  "/e-facturatie-peppol-vida",
+  "/e-facturatie/vida-peppol-tijdlijn",
+  "/factureren-zzp",
+  "/marketing/kassie-operating-model",
+  "/tools/aftrekposten-checker",
+  "/tools/btw-calculator",
+  "/tools/factuurgenerator",
+  "/tools/peppol-ready-check",
+  "/tools/uurtarief-calculator",
+  "/zzp-starten-administratie",
+]);
+
+function isKassieMarketingPath(pathname: string) {
+  return kassieMarketingPaths.has(pathname)
+    || pathname.startsWith("/blog")
+    || pathname.startsWith("/boekhouden-voor/")
+    || pathname.startsWith("/kennisbank/")
+    || pathname.startsWith("/vergelijk/");
+}
+
 async function sign(username: string, secret: string) {
   const encoder = new TextEncoder();
   const key = await crypto.subtle.importKey("raw", encoder.encode(secret), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
@@ -30,8 +54,13 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(url, 308);
   }
 
-  if ((host === "snuushco.nl" || host === "www.snuushco.nl") && (pathname === "/kassie" || pathname.startsWith("/kassie/"))) {
-    return NextResponse.redirect("https://kassieapp.nl", 308);
+  if (host === "snuushco.nl" || host === "www.snuushco.nl") {
+    if (pathname === "/kassie" || pathname.startsWith("/kassie/")) {
+      return NextResponse.redirect("https://kassieapp.nl", 308);
+    }
+    if (isKassieMarketingPath(pathname)) {
+      return NextResponse.redirect(new URL(`${pathname}${request.nextUrl.search}`, "https://kassieapp.nl"), 308);
+    }
   }
 
   if (host === "kassieapp.nl") {

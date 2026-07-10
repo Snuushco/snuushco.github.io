@@ -9,7 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/ops", "/ops/", "/ops/*", "/api/ops", "/api/ops/*"],
       },
     ],
-    sitemap: "https://snuushco.nl/sitemap.xml",
-    host: "https://snuushco.nl",
+    sitemap: "https://kassieapp.nl/sitemap.xml",
   };
 }
