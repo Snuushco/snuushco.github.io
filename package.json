@@ -6,8 +6,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "test:cashflow-lab": "tsx scripts/test-cashflow-lab.mjs",
+    "test:cashflow-lab:ledger": "node --import tsx scripts/test-cashflow-ledger-integration.mts",
+    "smoke:cashflow-lab": "node scripts/cashflow-browser-smoke.mjs",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "smoke:kassie-routes": "node scripts/kassie-route-smoke.mjs"
   },
   "keywords": [],
@@ -28,8 +31,10 @@
     "@types/pg": "^8.20.0",
     "@types/react": "^19.2.15",
     "@types/react-dom": "^19.2.3",
-    "eslint": "^10.4.0",
+    "eslint": "9.39.5",
     "eslint-config-next": "^16.2.6",
+    "playwright": "1.61.1",
+    "tsx": "4.23.1",
     "typescript": "^6.0.3"
   }
 }

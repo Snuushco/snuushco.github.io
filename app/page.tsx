@@ -272,7 +272,7 @@ export function Footer() {
           <img className="footer-logo" src="/brand/snuushco-logo-light.jpg" alt="Snuushco" />
           <p>Websites, SEO + AI-SO en aanvraagroutes met menselijke controle.</p>
         </div>
-        <p><Link href="/marketing">Marketing</Link> · <Link href="/seo-ai-so">SEO + AI-SO</Link> · <Link href="/privacy">Privacy</Link> · <Link href="/voorwaarden">Voorwaarden</Link></p>
+        <p><Link href="/marketing">Marketing</Link> · <Link href="/seo-ai-so">SEO + AI-SO</Link> · <Link href="/margecheck-offerteadvies">Margecheck + offerteadvies</Link> · <Link href="/privacy">Privacy</Link> · <Link href="/voorwaarden">Voorwaarden</Link></p>
       </div>
     </footer>
   );
